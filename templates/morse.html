@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Morse Code Converter{% endblock %}
+
+{% block content %}
+     <div class="container">
+      <h1 class="heading" >Morse Code Converter </h1>
+     </div>
+         <a href="/" class="button" >Voltar</a>
+<br><br><br><br>
+    <div class="center">
+        <form action='{{url_for("morse")}}'  method="POST">
+            <h3>Text to Convert</h3>
+            <input name="convert" center type="text" />
+            <button type="submit" class="button">Convert to Morse</button>
+        </form>
+    </div>
+    <br>
+    <br>
+    <h2 class="center">Text : {{ text }}</h2>
+         <br>
+    <h2 class="center">Converted Text : {{ coded }}</h2>
+<br>
+
+{% endblock %}
