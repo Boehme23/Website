@@ -1,15 +1,23 @@
-from ensurepip import bootstrap
-from xml.dom.expatbuilder import TEXT_NODE
 from flask import Flask, render_template, request, redirect, url_for
 from morse_code_converter import converter
 import sqlite3
-from flask_bootstrap import Bootstrap5
+from flask_bootstrap5 import Bootstrap
 import requests
+from dotenv import load_dotenv
+import os
+
+dotenv_path = os.path.join(os.path.dirname(__file__), 'keys.env') # Assumes keys.env is in the same directory as server.py
+if os.path.exists(dotenv_path):
+    load_dotenv(dotenv_path=dotenv_path)
+else:
+    print(f"Warning: Environment file not found at {dotenv_path}")
+
 app = Flask(__name__)
-Bootstrap5(app)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
-api_key_movie='4673175d64a444553e6749d1d2f920ad'
-bearer_token_movie='eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0NjczMTc1ZDY0YTQ0NDU1M2U2NzQ5ZDFkMmY5MjBhZCIsIm5iZiI6MTc0NzA3MTE5NS4wMzUsInN1YiI6IjY4MjIzMGRiN2Q1YTZiZjY3ZDdlN2RiYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.c1hk6YRfrd8yRtBW6lwY-udm-cc5QOx642CE3TGhnhI'
+app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY', 'a_sensible_default_secret_key_for_development')
+
+Bootstrap(app)
+
+BEARER_TOKEN_MOVIE = os.environ.get('TMDB_BEARER_TOKEN')
 
 @app.route('/')
 def home():
@@ -24,31 +32,26 @@ def morse():
         texting=request.form['convert']
         text2=converter(texting)
     return render_template('morse.html',text=texting,coded=text2)
-@app.route("/movies",methods=['GET', 'POST'])
+
+@app.route("/movies", methods=['GET'])  # Assuming POST is not used here
 def movies():
-    #Connect to DB, Reads and save to a list 'movies'
-    db = sqlite3.connect('movies.db')
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM movie")
-    result = cursor.fetchall()
-    movies = []
-    for rows in range(0, len(result)):
-        new_column = [
-            result[rows][0],
-            result[rows][1],
-            result[rows][2],
-            result[rows][3],
-            result[rows][4],
-            result[rows][5]
-        ]
-        movies.append(new_column)
+    movies_list = []
+    try:
+        with sqlite3.connect('movies.db') as db:  # Use a context manager
+            # Optional: db.row_factory = sqlite3.Row to access columns by name
+            cursor = db.cursor()
+            cursor.execute("SELECT * FROM movie")  # Consider selecting specific columns
+            result = cursor.fetchall()
+            # Process result into movies_list
+            for row_data in result:
+                movies_list.append(list(row_data))  # Or dict(row_data) if using row_factory
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        # Handle the error appropriately, e.g., flash a message or render an error page
+        pass
 
-#gets querry string, if error is true then it will diplay a pop-up saying the movie is already on the list
-    dup=''
-    if request.args.get('error')=='True':
-        dup='x'
-    return render_template("movies.html", movie=movies, error=dup)
-
+    show_duplicate_error = request.args.get('error') == 'True'
+    return render_template("movies.html", movie=movies_list, error=show_duplicate_error)
 @app.route("/selected",methods=['GET', 'POST'])
 def selected():
     # Conects to DB and save the new movie chosen by the user into it, if title already
@@ -67,6 +70,7 @@ def selected():
         try:
             cursor.execute(f'INSERT INTO Movie VALUES(?,?,?,?,?,?)', (title,year,desc,rating,review,img))
             db.commit()
+            db.close()
         except sqlite3.IntegrityError:
             print(f'Movie Already Exists in Database')
             duplicated=True
@@ -87,32 +91,106 @@ def add():
     img=''
     ans=''
     if request.method == 'POST':
-        print(request.form)
-        movie_searched =request.form['movie_searched']
-        url = "https://api.themoviedb.org/3/search/movie?query="+movie_searched+"&include_adult=false&language=en-US&page=1"
+        # ... (variable initializations: title, overview, etc.)
+        movie_searched = request.form.get('movie_searched')  # Use .get for safety
 
-        headers = {
-            "accept": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0NjczMTc1ZDY0YTQ0NDU1M2U2NzQ5ZDFkMmY5MjBhZCIsIm5iZiI6MTc0NzA3MTE5NS4wMzUsInN1YiI6IjY4MjIzMGRiN2Q1YTZiZjY3ZDdlN2RiYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.c1hk6YRfrd8yRtBW6lwY-udm-cc5QOx642CE3TGhnhI"
-        }
-
-        response = requests.get(url, headers=headers)
-        filme=response.json()
-        if response.status_code == 200:
-             if len(filme['results'])>0:
-                print(filme['results'])
-                ans='Is this the movie you were thinking about?'
-                title=filme['results'][0]['original_title']
-                overview=filme['results'][0]['overview']
-                rating=filme['results'][0]['vote_average']
-                year=filme['results'][0]['release_date']
-                img=filme['results'][0]['poster_path']
-             else:
-                 ans='No movies were found'
+        if not movie_searched:
+            ans = "Please enter a movie title to search."
+        elif not BEARER_TOKEN_MOVIE:
+            ans = "API token is not configured. Cannot search for movies."
+            print("Error: TMDB_BEARER_TOKEN is not set.")
         else:
-            ans='Unable to search'
-    return render_template("add.html",ans=ans, title= title,overview=overview,rating=rating,year=year,img=img)
+            url = "https://api.themoviedb.org/3/search/movie"  # Base URL
+            params = {
+                "query": movie_searched,
+                "include_adult": "false",
+                "language": "en-US",
+                "page": "1"
+            }
+            headers = {
+                "accept": "application/json",
+                "Authorization": f"Bearer {BEARER_TOKEN_MOVIE}"
+            }
 
+            try:
+                response = requests.get(url, headers=headers, params=params)
+                response.raise_for_status()  # Will raise an HTTPError for bad responses (4xx or 5xx)
+
+                filme = response.json()
+                if filme.get('results'):  # Check if 'results' key exists and is not empty
+                    first_result = filme['results'][0]
+                    ans = 'Is this the movie you were thinking about?'
+                    title = first_result.get('original_title')
+                    overview = first_result.get('overview')
+                    rating = first_result.get('vote_average')
+                    year = first_result.get('release_date')
+                    img = first_result.get('poster_path')
+                else:
+                    ans = 'No movies were found matching your search.'
+            except requests.exceptions.RequestException as e:
+                ans = f'Unable to search due to an API error: {e}'
+                print(f"API request failed: {e}")
+            except ValueError:  # Catches JSON decoding errors
+                ans = 'Error processing API response.'
+                print("Failed to decode JSON from API response")
+
+    return render_template("add.html", ans=ans, title=title, overview=overview, rating=rating, year=year, img=img)
+
+@app.route('/test-bootstrap')
+def test_bootstrap_route():
+    from flask import render_template_string
+
+    # ---- START DIAGNOSTIC ----
+    print("--- Checking Jinja Environment Globals ---")
+    if 'bootstrap' in app.jinja_env.globals:
+        print("'bootstrap' IS IN app.jinja_env.globals.")
+        # You could even try to inspect it:
+        # print(type(app.jinja_env.globals['bootstrap']))
+    else:
+        print("'bootstrap' IS NOT IN app.jinja_env.globals.")
+    print("--- End Checking Jinja Environment Globals ---")
+    # ---- END DIAGNOSTIC ----
+
+    minimal_html = """
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Bootstrap Minimal Test</title>
+        {% if bootstrap %}
+            {{ bootstrap.load_css() }}
+            <style> body { padding: 20px; } </style>
+        {% else %}
+            <!-- Bootstrap object not found! -->
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+            <style> body { background-color: #ffdddd !important; padding: 20px; } </style>
+        {% endif %}
+      </head>
+      <body>
+        <div class="container">
+          <h1>Minimal Bootstrap Test</h1>
+          {% if bootstrap %}
+            <p class="text-success">Bootstrap object seems to be available!</p>
+          {% else %}
+            <p class="text-danger"><strong>Error: 'bootstrap' is undefined in this minimal template.</strong></p>
+          {% endif %}
+          <button class="btn btn-primary">Test Button</button>
+        </div>
+        {% if bootstrap %}
+            {{ bootstrap.load_js() }}
+        {% endif %}
+      </body>
+    </html>
+    """
+    try:
+        print("Attempting to render minimal_html...")
+        return render_template_string(minimal_html)
+    except Exception as e:
+        print(f"Error in test_bootstrap_route: {e}")
+        return f"Error in test_bootstrap_route: {e}", 500
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+    ##venv\Scripts\activate
