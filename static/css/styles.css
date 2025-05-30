@@ -64,7 +64,7 @@
 	 margin-bottom: 3rem;
 }
  .card {
-	 color: inherit;
+	 color: black;
 	 cursor: pointer;
 	 width: calc(33% - 3rem);
 	 min-width: calc(33% - 3rem);
