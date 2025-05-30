@@ -7,7 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 from dotenv import load_dotenv
 import os
 
-dotenv_path = os.path.join(os.path.dirname(__file__), 'keys.env') # Assumes keys.env is in the same directory as server.py
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env') # Assumes keys.env is in the same directory as server.py
 if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path=dotenv_path)
 else:
@@ -15,15 +15,15 @@ else:
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY', 'a_sensible_default_secret_key_for_development')
-
+app.config['BEARER_TOKEN_MOVIE'] = os.environ.get('TMDB_BEARER_TOKEN')
 app.config['UPLOAD_FOLDER'] = 'uploads'  # Define the upload folder
 # Create the upload folder if it doesn't exist
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
-
+BEARER_TOKEN_MOVIE = app.config.get('BEARER_TOKEN_MOVIE')
 
 Bootstrap(app)
 
-BEARER_TOKEN_MOVIE = os.environ.get('TMDB_BEARER_TOKEN')
+
 
 
 def add_watermark(image_path, watermark_text, output_path):

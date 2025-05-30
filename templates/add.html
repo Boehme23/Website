@@ -43,11 +43,11 @@
     </div>
     <div class="container text-center add">
         <form action='{{url_for('selected')}}' method="POST">
-            <input name= 'title' value='{{title}}' readonly>
-            <input name= 'year' value={{year}} readonly>
-            <input name= 'rating' value={{rating}} readonly>
-            <input name= 'overview' value='{{overview}}' readonly>
-            <input name= 'image' value={{'https://image.tmdb.org/t/p/w185'+img}} readonly>
+            <input name= 'title' value='{{title}}' style="color:black" readonly>
+            <input name= 'year' value={{year}} style="color:black" readonly>
+            <input name= 'rating' value={{rating}} style="color:black"  readonly>
+            <input name= 'overview' value='{{overview}}' style="color:black" readonly>
+            <input name= 'image' value={{'https://image.tmdb.org/t/p/w185'+img}} style="color:black"  readonly>
             <div> <h3>Write a Review about the movie</h3>
             </div>
             <input name= 'review' value='{{review}}'style="color:black">
