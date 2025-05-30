@@ -58,6 +58,7 @@ def selected():
     # Conects to DB and save the new movie chosen by the user into it, if title already
     #in the list sends a querry string in the html and redirect to movies.
     if request.method == 'POST':
+        duplicated=False
         db = sqlite3.connect('movies.db')
         cursor=db.cursor()
         print(request.form)
