@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, send_file
 from morse_code_converter import converter
 import sqlite3
 from flask_bootstrap5 import Bootstrap
 import requests
+from PIL import Image, ImageDraw, ImageFont
 from dotenv import load_dotenv
 import os
 
@@ -15,9 +16,70 @@ else:
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY', 'a_sensible_default_secret_key_for_development')
 
+app.config['UPLOAD_FOLDER'] = 'uploads'  # Define the upload folder
+# Create the upload folder if it doesn't exist
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+
+
 Bootstrap(app)
 
 BEARER_TOKEN_MOVIE = os.environ.get('TMDB_BEARER_TOKEN')
+
+
+def add_watermark(image_path, watermark_text, output_path):
+    """
+    Opens an image, adds a text watermark, and saves it to the output_path.
+    Returns the output_path if successful, None otherwise.
+    """
+    try:
+        img = Image.open(image_path).convert("RGBA")  # Open and ensure RGBA for transparency
+        width, height = img.size
+
+        # Make a new image for the watermark text that's the same size as the original
+        txt_img = Image.new('RGBA', (width, height), (255, 255, 255, 0))  # Transparent layer
+        draw = ImageDraw.Draw(txt_img)  # Draw on the transparent layer
+
+        # Font
+        try:
+            font_path = "arial.ttf"
+            font_size = int(height / 5)
+            font = ImageFont.truetype(font_path, font_size)
+        except IOError:
+            print(f"Warning: Font '{font_path}' not found. Using default PIL font.")
+            font_size = 70
+            font = ImageFont.load_default()
+
+        # Calculate text size and position
+        try:
+
+            bbox = font.getbbox(watermark_text)
+            text_width = bbox[2] - bbox[0]
+            text_height = bbox[3] - bbox[1]
+        except AttributeError:
+            text_width, text_height = draw.textsize(watermark_text, font=font)
+
+        padding = 10
+        x = (width - text_width) / 2
+        y = (height - text_height) / 2
+        # Add text watermark
+        draw.text((x, y), watermark_text, font=font, fill=(255, 255, 255, 128))
+
+        # Composite the text layer onto the original image
+        img_with_watermark = Image.alpha_composite(img, txt_img)
+
+        # If the output is JPEG, convert the RGBA image to RGB as JPEG doesn't support alpha
+        if output_path.lower().endswith(('.jpg', '.jpeg')):
+            img_with_watermark = img_with_watermark.convert('RGB')
+
+        img_with_watermark.save(output_path)
+        return output_path
+
+    except FileNotFoundError:
+        print(f"Error: Input image file not found at {image_path}")
+        return None
+    except Exception as e:
+        print(f"Error adding watermark: {e}") # This will now correctly show other errors if they occur
+        return None
 
 @app.route('/')
 def home():
@@ -138,59 +200,76 @@ def add():
 
     return render_template("add.html", ans=ans, title=title, overview=overview, rating=rating, year=year, img=img)
 
-@app.route('/test-bootstrap')
-def test_bootstrap_route():
-    from flask import render_template_string
 
-    # ---- START DIAGNOSTIC ----
-    print("--- Checking Jinja Environment Globals ---")
-    if 'bootstrap' in app.jinja_env.globals:
-        print("'bootstrap' IS IN app.jinja_env.globals.")
-        # You could even try to inspect it:
-        # print(type(app.jinja_env.globals['bootstrap']))
-    else:
-        print("'bootstrap' IS NOT IN app.jinja_env.globals.")
-    print("--- End Checking Jinja Environment Globals ---")
-    # ---- END DIAGNOSTIC ----
+@app.route('/watermark', methods=['GET', 'POST'])  # Corrected: Added POST method
+def watermark():
 
-    minimal_html = """
-    <!doctype html>
-    <html lang="en">
-      <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Bootstrap Minimal Test</title>
-        {% if bootstrap %}
-            {{ bootstrap.load_css() }}
-            <style> body { padding: 20px; } </style>
-        {% else %}
-            <!-- Bootstrap object not found! -->
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-            <style> body { background-color: #ffdddd !important; padding: 20px; } </style>
-        {% endif %}
-      </head>
-      <body>
-        <div class="container">
-          <h1>Minimal Bootstrap Test</h1>
-          {% if bootstrap %}
-            <p class="text-success">Bootstrap object seems to be available!</p>
-          {% else %}
-            <p class="text-danger"><strong>Error: 'bootstrap' is undefined in this minimal template.</strong></p>
-          {% endif %}
-          <button class="btn btn-primary">Test Button</button>
-        </div>
-        {% if bootstrap %}
-            {{ bootstrap.load_js() }}
-        {% endif %}
-      </body>
-    </html>
-    """
-    try:
-        print("Attempting to render minimal_html...")
-        return render_template_string(minimal_html)
-    except Exception as e:
-        print(f"Error in test_bootstrap_route: {e}")
-        return f"Error in test_bootstrap_route: {e}", 500
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            return render_template('watermark.html', error="No file part")
+
+        file = request.files['file']
+        watermark_text_input = request.form.get('watermark_text', '').strip()  # Get from form
+
+        if not watermark_text_input:  # Use default if empty
+            watermark_text = '@Boehme'
+        else:
+            watermark_text = watermark_text_input
+
+        if file.filename == '':
+            return render_template('watermark.html', error="No selected file")
+
+        if file:  # and file.filename: # Redundant check, already handled by above
+            # Consider adding file type/extension validation here
+            # e.g., allowed_extensions = {'png', 'jpg', 'jpeg', 'gif'}
+
+            # Sanitize filename to prevent directory traversal or other issues
+            from werkzeug.utils import secure_filename
+            filename = secure_filename(file.filename)
+            if not filename:  # If secure_filename returns empty (e.g., just "..")
+                return render_template('watermark.html', error="Invalid filename.")
+
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(filepath)
+            print(f"Saved uploaded file to: {filepath}")
+
+            # Generate a unique name for the output file to avoid overwrites if multiple users upload same filename
+            base, ext = os.path.splitext(filename)
+            # Could add a timestamp or UUID for more uniqueness
+            output_filename = f"watermarked_{base}{ext}"
+            output_path = os.path.join(app.config['UPLOAD_FOLDER'], output_filename)
+
+            watermarked_file_path = add_watermark(filepath, watermark_text, output_path)
+
+            if watermarked_file_path:
+                try:
+                    return send_file(
+                        watermarked_file_path,
+                        as_attachment=True,
+                        download_name=output_filename,  # Use the generated output filename
+                        mimetype='image/png'  # Or dynamically determine based on output_path extension
+                    )
+                except Exception as e:
+                    print(f"Error sending file: {e}")
+                    # Clean up the generated watermarked file if sending fails?
+                    # if os.path.exists(watermarked_file_path):
+                    #     os.remove(watermarked_file_path)
+                    return render_template('watermark.html', error=f"Error preparing file for download: {e}")
+                # finally:
+                # Clean up uploaded and watermarked files after sending or on error
+                # This is important for server storage management.
+                # Be careful with timing if send_file is asynchronous in some setups.
+                # if os.path.exists(filepath):
+                #     os.remove(filepath)
+                # if os.path.exists(watermarked_file_path): # This might be premature if send_file is async
+                #     os.remove(watermarked_file_path)
+            else:
+                # if os.path.exists(filepath): # Clean up original upload if watermarking failed
+                #     os.remove(filepath)
+                return render_template('watermark.html', error="Error applying watermark to the image.")
+
+    return render_template('watermark.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

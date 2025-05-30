@@ -14,8 +14,13 @@
 
         <div class="container">
       <h1 class="heading" >Must Watch Movies</h1>
+            <a href="/" class="button">Back</a>
+                <h2>Here You can see a list of movies suggestions, and you can add your own suggestion too, click add and search for a movie
+    that's a must-watch</h2>
+                        <div class="container text-center add">
+    <a href="/add" class="button">Add Movie</a>
+    </div>
         </div>
-        <a href="/" class="button">Voltar</a>
   {% for i in movie %}
       <div class="container">
       <div class="card" >
@@ -38,7 +43,5 @@
       </div>
     </div>
         {% endfor %}
-            <div class="container text-center add">
-    <a href="/add" class="button">Add Movie</a>
-    </div>
+
 {% endblock %}
