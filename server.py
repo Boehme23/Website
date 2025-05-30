@@ -36,6 +36,7 @@ def morse():
 @app.route("/movies", methods=['GET'])  # Assuming POST is not used here
 def movies():
     movies_list = []
+    duplicated = False
     try:
         with sqlite3.connect('movies.db') as db:  # Use a context manager
             # Optional: db.row_factory = sqlite3.Row to access columns by name
