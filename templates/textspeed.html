@@ -3,4 +3,29 @@
 {% block title %}Text Speed Testing{% endblock %}
 
 {% block content %}
+<body>
+
+    <div class="container">
+        <h1 class="heading">Speed Typing Test</h1>
+        <a class="button" href="/movies">Back</a>
+        <br>
+        <br>
+        <div id="quoteDisplay" class="quote-display"></div>
+
+        <textarea id="quoteInput" class="quote-input" placeholder="Start typing here..." autofocus></textarea>
+
+        <button id="startButton">Start Test</button>
+
+        <div class="results">
+            <p>Time: <span id="time">0</span>s</p>
+            <p>WPM: <span id="wpm">0</span></p>
+            <p>Accuracy: <span id="accuracy">100</span>%</p>
+        </div>
+
+        <button id="newTextButton">New Text</button>
+    </div>
+
+    <script src="../static/js/textspeed.js"></script>
+</body>
+</html>
 {% endblock %}

@@ -509,7 +509,7 @@ body {
   animation: gradientAnimation 15s ease infinite;
   min-height: 100vh;
   margin: 0;
-  color: white;
+  color: black;
   font-family: sans-serif;
 }
 
@@ -523,4 +523,43 @@ body {
   100% {
     background-position: 0% 50%;
   }
+}
+
+.quote-input {
+    width: calc(100% - 40px); /* Account for padding */
+    min-height: 120px;
+    padding: 15px 20px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    resize: vertical; /* Allow vertical resizing */
+    outline: none; /* Remove default focus outline */
+}
+
+.quote-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.quote-input.correct {
+    border-color: #28a745;
+}
+
+.quote-input.incorrect {
+    border-color: #dc3545;
+}
+.results {
+    margin-top: 25px;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.results p {
+    margin: 8px 0;
+}
+
+.results span {
+    font-weight: bold;
+    color: #007bff;
 }
