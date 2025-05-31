@@ -1,13 +1,15 @@
-from flask import Flask, render_template, request, redirect, url_for, send_file
-from morse_code_converter import converter
+import os
 import sqlite3
-from flask_bootstrap5 import Bootstrap
+
 import requests
 from PIL import Image, ImageDraw, ImageFont
 from dotenv import load_dotenv
-import os
+from flask import Flask, render_template, request, redirect, url_for, send_file
+from flask_bootstrap5 import Bootstrap
 
-dotenv_path = os.path.join(os.path.dirname(__file__), '.env') # Assumes keys.env is in the same directory as server.py
+from morse_code_converter import converter
+
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')  # Assumes keys.env is in the same directory as server.py
 if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path=dotenv_path)
 else:
@@ -22,8 +24,6 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 BEARER_TOKEN_MOVIE = app.config.get('BEARER_TOKEN_MOVIE')
 
 Bootstrap(app)
-
-
 
 
 def add_watermark(image_path, watermark_text, output_path):
