@@ -23,5 +23,4 @@ def converter(mensagem):
         coded_message.append(msg)
     return coded_message
 code=converter(mensagem)
-print(mensagem)
-print(code)
+
