@@ -6,6 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for, send_file
 from flask_bootstrap5 import Bootstrap
+from spotipy.oauth2 import SpotifyOAuth
 
 from morse_code_converter import converter
 
@@ -26,6 +27,20 @@ app.config["UPLOAD_FOLDER"] = "uploads"  # Define the upload folder
 # Create the upload folder if it doesn't exist
 os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 BEARER_TOKEN_MOVIE = app.config.get("BEARER_TOKEN_MOVIE")
+# Spotify API credentials from environment variables
+SPOTIPY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
+SPOTIPY_CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
+# This should match one of your Redirect URIs in your Spotify app settings
+SPOTIPY_REDIRECT_URI = os.getenv('SPOTIFY_REDIRECT_URI', 'http://localhost:8888/callback')
+SCOPE = 'user-read-private user-read-playback-state user-modify-playback-state streaming user-library-read'
+
+sp_oauth = SpotifyOAuth(
+    client_id=SPOTIPY_CLIENT_ID,
+    client_secret=SPOTIPY_CLIENT_SECRET,
+    redirect_uri=SPOTIPY_REDIRECT_URI,
+    scope=SCOPE,
+    cache_path=None  # We'll manage tokens in session
+)
 
 Bootstrap(app)
 
@@ -311,7 +326,100 @@ def textspeed():
     return render_template("textspeed.html")
 
 
+@app.route('/disney', methods=['GET', 'POST'])
+def disney():
+    return render_template("disney.html")
+
+
+@app.route('/disney/login')
+def login():
+    auth_url = sp_oauth.get_authorize_url()
+    return redirect(auth_url)
+
+
+@app.route('/callback')
+def callback():
+    # Handle the callback from Spotify after user authorization
+    code = request.args.get('code')
+    if code:
+        token_info = sp_oauth.get_access_token(code)
+        session['token_info'] = token_info  # Store token info in session
+        # Redirect back to the index with the access token (for client-side JS)
+        return redirect(url_for('index', access_token=token_info['access_token']))
+    return "Error: No code received.", 400
+
+
+@app.route('/disney/user_profile')
+def user_profile():
+    access_token = request.args.get('access_token')
+    if not access_token:
+        return {"error": "Access token missing"}, 401
+    sp = Spotify(auth=access_token)
+    try:
+        user = sp.current_user()
+        return user
+    except Exception as e:
+        return {"error": str(e)}, 500
+
+
+@app.route('/disney/search_disney_music')
+def search_disney_music():
+    access_token = request.args.get('access_token')
+    if not access_token:
+        return {"error": "Access token missing"}, 401
+
+    sp = Spotify(auth=access_token)
+    try:
+        # Search for tracks containing 'Disney' and popular related artists/keywords
+        # You might refine this search query for better results
+        results = sp.search(
+            q='track:Disney OR artist:Disney OR album:Disney OR (Frozen OR Moana OR Lion King OR Aladdin OR Little Mermaid OR Beauty and the Beast)',
+            type='track', limit=20)
+        return results
+    except Exception as e:
+        return {"error": str(e)}, 500
+
+
+@app.route('/disney/play_track', methods=['POST'])
+def play_track():
+    access_token = request.headers.get('Authorization').split('Bearer ')[1]
+    data = request.get_json()
+    device_id = data.get('device_id')
+    uris = data.get('uris')
+
+    if not all([access_token, device_id, uris]):
+        return {"error": "Missing required parameters"}, 400
+
+    sp = Spotify(auth=access_token)
+    try:
+        sp.start_playback(device_id=device_id, uris=uris)
+        return {"status": "success"}, 200
+    except Exception as e:
+        return {"error": str(e)}, 500
+
+
+@app.route('/disney/transfer_playback', methods=['PUT'])
+def transfer_playback():
+    access_token = request.headers.get('Authorization').split('Bearer ')[1]
+    data = request.get_json()
+    device_ids = data.get('device_ids')
+    play = data.get('play', False)  # Default to false
+
+    if not all([access_token, device_ids]):
+        return {"error": "Missing required parameters"}, 400
+
+    sp = Spotify(auth=access_token)
+    try:
+        sp.transfer_playback(device_id=device_ids, play=play)
+        return {"status": "success"}, 200
+    except Exception as e:
+        return {"error": str(e)}, 500
+
+
 if __name__ == "__main__":
     app.run(debug=True)
-
+    if not all([SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, SPOTIPY_REDIRECT_URI]):
+        print(
+            "ERROR: Please set SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, and SPOTIPY_REDIRECT_URI environment variables or in a .env file.")
+        exit(1)
     ##venv\Scripts\activate
