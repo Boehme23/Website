@@ -6,6 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 from dotenv import load_dotenv
 from flask import Flask, render_template, session, request, redirect, url_for, send_file
 from flask_bootstrap5 import Bootstrap
+from spotipy import Spotify
 from spotipy.oauth2 import SpotifyOAuth
 
 from morse_code_converter import converter
