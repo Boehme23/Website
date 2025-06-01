@@ -370,11 +370,20 @@ def search_disney_music():
 
     sp = Spotify(auth=access_token)
     try:
-        # Search for tracks containing 'Disney' and popular related artists/keywords
-        # You might refine this search query for better results
-        results = sp.search(
-            q='track:Disney OR artist:Disney OR album:Disney OR (Frozen OR Moana OR Lion King OR Aladdin OR Little Mermaid OR Beauty and the Beast)',
-            type='track', limit=20)
+        # Focusing on official labels/artists and popular movie soundtracks
+        query = (
+            'artist:"Walt Disney Records" OR '
+            'artist:"Disney" OR '  # Sometimes just "Disney" is listed as artist
+            'album:"Disney (Soundtrack)" OR '
+            'album:"Frozen Original Motion Picture Soundtrack" OR '
+            'album:"Moana Original Motion Picture Soundtrack" OR '
+            'album:"The Lion King Original Motion Picture Soundtrack" OR '
+            'album:"Aladdin Original Motion Picture Soundtrack" OR '
+            'album:"The Little Mermaid Original Motion Picture Soundtrack" OR '
+            'album:"Beauty and the Beast Original Motion Picture Soundtrack" OR '
+            'track:"Let It Go" OR track:"How Far I\'ll Go" OR track:"Circle of Life"'
+        )
+        results = sp.search(q=query, type='track', limit=50)  # Increased limit for more results
         return results
     except Exception as e:
         return {"error": str(e)}, 500
