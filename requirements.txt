@@ -10,3 +10,4 @@ SQLAlchemy==2.0.25
 flask_bootstrap5
 python-dotenv
 Pillow
+spotipy.oauth2
