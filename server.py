@@ -345,7 +345,7 @@ def callback():
         token_info = sp_oauth.get_access_token(code)
         session['token_info'] = token_info  # Store token info in session
         # Redirect back to the index with the access token (for client-side JS)
-        return redirect(url_for('index', access_token=token_info['access_token']))
+        return redirect(url_for('disney', access_token=token_info['access_token']))
     return "Error: No code received.", 400
 
 
