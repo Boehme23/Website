@@ -34,7 +34,6 @@ SPOTIPY_CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
 # This should match one of your Redirect URIs in your Spotify app settings
 SPOTIPY_REDIRECT_URI = os.getenv('SPOTIFY_REDIRECT_URI', 'https://website-0std.onrender.com/disney/callback')
 SCOPE = 'user-read-private user-read-playback-state user-modify-playback-state streaming user-library-read'
-
 sp_oauth = SpotifyOAuth(
     client_id=SPOTIPY_CLIENT_ID,
     client_secret=SPOTIPY_CLIENT_SECRET,
