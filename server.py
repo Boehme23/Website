@@ -4,7 +4,7 @@ import sqlite3
 import requests
 from PIL import Image, ImageDraw, ImageFont
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, redirect, url_for, send_file
+from flask import Flask, request, redirect, session, url_for
 from flask_bootstrap5 import Bootstrap
 from spotipy.oauth2 import SpotifyOAuth
 
