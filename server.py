@@ -31,7 +31,7 @@ BEARER_TOKEN_MOVIE = app.config.get("BEARER_TOKEN_MOVIE")
 SPOTIPY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
 SPOTIPY_CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
 # This should match one of your Redirect URIs in your Spotify app settings
-SPOTIPY_REDIRECT_URI = os.getenv('SPOTIFY_REDIRECT_URI', 'http://localhost:8888/disney/callback')
+SPOTIPY_REDIRECT_URI = os.getenv('SPOTIFY_REDIRECT_URI', 'https://website-0std.onrender.com/disney/callback')
 SCOPE = 'user-read-private user-read-playback-state user-modify-playback-state streaming user-library-read'
 
 sp_oauth = SpotifyOAuth(
