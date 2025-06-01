@@ -337,7 +337,7 @@ def login():
     return redirect(auth_url)
 
 
-@app.route('/callback')
+@app.route('/disney/callback')
 def callback():
     # Handle the callback from Spotify after user authorization
     code = request.args.get('code')
