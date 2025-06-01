@@ -23,7 +23,7 @@ return;
 }
 resultsDiv.innerHTML = 'Searching for Disney music...';
 try {
-const response = await fetch('/search_disney_music?access_token=' + currentAccessToken);
+const response = await fetch('/disney/search_disney_music?access_token=' + currentAccessToken);
 const data = await response.json();
 displaySearchResults(data.tracks.items);
 } catch (error) {
@@ -67,7 +67,7 @@ alert('Spotify Web Playback SDK is not ready. Please ensure Spotify is open or t
 return;
 }
 try {
-await fetch('/play_track', {
+await fetch('/disney/play_track', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -122,7 +122,7 @@ player.addListener('ready', ({ device_id }) => {
 console.log('Ready with Device ID', device_id);
 deviceId = device_id;
 // Transfer playback to our new device
-fetch('/transfer_playback', {
+fetch('/disney/transfer_playback', {
     method: 'PUT',
     headers: {
         'Content-Type': 'application/json',
@@ -185,7 +185,7 @@ function showLoggedInContent(token) {
 loginButton.style.display = 'none';
 loggedInContent.style.display = 'block';
 // Fetch user profile to display name
-fetch('/user_profile?access_token=' + token)
+fetch('/disney/user_profile?access_token=' + token)
 .then(response => response.json())
 .then(data => {
     displayNameSpan.innerText = data.display_name;
