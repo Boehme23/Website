@@ -62,22 +62,36 @@ button.addEventListener('click', (event) => {
 }
 
 async function playTrack(trackUri) {
-if (!deviceId) {
-alert('Spotify Web Playback SDK is not ready. Please ensure Spotify is open or try refreshing.');
-return;
-}
-try {
-await fetch('/disney/play_track', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + currentAccessToken
-    },
-    body: JSON.stringify({
+    if (!deviceId) {
+        alert('Spotify Web Playback SDK is not ready or no active device. Please ensure Spotify is open or try refreshing.');
+        return;
+    }
+
+    const requestBody = { // Create the object first
         device_id: deviceId,
         uris: [trackUri]
-    })
-});
+    };
+
+    // --- IMPORTANT: Add this console.log to debug the JSON string ---
+    console.log("Attempting to play track with JSON body:", JSON.stringify(requestBody));
+
+    try {
+        // Use your apiFetch utility function here
+        // apiFetch correctly sets the Content-Type header and handles Authorization
+        await apiFetch('/disney/play_track', {
+            method: 'POST',
+            body: JSON.stringify(requestBody) // Pass the stringified JSON here
+        });
+
+        console.log('Playing track:', trackUri);
+        // SDK's player_state_changed listener will update UI more accurately
+
+    } catch (error) {
+        console.error('Error playing track:', error);
+        alert('Failed to play track. See console for more details.');
+    }
+}
+
 console.log('Playing track:', trackUri);
 // Update current playing info (simplified, could poll Spotify API)
 const trackName = resultsDiv.querySelector(`button[data-uri="${trackUri}"]`).previousElementSibling.querySelector('div').innerText;
