@@ -96,13 +96,6 @@ async function playTrack(trackUri) {
         alert('Failed to play track. See console for more details.');
     }
 }
-// Update current playing info (simplified, could poll Spotify API)
-const trackName = resultsDiv.querySelector(`button[data-uri="${trackUri}"]`).previousElementSibling.querySelector('div').innerText;
-const artistName = resultsDiv.querySelector(`button[data-uri="${trackUri}"]`).previousElementSibling.querySelector('span').innerText.split(' - ')[0];
-currentTrackNameSpan.innerText = trackName;
-currentArtistNameSpan.innerText = artistName;
-togglePlayPauseButton.innerText = 'Pause';
-
 // Spotify Web Playback SDK
 window.onSpotifyWebPlaybackSDKReady = () => {
 const token = currentAccessToken; // Use the access token from your Flask backend
