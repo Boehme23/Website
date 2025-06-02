@@ -379,9 +379,6 @@ def search_disney_music():
             'album:"Moana Original Motion Picture Soundtrack" OR '
             'album:"The Lion King Original Motion Picture Soundtrack" OR '
             'album:"Aladdin Original Motion Picture Soundtrack" OR '
-            'album:"The Little Mermaid Original Motion Picture Soundtrack" OR '
-            'album:"Beauty and the Beast Original Motion Picture Soundtrack" OR '
-            'track:"Let It Go" OR track:"How Far I\'ll Go" OR track:"Circle of Life"'
         )
         results = sp.search(q=query, type='track', limit=50)  # Increased limit for more results
         return results
