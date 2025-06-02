@@ -385,14 +385,8 @@ def search_disney_music():
 
     sp = Spotify(auth=access_token)
     try:
-        # Focusing on official labels/artists and popular movie soundtracks
-        query = (
-            'artist:"Walt Disney Records" OR '
-            'artist:"Disney" OR '  # Sometimes just "Disney" is listed as artist
-            'album:"Disney (Soundtrack)" OR '
-            'album:"Frozen Original Motion Picture Soundtrack"'
-        )
-        results = sp.search(q=query, type='track', limit=50)  # Increased limit for more results
+        playlist = 'https://open.spotify.com/playlist/4whT9DAdY6CeMcdvps3X8D'
+        results = sp.playlist_tracks(playlist)
         return results
     except Exception as e:
         return {"error": str(e)}, 500
