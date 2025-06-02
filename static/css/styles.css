@@ -59,10 +59,10 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.15ch; /* More subtle, professional spacing */
     line-height: 1.2;
-    padding-bottom: 0.8em; /* More breathing room */
     position: relative;
     color: #fff; /* White for better contrast on dark background */
     text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* Subtle shadow for depth */
+    margin-bottom: 2.5rem;
 }
 
 .heading:after {
@@ -75,6 +75,7 @@ body {
     bottom: 0;
     left: 0; /* Align to the left */
     border-radius: 2px; /* Slightly rounded ends */
+
 }
 
 .description {
