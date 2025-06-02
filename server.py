@@ -387,14 +387,8 @@ def search_disney_music():
     playlist_id = '4whT9DAdY6CeMcdvps3X8D'
     try:
         results = sp.playlist_tracks(playlist_id)
-        tracks = [
-            {
-                "name": item['track']['name'],
-                "artist": item['track']['artists'][0]['name'],
-                "url": item['track']['external_urls']['spotify']
-            }
-            for item in results['items']
-        ]
+        tracks = [item['track'] for item in results['items']]
+        return jsonify({"tracks": tracks})
         return jsonify({"tracks": tracks})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -402,7 +396,11 @@ def search_disney_music():
 
 @app.route('/disney/play_track', methods=['POST'])
 def play_track():
-    access_token = request.headers.get('Authorization').split('Bearer ')[1]
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or not auth_header.startswith('Bearer '):
+        return jsonify({"error": "Missing or malformed Authorization header"}), 401
+
+    access_token = auth_header.split('Bearer ')[1]
     data = request.get_json()
     device_id = data.get('device_id')
     uris = data.get('uris')
@@ -420,7 +418,11 @@ def play_track():
 
 @app.route('/disney/transfer_playback', methods=['PUT'])
 def transfer_playback():
-    access_token = request.headers.get('Authorization').split('Bearer ')[1]
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or not auth_header.startswith('Bearer '):
+        return jsonify({"error": "Missing or malformed Authorization header"}), 401
+
+    access_token = auth_header.split('Bearer ')[1]
     data = request.get_json()
     device_ids = data.get('device_ids')
     play_status = data.get('play', False)
