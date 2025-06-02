@@ -72,27 +72,30 @@ async function playTrack(trackUri) {
         uris: [trackUri]
     };
 
-    // --- IMPORTANT: Add this console.log to debug the JSON string ---
     console.log("Attempting to play track with JSON body:", JSON.stringify(requestBody));
 
     try {
-        // Use your apiFetch utility function here
-        // apiFetch correctly sets the Content-Type header and handles Authorization
         await apiFetch('/disney/play_track', {
             method: 'POST',
-            body: JSON.stringify(requestBody) // Pass the stringified JSON here
+            body: JSON.stringify(requestBody)
         });
 
-        console.log('Playing track:', trackUri);
-        // SDK's player_state_changed listener will update UI more accurately
+        console.log('Playing track:', trackUri); // This line is now correctly inside the function
+
+        // --- MOVE THESE LINES INSIDE HERE ---
+        // Update current playing info (simplified, could poll Spotify API)
+        const trackName = resultsDiv.querySelector(`button[data-uri="${trackUri}"]`).previousElementSibling.querySelector('div').innerText;
+        const artistName = resultsDiv.querySelector(`button[data-uri="${trackUri}"]`).previousElementSibling.querySelector('span').innerText.split(' - ')[0];
+        currentTrackNameSpan.innerText = trackName;
+        currentArtistNameSpan.innerText = artistName;
+        togglePlayPauseButton.innerText = 'Pause';
+        // --- END OF MOVED LINES ---
 
     } catch (error) {
         console.error('Error playing track:', error);
         alert('Failed to play track. See console for more details.');
     }
 }
-
-console.log('Playing track:', trackUri);
 // Update current playing info (simplified, could poll Spotify API)
 const trackName = resultsDiv.querySelector(`button[data-uri="${trackUri}"]`).previousElementSibling.querySelector('div').innerText;
 const artistName = resultsDiv.querySelector(`button[data-uri="${trackUri}"]`).previousElementSibling.querySelector('span').innerText.split(' - ')[0];
