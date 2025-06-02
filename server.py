@@ -34,14 +34,19 @@ SPOTIPY_CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
 # This should match one of your Redirect URIs in your Spotify app settings
 SPOTIPY_REDIRECT_URI = os.getenv('SPOTIFY_REDIRECT_URI', 'https://website-0std.onrender.com/disney/callback')
 SCOPE = (
-    'user-read-playback-state '
-    'user-modify-playback-state '
-    'user-read-currently-playing '
-    'streaming '
-    'playlist-read-private '
-    'playlist-read-collaborative '
-    'user-library-read '
-    'user-read-private'
+    'user-read-private '  # Read user's display name, subscription type, country
+    'user-read-email '  # Read user's email address (optional, but common)
+    'user-read-playback-state '  # Read the user’s current playback state
+    'user-modify-playback-state '  # Control playback (play, pause, skip, seek, transfer)
+    'streaming '  # **CRITICAL** for the Web Playback SDK to play audio
+    'user-library-read '  # Read user's saved tracks/albums/artists
+    'user-library-modify '  # Add/remove items from user's library (optional)
+    'playlist-read-private '  # Read user's private playlists
+    'playlist-read-collaborative '  # Read user's collaborative playlists
+    'playlist-modify-public '  # Write/delete public playlists (optional)
+    'playlist-modify-private '  # Write/delete private playlists (optional)
+    'user-top-read '  # Read user's top artists and tracks (optional)
+    'user-read-recently-played'
 )
 
 sp_oauth = SpotifyOAuth(
@@ -416,14 +421,15 @@ def transfer_playback():
     access_token = request.headers.get('Authorization').split('Bearer ')[1]
     data = request.get_json()
     device_ids = data.get('device_ids')
-    play_status = data.get('force_play', False)
+    play_status = data.get('play', False)  # This line defines play_status
 
     if not all([access_token, device_ids]):
         return {"error": "Missing required parameters"}, 400
 
     sp = Spotify(auth=access_token)
     try:
-        sp.transfer_playback(device_id=device_ids, play=play)
+        # The fix was to use 'force_play=play_status'
+        sp.transfer_playback(device_id=device_ids, force_play=play_status)
         return {"status": "success"}, 200
     except Exception as e:
         return {"error": str(e)}, 500
