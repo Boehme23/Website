@@ -375,10 +375,7 @@ def search_disney_music():
             'artist:"Walt Disney Records" OR '
             'artist:"Disney" OR '  # Sometimes just "Disney" is listed as artist
             'album:"Disney (Soundtrack)" OR '
-            'album:"Frozen Original Motion Picture Soundtrack" OR '
-            'album:"Moana Original Motion Picture Soundtrack" OR '
-            'album:"The Lion King Original Motion Picture Soundtrack" OR '
-            'album:"Aladdin Original Motion Picture Soundtrack" OR '
+            'album:"Frozen Original Motion Picture Soundtrack"'
         )
         results = sp.search(q=query, type='track', limit=50)  # Increased limit for more results
         return results
