@@ -421,15 +421,15 @@ def transfer_playback():
     access_token = request.headers.get('Authorization').split('Bearer ')[1]
     data = request.get_json()
     device_ids = data.get('device_ids')
-    play_status = data.get('play', False)  # This line defines play_status
+    play_status = data.get('play', False)
+    device_id = device_ids[0] if isinstance(device_ids, list) and device_ids else None
 
-    if not all([access_token, device_ids]):
+    if not all([access_token, device_id]):
         return {"error": "Missing required parameters"}, 400
 
     sp = Spotify(auth=access_token)
     try:
-        # The fix was to use 'force_play=play_status'
-        sp.transfer_playback(device_id=device_ids, force_play=play_status)
+        sp.transfer_playback(device_id=device_id, force_play=play_status)
         return {"status": "success"}, 200
     except Exception as e:
         return {"error": str(e)}, 500
