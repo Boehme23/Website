@@ -416,7 +416,7 @@ def transfer_playback():
     access_token = request.headers.get('Authorization').split('Bearer ')[1]
     data = request.get_json()
     device_ids = data.get('device_ids')
-    play = data.get('play', False)  # Default to false
+    play_status = data.get('play', False)
 
     if not all([access_token, device_ids]):
         return {"error": "Missing required parameters"}, 400
