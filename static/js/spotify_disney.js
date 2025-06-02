@@ -99,10 +99,6 @@ const artistName = resultsDiv.querySelector(`button[data-uri="${trackUri}"]`).pr
 currentTrackNameSpan.innerText = trackName;
 currentArtistNameSpan.innerText = artistName;
 togglePlayPauseButton.innerText = 'Pause';
-} catch (error) {
-console.error('Error playing track:', error);
-}
-}
 
 // Spotify Web Playback SDK
 window.onSpotifyWebPlaybackSDKReady = () => {
