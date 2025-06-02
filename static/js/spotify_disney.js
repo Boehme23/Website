@@ -105,15 +105,12 @@ async function playTrack(trackUri) {
         alert('Failed to play track. See console for more details.');
     }
 }
-// Spotify Web Playback SDK
 window.onSpotifyWebPlaybackSDKReady = () => {
-const token = currentAccessToken; // Use the access token from your Flask backend
-
-const player = new Spotify.Player({
-name: 'Disney Web Player',
-getOAuthToken: cb => { cb(currentAccessToken); }
-volume: 0.5
-});
+  const player = new Spotify.Player({
+    name: 'Disney Web Player',
+    getOAuthToken: cb => { cb(currentAccessToken); },  // <-- comma here
+    volume: 0.5
+  });
 
 // Error handling
 player.addListener('initialization_error', ({ message }) => { console.error(message); });
