@@ -381,15 +381,23 @@ def user_profile():
 def search_disney_music():
     access_token = request.args.get('access_token')
     if not access_token:
-        return {"error": "Access token missing"}, 401
+        return jsonify({"error": "Access token missing"}), 401
 
     sp = Spotify(auth=access_token)
+    playlist_id = '4whT9DAdY6CeMcdvps3X8D'
     try:
-        playlist = 'https://open.spotify.com/playlist/4whT9DAdY6CeMcdvps3X8D'
-        results = sp.playlist_tracks(playlist)
-        return results
+        results = sp.playlist_tracks(playlist_id)
+        tracks = [
+            {
+                "name": item['track']['name'],
+                "artist": item['track']['artists'][0]['name'],
+                "url": item['track']['external_urls']['spotify']
+            }
+            for item in results['items']
+        ]
+        return jsonify({"tracks": tracks})
     except Exception as e:
-        return {"error": str(e)}, 500
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route('/disney/play_track', methods=['POST'])

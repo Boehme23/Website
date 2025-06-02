@@ -25,7 +25,12 @@ resultsDiv.innerHTML = 'Searching for Disney music...';
 try {
 const response = await fetch('/disney/search_disney_music?access_token=' + currentAccessToken);
 const data = await response.json();
-displaySearchResults(data.tracks.items);
+
+if (data.tracks.length === 0) {
+    resultsDiv.innerHTML = 'No tracks found in the Disney playlist.';
+} else {
+    displaySearchResults(data.tracks);
+}
 } catch (error) {
 console.error('Error searching music:', error);
 resultsDiv.innerHTML = 'Error searching music.';
@@ -75,10 +80,14 @@ async function playTrack(trackUri) {
     console.log("Attempting to play track with JSON body:", JSON.stringify(requestBody));
 
     try {
-        await apiFetch('/disney/play_track', {
-            method: 'POST',
-            body: JSON.stringify(requestBody)
-        });
+        await fetch('/disney/play_track', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + currentAccessToken
+    },
+    body: JSON.stringify(requestBody)
+});
 
         console.log('Playing track:', trackUri); // This line is now correctly inside the function
 
@@ -102,7 +111,7 @@ const token = currentAccessToken; // Use the access token from your Flask backen
 
 const player = new Spotify.Player({
 name: 'Disney Web Player',
-getOAuthToken: cb => { cb(token); },
+getOAuthToken: cb => { cb(currentAccessToken); }
 volume: 0.5
 });
 
@@ -188,13 +197,20 @@ loggedInContent.style.display = 'none';
 });
 
 function showLoggedInContent(token) {
-loginButton.style.display = 'none';
-loggedInContent.style.display = 'block';
-// Fetch user profile to display name
-fetch('/disney/user_profile?access_token=' + token)
-.then(response => response.json())
-.then(data => {
-    displayNameSpan.innerText = data.display_name;
+  loginButton.style.display = 'none';
+  loggedInContent.style.display = 'block';
+  currentAccessToken = token;
+
+  fetch('/disney/user_profile?access_token=' + token)
+    .then(response => response.json())
+    .then(data => {
+      displayNameSpan.innerText = data.display_name;
+    });
+
+  if (window.Spotify && window.onSpotifyWebPlaybackSDKReady) {
+    window.onSpotifyWebPlaybackSDKReady();
+  }
+}
 })
 .catch(error => console.error('Error fetching profile:', error));
 }
