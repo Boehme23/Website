@@ -194,20 +194,31 @@ loggedInContent.style.display = 'none';
 });
 
 function showLoggedInContent(token) {
-  loginButton.style.display = 'none';
-  loggedInContent.style.display = 'block';
-  currentAccessToken = token;
+    loginButton.style.display = 'none';
+    loggedInContent.style.display = 'block';
+    currentAccessToken = token;
 
-  fetch('/disney/user_profile?access_token=' + token)
-    .then(response => response.json())
-    .then(data => {
-      displayNameSpan.innerText = data.display_name;
-    });
+    fetch('/disney/user_profile?access_token=' + token)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            displayNameSpan.innerText = data.display_name;
+        })
+        .catch(error => { // <-- This catch block belongs here
+            console.error('Error fetching profile:', error);
+            displayNameSpan.innerText = 'Error loading profile';
+            // Optionally, force re-login if token is invalid
+            // sessionStorage.removeItem('spotify_access_token');
+            // loginButton.style.display = 'block';
+            // loggedInContent.style.display = 'none';
+        });
 
-  if (window.Spotify && window.onSpotifyWebPlaybackSDKReady) {
-    window.onSpotifyWebPlaybackSDKReady();
-  }
-}
-})
-.catch(error => console.error('Error fetching profile:', error));
+    // The SDK will call window.onSpotifyWebPlaybackSDKReady when it's ready.
+    // You generally don't need to call it manually here.
+    // Ensure your HTML includes the Spotify SDK script correctly.
+    // <script src="https://sdk.scdn.co/spotify-player.js"></script>
 }
