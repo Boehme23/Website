@@ -18,6 +18,8 @@ if os.path.exists(dotenv_path):
 else:
     print(f"Warning: Environment file not found at {dotenv_path}")
 
+cache_handler = FlaskSessionCacheHandler(session)
+
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get(
     "FLASK_SECRET_KEY", "a_sensible_default_secret_key_for_development"
@@ -53,7 +55,8 @@ sp_oauth = SpotifyOAuth(
     client_secret=SPOTIPY_CLIENT_SECRET,
     redirect_uri=SPOTIPY_REDIRECT_URI,
     scope=SCOPE,
-    cache_path=None  # We'll manage tokens in session
+    cache_handler=FlaskSessionCacheHandler(session),
+    show_dialog=True
 )
 
 Bootstrap(app)
