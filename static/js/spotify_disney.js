@@ -265,13 +265,14 @@ nextTrackButton.addEventListener('click', () => {
     }
 });
 
-prevTrackButton.addEventListener('click', () => {
-    console.log("Previous button clicked. Player:", player); // Add this
-    if (player) { // Add a check to ensure player exists
+pprevTrackButton.addEventListener('click', () => {
+    console.log("Previous button clicked. Player:", player);
+    if (player) {
         player.previousTrack();
     } else {
         console.warn("Spotify Player not available for previous track.");
     }
+});
 });
 
 // Check if we have an access token in the URL or sessionStorage
@@ -282,13 +283,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (accessTokenFromUrl) {
         sessionStorage.setItem('spotify_access_token', accessTokenFromUrl);
         currentAccessToken = accessTokenFromUrl;
-        window.history.replaceState(null, '', window.location.pathname); // Clean URL
+        window.history.replaceState(null, '', window.location.pathname);
         showLoggedInContent(accessTokenFromUrl);
     } else if (sessionStorage.getItem('spotify_access_token')) {
         currentAccessToken = sessionStorage.getItem('spotify_access_token');
         showLoggedInContent(currentAccessToken);
     } else {
-        // Not logged in, show login button
         loginButton.style.display = 'block';
         loggedInContent.style.display = 'none';
     }
