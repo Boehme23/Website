@@ -4,7 +4,8 @@ import sqlite3
 import requests
 from PIL import Image, ImageDraw, ImageFont
 from dotenv import load_dotenv
-from flask import Flask, render_template, session, request, redirect, url_for, send_file, jsonify
+from flask import Flask, render_template, session, request, redirect, url_for, send_file, \
+    jsonify  # <-- Ensure 'session' is imported
 from flask_bootstrap5 import Bootstrap
 from spotipy import Spotify
 from spotipy.cache_handler import FlaskSessionCacheHandler  # Keep this import
@@ -28,8 +29,8 @@ app.config["SECRET_KEY"] = os.environ.get(
     "FLASK_SECRET_KEY", "a_sensible_default_secret_key_for_development"
 )
 
-# *** REMOVE THIS LINE: ***
-# cache_handler = FlaskSessionCacheHandler(session) # This line causes the NameError
+# *** REMOVE THIS LINE IF IT'S STILL THERE: ***
+# cache_handler = FlaskSessionCacheHandler(session) # DELETE THIS LINE
 
 app.config["BEARER_TOKEN_MOVIE"] = os.environ.get("TMDB_BEARER_TOKEN")
 app.config["UPLOAD_FOLDER"] = "uploads"
@@ -56,32 +57,37 @@ SCOPE = (
 )
 
 # *** CORRECTED INITIALIZATION OF sp_oauth ***
+# The FlaskSessionCacheHandler(session) is passed directly here.
+# Flask ensures 'session' is available when this part of the code is effectively used during a request.
 sp_oauth = SpotifyOAuth(
     client_id=SPOTIPY_CLIENT_ID,
     client_secret=SPOTIPY_CLIENT_SECRET,
     redirect_uri=SPOTIPY_REDIRECT_URI,
     scope=SCOPE,
-    # Pass FlaskSessionCacheHandler(session) directly here
-    cache_handler=FlaskSessionCacheHandler(session),
+    cache_handler=FlaskSessionCacheHandler(session),  # Pass it directly
     show_dialog=True
 )
 
 Bootstrap(app)
 
 
-# *** Corrected get_spotify_for_user function ***
+# It now creates its own cache_handler instance
 def get_spotify_for_user():
-    # Inside this function, 'session' is available because it's called during a request.
-    # The cache_handler is implicitly handled by the sp_oauth instance.
-    token_info = sp_oauth.validate_token(FlaskSessionCacheHandler(session).get_cached_token())
+    # Create a new FlaskSessionCacheHandler instance here, inside the function.
+    # 'session' will be available because this function runs within a Flask request context.
+    user_cache_handler = FlaskSessionCacheHandler(session)
+
+    # Use this newly created instance for validation and refreshing
+    token_info = sp_oauth.validate_token(user_cache_handler.get_cached_token())
     if not token_info:
+        # No valid token, redirect to login
         return None, None
 
     if sp_oauth.is_token_expired(token_info):
         token_info = sp_oauth.refresh_access_token(token_info['refresh_token'])
-        FlaskSessionCacheHandler(session).save_token_to_cache(token_info)
+        user_cache_handler.save_token_to_cache(token_info)  # Save refreshed token using this handler
 
-    sp = Spotify(auth_manager=sp_oauth)
+    sp = Spotify(auth_manager=sp_oauth)  # Use auth_manager with the cached token
     return sp, token_info['access_token']
 
 
