@@ -9,6 +9,7 @@ const prevTrackButton = document.getElementById('prevTrack');
 const currentTrackNameSpan = document.getElementById('current-track-name');
 const currentArtistNameSpan = document.getElementById('current-artist-name');
 const scrollableResultsBox = document.getElementById('scrollable-results-box');
+console.log(scrollableResultsBox);
 
 let currentAccessToken = '';
 let deviceId = null; // Spotify Connect device ID
