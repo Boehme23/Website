@@ -273,7 +273,7 @@ pprevTrackButton.addEventListener('click', () => {
         console.warn("Spotify Player not available for previous track.");
     }
 });
-});
+};
 
 // Check if we have an access token in the URL or sessionStorage
 document.addEventListener('DOMContentLoaded', () => {
