@@ -108,10 +108,10 @@ function displaySearchResults(tracks) {
         scrollableResultsBox.appendChild(trackItem);
         console.log("Appended track item to scrollableResultsBox.");
     });
-        console.log("Finished appending track items.");
-        }
 
-    // Make sure to query play buttons from within the scrollable box
+    console.log("Finished appending track items."); // This is now inside the function, correctly
+
+    // This part MUST be inside the function, after the loop finishes adding buttons
     scrollableResultsBox.querySelectorAll('.play-button').forEach(button => {
         button.addEventListener('click', (event) => {
             const trackUri = event.target.dataset.uri;
