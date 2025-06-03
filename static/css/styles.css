@@ -361,3 +361,7 @@ p.overview {
     margin-left: 15px; /* Space from track info */
     white-space: nowrap; /* Prevent button text from wrapping */
 }
+.track-item.playing {
+    background-color: #f0f8ff;
+    border-left: 4px solid #1db954; /* Spotify green */
+}

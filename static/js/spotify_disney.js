@@ -80,6 +80,8 @@ searchButton.addEventListener('click', async () => {
 function displaySearchResults(tracks) {
     console.log("displaySearchResults called. Tracks received:", tracks);
     currentPlaylistUris = tracks.map(track => track.uri);
+    allFetchedTracksData = tracks;
+
     if (scrollableResultsBox) {
         console.log("Clearing scrollableResultsBox.");
         scrollableResultsBox.innerHTML = '';
@@ -139,9 +141,25 @@ async function playTrack(trackUri) {
         return;
     }
 
-    let requestBody;
     const trackIndex = currentPlaylistUris.indexOf(trackUri);
 
+    if (trackIndex === currentPlayingTrackIndex) {
+        console.log('Track already playing:', trackUri);
+        return;
+    }
+
+    // Update UI to highlight the new track
+    document.querySelectorAll('.track-item').forEach(item => {
+        item.classList.remove('playing');
+    });
+
+    const activeButton = document.querySelector(`.play-button[data-uri="${trackUri}"]`);
+    if (activeButton) {
+        const item = activeButton.closest('.track-item');
+        if (item) item.classList.add('playing');
+    }
+
+    let requestBody;
     if (trackIndex === -1) {
         console.error("Track URI not found in currentPlaylistUris. Cannot set offset. Playing single track as fallback.");
         requestBody = {
@@ -180,7 +198,6 @@ async function playTrack(trackUri) {
 
         console.log('Playing track:', trackUri);
 
-        // FIX HERE: Use the global 'allFetchedTracksData' instead of 'tracks'
         const currentTrackData = allFetchedTracksData.find(t => t.uri === trackUri);
         if (currentTrackData) {
             currentTrackNameSpan.innerText = currentTrackData.name;
@@ -189,6 +206,7 @@ async function playTrack(trackUri) {
             currentTrackNameSpan.innerText = 'Unknown Track';
             currentArtistNameSpan.innerText = 'Unknown Artist';
         }
+
         togglePlayPauseButton.innerText = 'Pause';
 
     } catch (error) {
@@ -196,6 +214,7 @@ async function playTrack(trackUri) {
         alert(`Failed to play track: ${error.message || 'See console for more details.'}`);
     }
 }
+
 
 window.onSpotifyWebPlaybackSDKReady = () => {
     const player = new Spotify.Player({
@@ -265,7 +284,7 @@ nextTrackButton.addEventListener('click', () => {
     }
 });
 
-pprevTrackButton.addEventListener('click', () => {
+prevTrackButton.addEventListener('click', () => {
     console.log("Previous button clicked. Player:", player);
     if (player) {
         player.previousTrack();
