@@ -8,7 +8,6 @@ const nextTrackButton = document.getElementById('nextTrack');
 const prevTrackButton = document.getElementById('prevTrack');
 const currentTrackNameSpan = document.getElementById('current-track-name');
 const currentArtistNameSpan = document.getElementById('current-artist-name');
-
 // Get a reference to the specific element that will be scrollable
 const scrollableResultsBox = document.getElementById('scrollable-results-box');
 
@@ -18,7 +17,10 @@ const resultsMessageElement = document.getElementById('results-message'); // <--
 
 
 let currentAccessToken = '';
-let deviceId = null; // Spotify Connect device ID
+let deviceId = null;
+let currentPlaylistUris = []; // Your new array for URIs
+let allFetchedTracksData = []; // NEW: Store the full track objects here
+let currentPlayingTrackIndex = -1; // To keep track of the current song in the list
 
 loginButton.addEventListener('click', () => {
     window.location.href = '/disney/login'; // Redirect to Flask login route
@@ -77,6 +79,7 @@ searchButton.addEventListener('click', async () => {
 // --- CONSOLIDATED AND CORRECTED displaySearchResults FUNCTION ---
 function displaySearchResults(tracks) {
     console.log("displaySearchResults called. Tracks received:", tracks);
+    currentPlaylistUris = tracks.map(track => track.uri);
     if (scrollableResultsBox) {
         console.log("Clearing scrollableResultsBox.");
         scrollableResultsBox.innerHTML = '';
@@ -122,21 +125,46 @@ function displaySearchResults(tracks) {
 // --- END CONSOLIDATED displaySearchResults FUNCTION ---
 
 
+// Ensure currentPlaylistUris and tracks (the full track objects) are accessible
+// You'll need to pass the 'tracks' array from the search results to this function,
+// or ensure it's a global variable (less ideal but can work for small apps)
+// The best approach is to make 'tracks' available where it's needed,
+// for example, by making it a global variable that is updated in displaySearchResults.
+// Let's assume 'tracks' (the full array of track objects from the search)
+// is accessible in this scope for the currentTrackData line.
+
 async function playTrack(trackUri) {
     if (!deviceId) {
         alert('Spotify Web Playback SDK is not ready or no active device. Please ensure Spotify is open or try refreshing.');
         return;
     }
 
-    const requestBody = {
-        device_id: deviceId,
-        uris: [trackUri]
-    };
+    let requestBody;
+    const trackIndex = currentPlaylistUris.indexOf(trackUri);
+
+    if (trackIndex === -1) {
+        console.error("Track URI not found in currentPlaylistUris. Cannot set offset. Playing single track as fallback.");
+        requestBody = {
+            device_id: deviceId,
+            uris: [trackUri]
+        };
+        currentPlayingTrackIndex = -1;
+    } else {
+        currentPlayingTrackIndex = trackIndex;
+        requestBody = {
+            device_id: deviceId,
+            uris: currentPlaylistUris,
+            offset: {
+                position: trackIndex
+            },
+            position_ms: 0
+        };
+    }
 
     console.log("Attempting to play track with JSON body:", JSON.stringify(requestBody));
 
     try {
-        await fetch('/disney/play_track', {
+        const response = await fetch('/disney/play_track', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -145,17 +173,27 @@ async function playTrack(trackUri) {
             body: JSON.stringify(requestBody)
         });
 
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Failed to play track: ${response.status} ${response.statusText} - ${errorText}`);
+        }
+
         console.log('Playing track:', trackUri);
 
-        const trackName = scrollableResultsBox.querySelector(`button[data-uri="${trackUri}"]`).previousElementSibling.querySelector('div').innerText;
-        const artistName = scrollableResultsBox.querySelector(`button[data-uri="${trackUri}"]`).previousElementSibling.querySelector('span').innerText.split(' - ')[0];
-        currentTrackNameSpan.innerText = trackName;
-        currentArtistNameSpan.innerText = artistName;
+        // FIX HERE: Use the global 'allFetchedTracksData' instead of 'tracks'
+        const currentTrackData = allFetchedTracksData.find(t => t.uri === trackUri);
+        if (currentTrackData) {
+            currentTrackNameSpan.innerText = currentTrackData.name;
+            currentArtistNameSpan.innerText = currentTrackData.artists.map(a => a.name).join(', ');
+        } else {
+            currentTrackNameSpan.innerText = 'Unknown Track';
+            currentArtistNameSpan.innerText = 'Unknown Artist';
+        }
         togglePlayPauseButton.innerText = 'Pause';
 
     } catch (error) {
         console.error('Error playing track:', error);
-        alert('Failed to play track. See console for more details.');
+        alert(`Failed to play track: ${error.message || 'See console for more details.'}`);
     }
 }
 
@@ -218,14 +256,23 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         player.togglePlay();
     });
 
-    nextTrackButton.addEventListener('click', () => {
+nextTrackButton.addEventListener('click', () => {
+    console.log("Next button clicked. Player:", player); // Add this
+    if (player) { // Add a check to ensure player exists
         player.nextTrack();
-    });
+    } else {
+        console.warn("Spotify Player not available for next track.");
+    }
+});
 
-    prevTrackButton.addEventListener('click', () => {
+prevTrackButton.addEventListener('click', () => {
+    console.log("Previous button clicked. Player:", player); // Add this
+    if (player) { // Add a check to ensure player exists
         player.previousTrack();
-    });
-};
+    } else {
+        console.warn("Spotify Player not available for previous track.");
+    }
+});
 
 // Check if we have an access token in the URL or sessionStorage
 document.addEventListener('DOMContentLoaded', () => {

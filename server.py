@@ -378,6 +378,7 @@ def user_profile():
 
 
 @app.route('/disney/search_disney_music')
+@app.route('/disney/search_disney_music')
 def search_disney_music():
     access_token = request.args.get('access_token')
     if not access_token:
@@ -388,32 +389,43 @@ def search_disney_music():
     try:
         results = sp.playlist_tracks(playlist_id)
         tracks = [item['track'] for item in results['items']]
-        return jsonify({"tracks": tracks})
-        return jsonify({"tracks": tracks})
+        return jsonify({"tracks": tracks})  # Keep this one
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 
 @app.route('/disney/play_track', methods=['POST'])
 def play_track():
-    auth_header = request.headers.get('Authorization')
-    if not auth_header or not auth_header.startswith('Bearer '):
-        return jsonify({"error": "Missing or malformed Authorization header"}), 401
-
-    access_token = auth_header.split('Bearer ')[1]
+    access_token = request.headers.get('Authorization').split(' ')[1]
     data = request.get_json()
+
     device_id = data.get('device_id')
     uris = data.get('uris')
+    offset = data.get('offset')
+    position_ms = data.get('position_ms')
 
-    if not all([access_token, device_id, uris]):
-        return {"error": "Missing required parameters"}, 400
+    # Construct the payload for Spotify API
+    payload = {
+        "uris": uris,
+        "offset": offset,
+        "position_ms": position_ms
+    }
 
-    sp = Spotify(auth=access_token)
-    try:
-        sp.start_playback(device_id=device_id, uris=uris)
-        return {"status": "success"}, 200
-    except Exception as e:
-        return {"error": str(e)}, 500
+    headers = {
+        'Authorization': f'Bearer {access_token}',
+        'Content-Type': 'application/json'
+    }
+
+    spotify_api_url = f"https://api.spotify.com/v1/me/player/play?device_id={device_id}"
+
+    # Use json=payload for requests library to automatically handle JSON serialization
+    response = requests.put(spotify_api_url, headers=headers, json=payload)
+
+    if response.status_code == 204:  # 204 No Content is success for play/pause
+        return jsonify({"message": "Playback initiated"}), 200
+    else:
+        print(f"Spotify API Error: {response.status_code} - {response.text}")
+        return jsonify({"error": "Failed to play track", "details": response.text}), response.status_code
 
 
 @app.route('/disney/transfer_playback', methods=['PUT'])
