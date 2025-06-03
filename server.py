@@ -59,6 +59,22 @@ sp_oauth = SpotifyOAuth(
 Bootstrap(app)
 
 
+def get_spotify_for_user():
+    token_info = sp_oauth.validate_token(cache_handler.get_cached_token())
+    if not token_info:
+        # No valid token, redirect to login
+        # This will be handled by the client-side JS checking for access_token
+        return None, None
+
+    # Refresh token if needed
+    if sp_oauth.is_token_expired(token_info):
+        token_info = sp_oauth.refresh_access_token(token_info['refresh_token'])
+        cache_handler.save_token_to_cache(token_info)  # Save refreshed token
+
+    sp = Spotify(auth_manager=sp_oauth)  # Use auth_manager with the cached token
+    return sp, token_info['access_token']
+
+
 def add_watermark(image_path, watermark_text, output_path):
     """
     Opens an image, adds a text watermark, and saves it to the output_path.
