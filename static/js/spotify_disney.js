@@ -80,7 +80,7 @@ searchButton.addEventListener('click', async () => {
 function displaySearchResults(tracks) {
     console.log("displaySearchResults called. Tracks received:", tracks);
     currentPlaylistUris = tracks.map(track => track.uri);
-    allFetchedTracksData = tracks;
+    allFetchedTracksData = tracks; // Store the full track objects globally
 
     if (scrollableResultsBox) {
         console.log("Clearing scrollableResultsBox.");
@@ -89,9 +89,7 @@ function displaySearchResults(tracks) {
         console.error('Error: scrollableResultsBox element not found in displaySearchResults!');
         return;
     }
-    // The heading "Search Results:" should ideally be managed by the searchButton's
-    // click listener, as shown above, targeting the resultsMessageElement.
-    // If tracks are empty, put the message directly into the scrollable box.
+
     if (tracks.length === 0) {
         scrollableResultsBox.innerHTML += '<p>No Disney tracks found.</p>';
         return;
@@ -114,7 +112,7 @@ function displaySearchResults(tracks) {
         console.log("Appended track item to scrollableResultsBox.");
     });
 
-    console.log("Finished appending track items."); // This is now inside the function, correctly
+    console.log("Finished appending track items.");
 
     // This part MUST be inside the function, after the loop finishes adding buttons
     scrollableResultsBox.querySelectorAll('.play-button').forEach(button => {
@@ -127,14 +125,6 @@ function displaySearchResults(tracks) {
 // --- END CONSOLIDATED displaySearchResults FUNCTION ---
 
 
-// Ensure currentPlaylistUris and tracks (the full track objects) are accessible
-// You'll need to pass the 'tracks' array from the search results to this function,
-// or ensure it's a global variable (less ideal but can work for small apps)
-// The best approach is to make 'tracks' available where it's needed,
-// for example, by making it a global variable that is updated in displaySearchResults.
-// Let's assume 'tracks' (the full array of track objects from the search)
-// is accessible in this scope for the currentTrackData line.
-
 async function playTrack(trackUri) {
     if (!deviceId) {
         alert('Spotify Web Playback SDK is not ready or no active device. Please ensure Spotify is open or try refreshing.');
@@ -143,8 +133,11 @@ async function playTrack(trackUri) {
 
     const trackIndex = currentPlaylistUris.indexOf(trackUri);
 
-    if (trackIndex === currentPlayingTrackIndex) {
-        console.log('Track already playing:', trackUri);
+    // This check is good for preventing re-playing the same track
+    if (trackIndex !== -1 && trackIndex === currentPlayingTrackIndex) { // Only return if it's the same track being explicitly clicked
+        console.log('Track already playing or re-clicked:', trackUri);
+        // You might want to toggle play/pause here instead, but that requires checking player state.
+        // For now, simply return.
         return;
     }
 
@@ -166,12 +159,12 @@ async function playTrack(trackUri) {
             device_id: deviceId,
             uris: [trackUri]
         };
-        currentPlayingTrackIndex = -1;
+        currentPlayingTrackIndex = -1; // Reset as we're not in a known playlist context
     } else {
         currentPlayingTrackIndex = trackIndex;
         requestBody = {
             device_id: deviceId,
-            uris: currentPlaylistUris,
+            uris: currentPlaylistUris, // Pass the entire list of URIs
             offset: {
                 position: trackIndex
             },
@@ -224,10 +217,10 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     });
 
     // Error handling
-    player.addListener('initialization_error', ({ message }) => { console.error(message); });
-    player.addListener('authentication_error', ({ message }) => { console.error(message); });
-    player.addListener('account_error', ({ message }) => { console.error(message); });
-    player.addListener('playback_error', ({ message }) => { console.error(message); });
+    player.addListener('initialization_error', ({ message }) => { console.error('SDK Init Error:', message); });
+    player.addListener('authentication_error', ({ message }) => { console.error('SDK Auth Error:', message); });
+    player.addListener('account_error', ({ message }) => { console.error('SDK Account Error:', message); });
+    player.addListener('playback_error', ({ message }) => { console.error('SDK Playback Error:', message); });
 
     // Playback status updates
     player.addListener('player_state_changed', state => {
@@ -240,11 +233,12 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         togglePlayPauseButton.innerText = state.paused ? 'Play' : 'Pause';
     });
 
-    // Ready
+    // Ready - THIS IS WHERE DEVICE_ID BECOMES AVAILABLE
     player.addListener('ready', ({ device_id }) => {
         console.log('Ready with Device ID', device_id);
-        deviceId = device_id;
-        // Transfer playback to our new device
+        deviceId = device_id; // Set the global deviceId here
+
+        // Transfer playback to our new device ONLY AFTER it's ready
         fetch('/disney/transfer_playback', {
             method: 'PUT',
             headers: {
@@ -253,12 +247,16 @@ window.onSpotifyWebPlaybackSDKReady = () => {
             },
             body: JSON.stringify({
                 device_ids: [deviceId],
-                play: false // Don't start playing immediately
+                play: false
             })
         }).then(response => {
             if (!response.ok) {
                 console.error('Failed to transfer playback:', response.statusText);
+            } else {
+                console.log('Playback transfer request sent successfully.');
             }
+        }).catch(error => {
+            console.error('Error during playback transfer fetch:', error);
         });
     });
 
@@ -268,31 +266,42 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         deviceId = null;
     });
 
-    // Connect to the player!
-    player.connect();
+    // *** IMPORTANT: ONLY CALL player.connect() ONCE HERE ***
+    player.connect().then(success => {
+        if (success) {
+            console.log('Spotify Web Playback SDK successfully connected.');
+            // The 'ready' listener will fire if connection is successful and deviceId is available.
+        } else {
+            console.error('Spotify Web Playback SDK failed to connect.');
+        }
+    }).catch(error => {
+        console.error('Error connecting Spotify Web Playback SDK:', error);
+    });
 
+
+    // Event listeners for control buttons (player must be defined here)
     togglePlayPauseButton.addEventListener('click', () => {
         player.togglePlay();
     });
 
-nextTrackButton.addEventListener('click', () => {
-    console.log("Next button clicked. Player:", player); // Add this
-    if (player) { // Add a check to ensure player exists
-        player.nextTrack();
-    } else {
-        console.warn("Spotify Player not available for next track.");
-    }
-});
+    nextTrackButton.addEventListener('click', () => {
+        console.log("Next button clicked. Player:", player);
+        if (player) {
+            player.nextTrack();
+        } else {
+            console.warn("Spotify Player not available for next track.");
+        }
+    });
 
-prevTrackButton.addEventListener('click', () => {
-    console.log("Previous button clicked. Player:", player);
-    if (player) {
-        player.previousTrack();
-    } else {
-        console.warn("Spotify Player not available for previous track.");
-    }
-});
-};
+    prevTrackButton.addEventListener('click', () => {
+        console.log("Previous button clicked. Player:", player);
+        if (player) {
+            player.previousTrack();
+        } else {
+            console.warn("Spotify Player not available for previous track.");
+        }
+    });
+}; // <-- THIS IS THE MISSING CLOSING '});' FOR window.onSpotifyWebPlaybackSDKReady
 
 // Check if we have an access token in the URL or sessionStorage
 document.addEventListener('DOMContentLoaded', () => {
@@ -321,6 +330,13 @@ function showLoggedInContent(token) {
     fetch('/disney/user_profile?access_token=' + token)
         .then(response => {
             if (!response.ok) {
+                // Handle 401 Unauthorized here if needed for token expiration
+                // This is a good place to trigger re-login or clear token
+                // if (response.status === 401) {
+                //     alert('Session expired. Please log in again.');
+                //     sessionStorage.removeItem('spotify_access_token');
+                //     location.reload();
+                // }
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
@@ -333,7 +349,19 @@ function showLoggedInContent(token) {
             displayNameSpan.innerText = 'Error loading profile';
         });
 
-    if (window.Spotify && window.onSpotifyWebPlaybackSDKReady) {
-        window.onSpotifyWebPlaybackSDKReady();
-    }
+    // No need to call window.onSpotifyWebPlaybackSDKReady() here.
+    // The SDK itself calls it when it's ready.
+    // Keeping this line might cause issues if the SDK isn't fully loaded yet.
+    // if (window.Spotify && window.onSpotifyWebPlaybackSDKReady) {
+    //     window.onSpotifyWebPlaybackSDKReady();
+    // }
 }
+
+// This block was previously outside any function scope.
+// It likely belongs inside a fetch .catch() or a specific error handler.
+// For now, it's commented out as it caused a syntax error being freestanding.
+// if (response.status === 401) {
+//     alert('Session expired. Please log in again.');
+//     sessionStorage.removeItem('spotify_access_token');
+//     location.reload();
+// }
