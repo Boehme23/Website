@@ -416,17 +416,14 @@ def play_track():
         'Content-Type': 'application/json'
     }
 
-    # *** THIS IS THE CORRECTED SPOTIFY API URL AND METHOD FOR DEVICE ID ***
-    # The actual API endpoint is /me/player/play
-    # The device_id is passed as a query parameter.
-    spotify_api_base_url = "https://api.spotify.com/v1/me/player/play?device_id="
-    params = {'device_id': device_id} if device_id else {}  # Add device_id as a parameter if it exists
+    spotify_api_base_url = "https://api.spotify.com/v1/me/player/play"
+    params = {'device_id': device_id} if device_id else {}
 
     response = requests.put(
         spotify_api_base_url,
         headers=headers,
-        params=params,  # Pass parameters to requests.put
-        json=payload  # Pass the JSON payload
+        params=params,
+        json=payload
     )
 
     if response.status_code == 204:
