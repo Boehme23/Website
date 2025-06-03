@@ -4,7 +4,7 @@
 
 {% block content %}
 
-        <body>
+        <body style="color:white">
             <div class="container">
                 <h1 class="heading">Disney Music Player</h1>
                 <a href="/" class="button">Back</a>
@@ -15,7 +15,10 @@
                     <h2>Welcome, <span id="display-name"></span>!</h2>
                     <p>Search for Disney music or select from popular tracks:</p>
                     <button id="search-button">Search Disney Music</button>
-                    <div id="results"></div>
+                    <div id="results">
+                        <div id="scrollable-results-box">
+                            </div>
+                    </div>
 
                     <div id="player-controls">
                         <h3>Now Playing: <span id="current-track-name"></span></h3>

@@ -8,6 +8,7 @@ const nextTrackButton = document.getElementById('nextTrack');
 const prevTrackButton = document.getElementById('prevTrack');
 const currentTrackNameSpan = document.getElementById('current-track-name');
 const currentArtistNameSpan = document.getElementById('current-artist-name');
+const scrollableResultsBox = document.getElementById('scrollable-results-box');
 
 let currentAccessToken = '';
 let deviceId = null; // Spotify Connect device ID
@@ -46,9 +47,7 @@ return;
 tracks.forEach(track => {
 const trackItem = document.createElement('div');
 trackItem.classList.add('track-item');
-const albumArt = track.album.images.length > 0 ? track.album.images[0].url : 'https://via.placeholder.com/50';
 trackItem.innerHTML = `
-    <img src="${albumArt}" alt="${track.name} album art">
     <div class="track-info">
         <div>${track.name}</div>
         <span>${track.artists.map(a => a.name).join(', ')} - ${track.album.name}</span>
@@ -221,4 +220,38 @@ function showLoggedInContent(token) {
     // You generally don't need to call it manually here.
     // Ensure your HTML includes the Spotify SDK script correctly.
     // <script src="https://sdk.scdn.co/spotify-player.js"></script>
+}
+function displaySearchResults(tracks) {
+    // Clear the content of the scrollable box, not the main resultsDiv
+    scrollableResultsBox.innerHTML = '';
+    resultsDiv.innerHTML = '<h3>Search Results:</h3>'; // Keep the heading outside the scrollable area
+
+    if (tracks.length === 0) {
+        scrollableResultsBox.innerHTML += '<p>No Disney tracks found.</p>';
+        return;
+    }
+
+    tracks.forEach(track => {
+        const trackItem = document.createElement('div');
+        trackItem.classList.add('track-item');
+        const albumArt = track.album.images.length > 0 ? track.album.images[0].url : 'https://placehold.co/50x50/cccccc/333333?text=No+Art'; // Using placeholder for fallback
+        trackItem.innerHTML = `
+            <img src="${albumArt}" alt="${track.name} album art" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/333333?text=No+Art';">
+            <div class="track-info">
+                <div>${track.name}</div>
+                <span>${track.artists.map(a => a.name).join(', ')} - ${track.album.name}</span>
+            </div>
+            <button class="play-button" data-uri="${track.uri}">Play</button>
+        `;
+        // Append to the scrollable box
+        scrollableResultsBox.appendChild(trackItem);
+    });
+
+    // Make sure to query play buttons from within the scrollable box
+    scrollableResultsBox.querySelectorAll('.play-button').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const trackUri = event.target.dataset.uri;
+            playTrack(trackUri);
+        });
+    });
 }

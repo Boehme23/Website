@@ -304,3 +304,60 @@ p.overview {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Soft shadow */
     margin-bottom: 20px; /* Space below profile pic */
 }
+
+#scrollable-results-box {
+    max-height: 400px; /* Adjust this height as needed */
+    overflow-y: auto; /* This is the key property for scrolling */
+    border: 1px solid #ddd; /* Optional: Add a border for visual clarity */
+    border-radius: 8px; /* Optional: Match your card border-radius */
+    padding: 15px; /* Optional: Add some internal padding */
+    background-color: rgba(255, 255, 255, 0.9); /* Optional: Slightly transparent white background */
+    margin-top: 20px; /* Space above the results box */
+    width: 100%; /* Ensure it takes full width of its parent */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Style for individual track items inside the scrollable box */
+.track-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee; /* Separator between tracks */
+}
+
+.track-item:last-child {
+    border-bottom: none; /* No border for the last item */
+}
+
+.track-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+.track-item .track-info {
+    flex-grow: 1; /* Allows info to take up available space */
+    text-align: left; /* Align text to the left */
+    color: #333; /* Darker text for readability on light background */
+}
+
+.track-item .track-info div {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 3px;
+}
+
+.track-item .track-info span {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.track-item .play-button {
+    /* Inherits general button styles, but you might want to adjust */
+    padding: 8px 15px; /* Smaller padding for inline button */
+    font-size: 0.9em;
+    margin-left: 15px; /* Space from track info */
+    white-space: nowrap; /* Prevent button text from wrapping */
+}
