@@ -76,15 +76,14 @@ searchButton.addEventListener('click', async () => {
 
 // --- CONSOLIDATED AND CORRECTED displaySearchResults FUNCTION ---
 function displaySearchResults(tracks) {
-    // Clear the content of the scrollable box, as new results are coming
-    // This is already done in searchButton.addEventListener, but good to ensure
+    console.log("displaySearchResults called. Tracks received:", tracks);
     if (scrollableResultsBox) {
+        console.log("Clearing scrollableResultsBox.");
         scrollableResultsBox.innerHTML = '';
     } else {
-        console.error('Error: scrollableResultsBox element not found!');
-        return; // Can't proceed if there's no box to put results in
+        console.error('Error: scrollableResultsBox element not found in displaySearchResults!');
+        return;
     }
-
     // The heading "Search Results:" should ideally be managed by the searchButton's
     // click listener, as shown above, targeting the resultsMessageElement.
     // If tracks are empty, put the message directly into the scrollable box.
@@ -107,7 +106,10 @@ function displaySearchResults(tracks) {
         `;
         // Append to the scrollable box
         scrollableResultsBox.appendChild(trackItem);
+        console.log("Appended track item to scrollableResultsBox.");
     });
+        console.log("Finished appending track items.");
+        }
 
     // Make sure to query play buttons from within the scrollable box
     scrollableResultsBox.querySelectorAll('.play-button').forEach(button => {
