@@ -317,3 +317,4 @@ function showLoggedInContent(token) {
     if (window.Spotify && window.onSpotifyWebPlaybackSDKReady) {
         window.onSpotifyWebPlaybackSDKReady();
     }
+}
