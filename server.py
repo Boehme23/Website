@@ -4,59 +4,64 @@ import sqlite3
 import requests
 from PIL import Image, ImageDraw, ImageFont
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, redirect, url_for, send_file, jsonify
+from flask import Flask, render_template, session, request, redirect, url_for, send_file, jsonify
 from flask_bootstrap5 import Bootstrap
 from spotipy import Spotify
-from spotipy.cache_handler import FlaskSessionCacheHandler
+from spotipy.cache_handler import FlaskSessionCacheHandler  # Keep this import
 from spotipy.oauth2 import SpotifyOAuth
 
 from morse_code_converter import converter
 
 dotenv_path = os.path.join(
     os.path.dirname(__file__), ".env"
-)  # Assumes keys.env is in the same directory as server.py
+)
 if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path=dotenv_path)
 else:
     print(f"Warning: Environment file not found at {dotenv_path}")
 
-cache_handler = FlaskSessionCacheHandler(session)
-
+# Initialize app first
 app = Flask(__name__)
+
+# Set secret key BEFORE you try to use session
 app.config["SECRET_KEY"] = os.environ.get(
     "FLASK_SECRET_KEY", "a_sensible_default_secret_key_for_development"
 )
+
+# *** REMOVE THIS LINE: ***
+# cache_handler = FlaskSessionCacheHandler(session) # This line causes the NameError
+
 app.config["BEARER_TOKEN_MOVIE"] = os.environ.get("TMDB_BEARER_TOKEN")
-app.config["UPLOAD_FOLDER"] = "uploads"  # Define the upload folder
-# Create the upload folder if it doesn't exist
+app.config["UPLOAD_FOLDER"] = "uploads"
 os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 BEARER_TOKEN_MOVIE = app.config.get("BEARER_TOKEN_MOVIE")
-# Spotify API credentials from environment variables
+
 SPOTIPY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
 SPOTIPY_CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
-# This should match one of your Redirect URIs in your Spotify app settings
 SPOTIPY_REDIRECT_URI = os.getenv('SPOTIFY_REDIRECT_URI', 'https://website-0std.onrender.com/disney/callback')
 SCOPE = (
-    'user-read-private '  # Read user's display name, subscription type, country
-    'user-read-email '  # Read user's email address (optional, but common)
-    'user-read-playback-state '  # Read the user’s current playback state
-    'user-modify-playback-state '  # Control playback (play, pause, skip, seek, transfer)
-    'streaming '  # **CRITICAL** for the Web Playback SDK to play audio
-    'user-library-read '  # Read user's saved tracks/albums/artists
-    'user-library-modify '  # Add/remove items from user's library (optional)
-    'playlist-read-private '  # Read user's private playlists
-    'playlist-read-collaborative '  # Read user's collaborative playlists
-    'playlist-modify-public '  # Write/delete public playlists (optional)
-    'playlist-modify-private '  # Write/delete private playlists (optional)
-    'user-top-read '  # Read user's top artists and tracks (optional)
+    'user-read-private '
+    'user-read-email '
+    'user-read-playback-state '
+    'user-modify-playback-state '
+    'streaming '
+    'user-library-read '
+    'user-library-modify '
+    'playlist-read-private '
+    'playlist-read-collaborative '
+    'playlist-modify-public '
+    'playlist-modify-private '
+    'user-top-read '
     'user-read-recently-played'
 )
 
+# *** CORRECTED INITIALIZATION OF sp_oauth ***
 sp_oauth = SpotifyOAuth(
     client_id=SPOTIPY_CLIENT_ID,
     client_secret=SPOTIPY_CLIENT_SECRET,
     redirect_uri=SPOTIPY_REDIRECT_URI,
     scope=SCOPE,
+    # Pass FlaskSessionCacheHandler(session) directly here
     cache_handler=FlaskSessionCacheHandler(session),
     show_dialog=True
 )
@@ -64,19 +69,19 @@ sp_oauth = SpotifyOAuth(
 Bootstrap(app)
 
 
+# *** Corrected get_spotify_for_user function ***
 def get_spotify_for_user():
-    token_info = sp_oauth.validate_token(cache_handler.get_cached_token())
+    # Inside this function, 'session' is available because it's called during a request.
+    # The cache_handler is implicitly handled by the sp_oauth instance.
+    token_info = sp_oauth.validate_token(FlaskSessionCacheHandler(session).get_cached_token())
     if not token_info:
-        # No valid token, redirect to login
-        # This will be handled by the client-side JS checking for access_token
         return None, None
 
-    # Refresh token if needed
     if sp_oauth.is_token_expired(token_info):
         token_info = sp_oauth.refresh_access_token(token_info['refresh_token'])
-        cache_handler.save_token_to_cache(token_info)  # Save refreshed token
+        FlaskSessionCacheHandler(session).save_token_to_cache(token_info)
 
-    sp = Spotify(auth_manager=sp_oauth)  # Use auth_manager with the cached token
+    sp = Spotify(auth_manager=sp_oauth)
     return sp, token_info['access_token']
 
 
