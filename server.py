@@ -4,9 +4,8 @@ import sqlite3
 import requests
 from PIL import Image, ImageDraw, ImageFont
 from dotenv import load_dotenv
-from flask import Flask, render_template, session, request, redirect, url_for, send_file, jsonify
+from flask import Flask, render_template, request, redirect, url_for, send_file, jsonify
 from flask_bootstrap5 import Bootstrap
-from spotipy import Spotify
 from spotipy.oauth2 import SpotifyOAuth
 
 from morse_code_converter import converter
@@ -354,48 +353,54 @@ def login():
 
 @app.route('/disney/callback')
 def callback():
-    # Handle the callback from Spotify after user authorization
     code = request.args.get('code')
     if code:
         token_info = sp_oauth.get_access_token(code)
-        session['token_info'] = token_info  # Store token info in session
-        # Redirect back to the index with the access token (for client-side JS)
+        # The cache_handler already saves the token to session['token_info']
+        # You just need to return to the client with the access token
         return redirect(url_for('disney', access_token=token_info['access_token']))
     return "Error: No code received.", 400
 
 
 @app.route('/disney/user_profile')
 def user_profile():
-    access_token = request.args.get('access_token')
-    if not access_token:
-        return {"error": "Access token missing"}, 401
-    sp = Spotify(auth=access_token)
+    # Get Spotify object for the current user's session
+    sp, access_token = get_spotify_for_user()
+    if not sp:
+        return jsonify({"error": "Unauthorized"}), 401  # No token found for user session
+
     try:
         user = sp.current_user()
-        return user
+        return jsonify(user)  # Always jsonify dictionary responses
     except Exception as e:
-        return {"error": str(e)}, 500
+        print(f"Error fetching user profile: {e}")
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route('/disney/search_disney_music')
 def search_disney_music():
-    access_token = request.args.get('access_token')
-    if not access_token:
-        return jsonify({"error": "Access token missing"}), 401
+    # Get Spotify object for the current user's session
+    sp, access_token = get_spotify_for_user()
+    if not sp:
+        return jsonify({"error": "Unauthorized"}), 401  # No token found for user session
 
-    sp = Spotify(auth=access_token)
     playlist_id = '4whT9DAdY6CeMcdvps3X8D'
     try:
         results = sp.playlist_tracks(playlist_id)
         tracks = [item['track'] for item in results['items']]
-        return jsonify({"tracks": tracks})  # Keep this one
+        return jsonify({"tracks": tracks})
     except Exception as e:
+        print(f"Error searching Disney music: {e}")
         return jsonify({"error": str(e)}), 500
 
 
 @app.route('/disney/play_track', methods=['POST'])
 def play_track():
-    access_token = request.headers.get('Authorization').split(' ')[1]
+    # Get Spotify object for the current user's session
+    sp, access_token = get_spotify_for_user()
+    if not sp:
+        return jsonify({"error": "Unauthorized"}), 401  # No token found for user session
+
     data = request.get_json()
 
     device_id = data.get('device_id')
@@ -403,63 +408,48 @@ def play_track():
     offset = data.get('offset')
     position_ms = data.get('position_ms')
 
-    payload = {}
-    if uris:
-        payload["uris"] = uris
-    if offset:
-        payload["offset"] = offset
-    if position_ms is not None:
-        payload["position_ms"] = position_ms
-
-    headers = {
-        'Authorization': f'Bearer {access_token}',
-        'Content-Type': 'application/json'
-    }
-
-    spotify_api_base_url = "https://api.spotify.com/v1/me/player/play"
-    params = {'device_id': device_id} if device_id else {}
-
-    response = requests.put(
-        spotify_api_base_url,
-        headers=headers,
-        params=params,
-        json=payload
-    )
-
-    if response.status_code == 204:
+    # Use Spotipy's own player control methods instead of direct requests.put
+    # This leverages Spotipy's error handling and token management
+    try:
+        sp.start_playback(
+            device_id=device_id,
+            uris=uris,
+            offset=offset,
+            position_ms=position_ms
+        )
         return jsonify({"message": "Playback initiated"}), 200
-    else:
-        print(f"Spotify API Error in play_track: {response.status_code} - {response.text}")
-        return jsonify({"error": "Failed to play track", "details": response.text}), response.status_code
+    except Exception as e:
+        print(f"Error starting playback via Spotipy: {e}")
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route('/disney/transfer_playback', methods=['PUT'])
 def transfer_playback():
-    auth_header = request.headers.get('Authorization')
-    if not auth_header or not auth_header.startswith('Bearer '):
-        return jsonify({"error": "Missing or malformed Authorization header"}), 401
+    # Get Spotify object for the current user's session
+    sp, access_token = get_spotify_for_user()
+    if not sp:
+        return jsonify({"error": "Unauthorized"}), 401  # No token found for user session
 
-    access_token = auth_header.split('Bearer ')[1]
     data = request.get_json()
     device_ids = data.get('device_ids')
     play_status = data.get('play', False)
     device_id = device_ids[0] if isinstance(device_ids, list) and device_ids else None
 
     if not all([access_token, device_id]):
-        return {"error": "Missing required parameters"}, 400
+        return jsonify({"error": "Missing required parameters"}), 400  # Return jsonify here too
 
-    sp = Spotify(auth=access_token)
     try:
         sp.transfer_playback(device_id=device_id, force_play=play_status)
-        return {"status": "success"}, 200
+        return jsonify({"status": "success"}), 200  # Always jsonify dictionary responses
     except Exception as e:
-        return {"error": str(e)}, 500
+        print(f"Error transferring playback: {e}")
+        return jsonify({"error": str(e)}), 500
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
     if not all([SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, SPOTIPY_REDIRECT_URI]):
         print(
-            "ERROR: Please set SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, and SPOTIPY_REDIRECT_URI environment variables or in a .env file.")
+            "ERROR: Please set SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, and SPOTIPY_REDIRECT_URI environment variables or in a .env file."
+        )
         exit(1)
-    ##venv\Scripts\activate
+    app.run(debug=True)
