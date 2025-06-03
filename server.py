@@ -378,7 +378,6 @@ def user_profile():
 
 
 @app.route('/disney/search_disney_music')
-@app.route('/disney/search_disney_music')
 def search_disney_music():
     access_token = request.args.get('access_token')
     if not access_token:
@@ -404,27 +403,36 @@ def play_track():
     offset = data.get('offset')
     position_ms = data.get('position_ms')
 
-    # Construct the payload for Spotify API
-    payload = {
-        "uris": uris,
-        "offset": offset,
-        "position_ms": position_ms
-    }
+    payload = {}
+    if uris:
+        payload["uris"] = uris
+    if offset:
+        payload["offset"] = offset
+    if position_ms is not None:
+        payload["position_ms"] = position_ms
 
     headers = {
         'Authorization': f'Bearer {access_token}',
         'Content-Type': 'application/json'
     }
 
-    spotify_api_url = f"https://api.spotify.com/v1/me/player/play?device_id={device_id}"
+    # *** THIS IS THE CORRECTED SPOTIFY API URL AND METHOD FOR DEVICE ID ***
+    # The actual API endpoint is /me/player/play
+    # The device_id is passed as a query parameter.
+    spotify_api_base_url = "https://api.spotify.com/v1/me/player/play?device_id="
+    params = {'device_id': device_id} if device_id else {}  # Add device_id as a parameter if it exists
 
-    # Use json=payload for requests library to automatically handle JSON serialization
-    response = requests.put(spotify_api_url, headers=headers, json=payload)
+    response = requests.put(
+        spotify_api_base_url,
+        headers=headers,
+        params=params,  # Pass parameters to requests.put
+        json=payload  # Pass the JSON payload
+    )
 
-    if response.status_code == 204:  # 204 No Content is success for play/pause
+    if response.status_code == 204:
         return jsonify({"message": "Playback initiated"}), 200
     else:
-        print(f"Spotify API Error: {response.status_code} - {response.text}")
+        print(f"Spotify API Error in play_track: {response.status_code} - {response.text}")
         return jsonify({"error": "Failed to play track", "details": response.text}), response.status_code
 
 
