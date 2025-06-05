@@ -6,11 +6,11 @@ from dotenv import load_dotenv
 from flask import Flask, render_template, session, request, redirect, url_for, send_file, \
     jsonify  # <-- Ensure 'session' is imported
 from flask_bootstrap5 import Bootstrap
-from spotify.user import get_spotify_for_user
 from spotipy.cache_handler import FlaskSessionCacheHandler  # Keep this import
 from spotipy.oauth2 import SpotifyOAuth
 
 from morse_code_converter import converter
+from spotify_user import get_spotify_for_user
 from watermark import add_watermark
 
 dotenv_path = os.path.join(
