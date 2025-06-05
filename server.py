@@ -297,7 +297,7 @@ def callback():
 @app.route('/disney/user_profile')
 def user_profile():
     # Get Spotify object for the current user's session
-    sp, access_token = get_spotify_for_user()
+    sp, access_token = get_spotify_for_user_()
     if not sp:
         return jsonify({"error": "Unauthorized"}), 401  # No token found for user session
 
@@ -312,7 +312,7 @@ def user_profile():
 @app.route('/disney/search_disney_music')
 def search_disney_music():
     # Get Spotify object for the current user's session
-    sp, access_token = get_spotify_for_user()
+    sp, access_token = get_spotify_for_user_()
     if not sp:
         return jsonify({"error": "Unauthorized"}), 401  # No token found for user session
 
@@ -329,7 +329,7 @@ def search_disney_music():
 @app.route('/disney/play_track', methods=['POST'])
 def play_track():
     # Get Spotify object for the current user's session
-    sp, access_token = get_spotify_for_user()
+    sp, access_token = get_spotify_for_user_()
     if not sp:
         return jsonify({"error": "Unauthorized"}), 401  # No token found for user session
 
