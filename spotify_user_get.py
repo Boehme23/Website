@@ -5,7 +5,7 @@ from spotipy.cache_handler import FlaskSessionCacheHandler  # Keep this import
 from server import sp_oauth
 
 
-def get_spotify_for_user():
+def get_spotify_for_user_():
     # 'session' will be available because this function runs within a Flask request context.
     user_cache_handler = FlaskSessionCacheHandler(session)
     token_info = sp_oauth.validate_token(user_cache_handler.get_cached_token())
