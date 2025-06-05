@@ -2,16 +2,16 @@ import os
 import sqlite3
 
 import requests
-from PIL import Image, ImageDraw, ImageFont
 from dotenv import load_dotenv
 from flask import Flask, render_template, session, request, redirect, url_for, send_file, \
     jsonify  # <-- Ensure 'session' is imported
 from flask_bootstrap5 import Bootstrap
-from spotipy import Spotify
+from spotify.user import get_spotify_for_user
 from spotipy.cache_handler import FlaskSessionCacheHandler  # Keep this import
 from spotipy.oauth2 import SpotifyOAuth
 
 from morse_code_converter import converter
+from watermark import add_watermark
 
 dotenv_path = os.path.join(
     os.path.dirname(__file__), ".env"
@@ -36,7 +36,6 @@ app.config["BEARER_TOKEN_MOVIE"] = os.environ.get("TMDB_BEARER_TOKEN")
 app.config["UPLOAD_FOLDER"] = "uploads"
 os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 BEARER_TOKEN_MOVIE = app.config.get("BEARER_TOKEN_MOVIE")
-
 SPOTIPY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
 SPOTIPY_CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
 SPOTIPY_REDIRECT_URI = os.getenv('SPOTIFY_REDIRECT_URI', 'https://website-0std.onrender.com/disney/callback')
@@ -55,9 +54,6 @@ SCOPE = (
     'user-top-read '
     'user-read-recently-played'
 )
-
-# *** CORRECTED INITIALIZATION OF sp_oauth ***
-# The FlaskSessionCacheHandler(session) is passed directly here.
 # Flask ensures 'session' is available when this part of the code is effectively used during a request.
 sp_oauth = SpotifyOAuth(
     client_id=SPOTIPY_CLIENT_ID,
@@ -69,88 +65,6 @@ sp_oauth = SpotifyOAuth(
 )
 
 Bootstrap(app)
-
-
-# It now creates its own cache_handler instance
-def get_spotify_for_user():
-    # Create a new FlaskSessionCacheHandler instance here, inside the function.
-    # 'session' will be available because this function runs within a Flask request context.
-    user_cache_handler = FlaskSessionCacheHandler(session)
-
-    # Use this newly created instance for validation and refreshing
-    token_info = sp_oauth.validate_token(user_cache_handler.get_cached_token())
-    if not token_info:
-        # No valid token, redirect to login
-        return None, None
-
-    if sp_oauth.is_token_expired(token_info):
-        token_info = sp_oauth.refresh_access_token(token_info['refresh_token'])
-        user_cache_handler.save_token_to_cache(token_info)  # Save refreshed token using this handler
-
-    sp = Spotify(auth_manager=sp_oauth)  # Use auth_manager with the cached token
-    return sp, token_info['access_token']
-
-
-def add_watermark(image_path, watermark_text, output_path):
-    """
-    Opens an image, adds a text watermark, and saves it to the output_path.
-    Returns the output_path if successful, None otherwise.
-    """
-    try:
-        img = Image.open(image_path).convert(
-            "RGBA"
-        )  # Open and ensure RGBA for transparency
-        width, height = img.size
-
-        # Make a new image for the watermark text that's the same size as the original
-        txt_img = Image.new(
-            "RGBA", (width, height), (255, 255, 255, 0)
-        )  # Transparent layer
-        draw = ImageDraw.Draw(txt_img)  # Draw on the transparent layer
-
-        # Font
-        try:
-            font_path = "arial.ttf"
-            font_size = int(height / 5)
-            font = ImageFont.truetype(font_path, font_size)
-        except IOError:
-            print(f"Warning: Font '{font_path}' not found. Using default PIL font.")
-            font_size = 70
-            font = ImageFont.load_default()
-
-        # Calculate text size and position
-        try:
-
-            bbox = font.getbbox(watermark_text)
-            text_width = bbox[2] - bbox[0]
-            text_height = bbox[3] - bbox[1]
-        except AttributeError:
-            text_width, text_height = draw.textsize(watermark_text, font=font)
-
-        padding = 10
-        x = (width - text_width) / 2
-        y = (height - text_height) / 2
-        # Add text watermark
-        draw.text((x, y), watermark_text, font=font, fill=(255, 255, 255, 128))
-
-        # Composite the text layer onto the original image
-        img_with_watermark = Image.alpha_composite(img, txt_img)
-
-        # If the output is JPEG, convert the RGBA image to RGB as JPEG doesn't support alpha
-        if output_path.lower().endswith((".jpg", ".jpeg")):
-            img_with_watermark = img_with_watermark.convert("RGB")
-
-        img_with_watermark.save(output_path)
-        return output_path
-
-    except FileNotFoundError:
-        print(f"Error: Input image file not found at {image_path}")
-        return None
-    except Exception as e:
-        print(
-            f"Error adding watermark: {e}"
-        )  # This will now correctly show other errors if they occur
-        return None
 
 
 @app.route("/")
@@ -295,43 +209,31 @@ def watermark():
     if request.method == "POST":
         if "file" not in request.files:
             return render_template("watermark.html", error="No file part")
-
         file = request.files["file"]
         watermark_text_input = request.form.get(
             "watermark_text", ""
         ).strip()  # Get from form
-
         if not watermark_text_input:  # Use default if empty
             watermark_text = "@Boehme"
         else:
             watermark_text = watermark_text_input
-
         if file.filename == "":
             return render_template("watermark.html", error="No selected file")
-
-        if file:  # and file.filename: # Redundant check, already handled by above
-            # Consider adding file type/extension validation here
+        if file:
             # e.g., allowed_extensions = {'png', 'jpg', 'jpeg', 'gif'}
-
             # Sanitize filename to prevent directory traversal or other issues
             from werkzeug.utils import secure_filename
-
             filename = secure_filename(file.filename)
             if not filename:  # If secure_filename returns empty (e.g., just "..")
                 return render_template("watermark.html", error="Invalid filename.")
-
             filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
             file.save(filepath)
             print(f"Saved uploaded file to: {filepath}")
-
             # Generate a unique name for the output file to avoid overwrites if multiple users upload same filename
             base, ext = os.path.splitext(filename)
-            # Could add a timestamp or UUID for more uniqueness
             output_filename = f"watermarked_{base}{ext}"
             output_path = os.path.join(app.config["UPLOAD_FOLDER"], output_filename)
-
             watermarked_file_path = add_watermark(filepath, watermark_text, output_path)
-
             if watermarked_file_path:
                 try:
                     return send_file(
@@ -388,7 +290,6 @@ def callback():
     code = request.args.get('code')
     if code:
         token_info = sp_oauth.get_access_token(code)
-        # The cache_handler already saves the token to session['token_info']
         # You just need to return to the client with the access token
         return redirect(url_for('disney', access_token=token_info['access_token']))
     return "Error: No code received.", 400
