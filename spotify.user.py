@@ -1,5 +1,6 @@
 from flask import session
-from spotipy import FlaskSessionCacheHandler, Spotify
+from spotipy import Spotify
+from spotipy.cache_handler import FlaskSessionCacheHandler  # Keep this import
 
 from server import sp_oauth
 
