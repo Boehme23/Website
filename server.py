@@ -10,6 +10,7 @@ from spotipy.cache_handler import FlaskSessionCacheHandler  # Keep this import
 from spotipy.oauth2 import SpotifyOAuth
 
 from morse_code_converter import converter
+from spotify_user_get import get_spotify_for_user_
 from watermark import add_watermark
 
 dotenv_path = os.path.join(

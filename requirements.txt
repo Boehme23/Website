@@ -11,3 +11,4 @@ flask_bootstrap5
 python-dotenv
 Pillow
 Spotipy
+beautifulsoup4
