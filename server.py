@@ -358,7 +358,7 @@ def play_track():
 @app.route('/disney/transfer_playback', methods=['PUT'])
 def transfer_playback():
     # Get Spotify object for the current user's session
-    sp, access_token = get_spotify_for_user()
+    sp, access_token = get_spotify_for_user_()
     if not sp:
         return jsonify({"error": "Unauthorized"}), 401  # No token found for user session
 
