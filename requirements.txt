@@ -13,6 +13,5 @@ Pillow
 Spotipy
 beautifulsoup4
 logging
-sqlite3
 time
 selenium
