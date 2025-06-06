@@ -5,6 +5,7 @@ import time
 
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -53,7 +54,7 @@ def coletar_produtos(setor_param, driver):
             last_height = driver.execute_script("return document.body.scrollHeight")
             while True:
                 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-                time.sleep(3)  # Wait for new content to load
+                time.sleep(1)  # Wait for new content to load
                 new_height = driver.execute_script("return document.body.scrollHeight")
                 if new_height == last_height:
                     break
@@ -226,10 +227,20 @@ def salvar_dados_no_banco(produtos, db_name='fort.db', table_name='products'):
 if __name__ == '__main__':
     # Configure root logger level if you want to see DEBUG messages from functions
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")  # Run Chrome without a GUI
+    chrome_options.add_argument("--no-sandbox")  # Essential for environments like PythonAnywhere
+    chrome_options.add_argument("--disable-dev-shm-usage")  # Overcomes limited resource issues
+    chrome_options.add_argument("--disable-gpu")  # Important for some server setups
+    chrome_options.add_argument("--window-size=1920,1080")  # Set a consistent window size
+    chrome_options.add_argument("--enable-network-service-sync")  # Ensures network service is properly enabled
+    chrome_options.add_argument("--disable-setuid-sandbox")  # Helps if --no-sandbox isn't enough
+    chrome_options.add_argument("--disable-extensions")  # Disable extensions which could interfere
 
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome(chrome_options)
     # Removed duplicate 'hortifruti' and made it a set to ensure uniqueness if needed
-    setores = list(set(['mercearia', 'bebidas', 'carnes-aves-e-peixes', 'hortifruti', 'limpeza', 'casa-e-lazer']))
+    setores = list(set(['mercearia', 'bebidas', 'carnes-aves-e-peixes', 'hortifruti', 'higiene-e-beleza', 'limpeza',
+                        'casa-e-lazer']))
 
     for setor in setores:
         try:

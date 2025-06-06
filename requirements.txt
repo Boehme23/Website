@@ -12,7 +12,6 @@ python-dotenv
 Pillow
 Spotipy
 beautifulsoup4
-import
 logging
 sqlite3
 time
