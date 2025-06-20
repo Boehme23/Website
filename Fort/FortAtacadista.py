@@ -147,7 +147,7 @@ def coletar_produtos(setor_param, driver):
 
 
 # --- Database Function ---
-def salvar_dados_no_banco(produtos, db_name='./Fort/fort.db', table_name='products'):
+def salvar_dados_no_banco(produtos, db_name='../Fort/fort.db', table_name='products'):
     """
     Saves product data to an SQLite database, including the current date.
     If a product with the same name and collection date exists, its price is updated.

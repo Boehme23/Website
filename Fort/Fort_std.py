@@ -4,9 +4,10 @@ import sqlite3
 import numpy as np
 import pandas as pd
 
-db_file = './Fort/fort.db'
+db_file = '../Fort/fort.db'
 
 try:
+
     conn = sqlite3.connect(db_file)
 
     print(f"--- Attempting to load data from '{db_file}' using direct cursor operations ---")
@@ -65,7 +66,7 @@ try:
     pivot_df['%'] = np.where(
         condition_for_zero_percent,
         0,  # Value if the condition is True
-        (new_values - old_values) / old_values  # Value if the condition is False
+        (new_values - old_values) * 100 / old_values  # Value if the condition is False
     )
     pivot_df = pivot_df.sort_values(by='%', ascending=False)
     print("\nPivot Table with Net Quantity:")
@@ -81,7 +82,7 @@ finally:
         print("\nDatabase connection closed.")
 
 # Define the output Excel filename
-excel_file_name = 'Fort_prices.xlsx'
+excel_file_name = '../Fort/Fort_prices.xlsx'
 
 try:
     # Save the DataFrame to an Excel file
