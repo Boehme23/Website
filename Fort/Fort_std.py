@@ -1,6 +1,10 @@
 import logging
 import sqlite3
 
+# --- NOVA IMPORTAÇÃO ---
+# Adiciona a biblioteca para criar gráficos
+import matplotlib.pyplot as plt
+import matplotlib.ticker as mticker
 import numpy as np
 import pandas as pd
 
@@ -113,9 +117,8 @@ try:
                 # Group by sector and calculate the mean for each week
                 sector_weekly_variation_df = sector_pct_change_df.groupby('sector').mean().round(2)
 
-                # --- NEW: Add the overall market variation as a new row ---
+                # --- Add the overall market variation as a new row ---
                 # Use pd.concat to add the overall variation series as a new row.
-                # .to_frame().T converts the series to a single-row DataFrame for concatenation.
                 sector_weekly_variation_df = pd.concat(
                     [sector_weekly_variation_df, overall_weekly_variation.to_frame().T])
 
@@ -149,13 +152,69 @@ try:
             logging.info(f"\nSuccessfully saved weekly percentage changes to '{weekly_pct_change_excel_file}'")
 
         # Save the new combined sector-level and overall weekly variation
+        sector_excel_file = '../Fort/Fort_sector_weekly_variation.xlsx'
         if not sector_weekly_variation_df.empty:
-            sector_excel_file = '../Fort/Fort_sector_weekly_variation.xlsx'
             sector_weekly_variation_df.to_excel(sector_excel_file, index=True)
             logging.info(f"\nSuccessfully saved combined sector and overall weekly variation to '{sector_excel_file}'")
 
-    else:
-        logging.warning("DataFrame is empty after filtering. No Excel files will be generated.")
+            # --- Gerar e Salvar o Gráfico (com Destaque) ---
+            logging.info("\n--- Generating sector performance chart... ---")
+            try:
+                # Transpõe o DataFrame para que as semanas fiquem no eixo X
+                plot_df = sector_weekly_variation_df.transpose()
+
+                # Cria a figura e os eixos do gráfico com um tamanho maior
+                fig, ax = plt.subplots(figsize=(15, 8))
+
+                # Remove o prefixo "Week_of_" para um eixo X mais limpo ---
+                plot_df.index = plot_df.index.str.replace('Week_of_', '', regex=False)
+
+                # Plota a performance de cada setor/mercado
+                for column in plot_df.columns:
+
+                    if column == 'Overall Market':
+                        # Estilo de destaque para o mercado geral
+                        ax.plot(plot_df.index, plot_df[column], marker='o', linestyle='--',
+                                label=column, color='black', linewidth=2.5, zorder=10)
+                    else:
+                        # Estilo padrão para os outros setores
+                        ax.plot(plot_df.index, plot_df[column], marker='.', linestyle='-',
+                                label=column, linewidth=1.5, alpha=0.8)
+
+                # Formatação do gráfico para melhor clareza
+                ax.set_title('Inflação semanal por Setor e Mercado Geral', fontsize=16, pad=20)
+                ax.set_ylabel('Inflação Semanal (%)', fontsize=12)
+                ax.set_xlabel('Semana Terminada em', fontsize=12)
+
+                # Adiciona uma linha horizontal em y=0 como referência
+                ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
+
+                # Melhora a legibilidade dos rótulos do eixo X
+                plt.xticks(rotation=30, ha="right")
+
+                # Adiciona a legenda
+                ax.legend(title='Setor / Mercado', bbox_to_anchor=(1.02, 1), loc='upper left')
+
+                # Adiciona grades para facilitar a leitura
+                ax.grid(True, which='both', linestyle='--', linewidth=0.5)
+
+                # Formata o eixo Y para mostrar o símbolo de '%'
+                ax.yaxis.set_major_formatter(mticker.PercentFormatter())
+
+                # Ajusta o layout para evitar que os rótulos sejam cortados
+                plt.tight_layout(rect=[0, 0, 0.85, 1])  # Ajusta o retângulo para dar espaço à legenda
+
+                # Salva a figura
+                chart_file_name = '../Fort/Fort_sector_variation_chart.png'
+                plt.savefig(chart_file_name, dpi=300, bbox_inches='tight')
+                logging.info(f"\nSuccessfully saved chart to '{chart_file_name}'")
+                plt.close(fig)  # Fecha a figura para liberar memória
+
+            except Exception as e:
+                logging.error(f"Could not generate or save the chart. Error: {e}")
+
+        else:
+            logging.warning("DataFrame is empty after filtering. No Excel files will be generated.")
 
 except sqlite3.Error as e:
     logging.error(f"An SQLite error occurred: {e}")
