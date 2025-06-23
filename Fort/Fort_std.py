@@ -1,97 +1,170 @@
-import datetime
 import logging
 import sqlite3
 
 import numpy as np
 import pandas as pd
 
+# --- Setup Logging ---
+# Ensures logging is configured only once.
 if not logging.getLogger().handlers:
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 db_file = '../Fort/fort.db'
+conn = None  # Initialize conn to None
 
 try:
-
+    # --- Database Connection and Data Loading ---
     conn = sqlite3.connect(db_file)
+    logging.info(f"Successfully connected to database '{db_file}'")
 
-    logging.info(f"--- Attempting to load data from '{db_file}' using direct cursor operations ---")
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM products;")
-
-    rows = cursor.fetchall()
-    logging.info("\n--- Raw data fetched by cursor.fetchall() (first few rows): ---")
-    # logging.info only the first few rows if 'rows' is very large
-    for i, row in enumerate(rows):
-        if i < 5:  # logging.info first 5 rows for inspection
-            logging.info(row)
-        else:
-            break
-    if len(rows) > 5:
-        logging.info("...")  # Indicate that more rows exist
-
-    column_names = [description[0] for description in cursor.description]
-    logging.info(f"\n--- Column names identified by cursor.description: ---")
-    logging.info(column_names)
-
-    df_manual = pd.DataFrame(rows, columns=column_names)
-    logging.info("\n--- DataFrame created manually (head): ---")
-    # Pandas sometimes truncates display for many columns.
-    # To see all columns, you can adjust display options temporarily.
-    with pd.option_context('display.max_columns', None):
-        logging.info(df_manual.head())
-
-    logging.info("\n--- Verifying total columns in manually created DataFrame: ---")
-    logging.info(f"Number of columns in df_manual: {len(df_manual.columns)}")
-    logging.info(f"df_manual columns: {df_manual.columns.tolist()}")
-
-    logging.info(f"\n--- Attempting to load data using pd.read_sql_query (recommended) ---")
-    # pd.read_sql_query is often more reliable and efficient for this task.
+    # Load data and ensure the 'date' column is in datetime format for resampling
     df_read_sql = pd.read_sql_query("SELECT * FROM products;", conn)
+    df_read_sql['date'] = pd.to_datetime(df_read_sql['date'])
+    logging.info("\n--- DataFrame loaded successfully ---")
 
-    logging.info("\n--- DataFrame created with pd.read_sql_query (head): ---")
-    with pd.option_context('display.max_columns', None):
-        logging.info(df_read_sql.head())
-
-    logging.info("\n--- Verifying total columns in pd.read_sql_query DataFrame: ---")
-    logging.info(f"Number of columns in df_read_sql: {len(df_read_sql.columns)}")
-    logging.info(f"df_read_sql columns: {df_read_sql.columns.tolist()}")
-
-    # Create a pivot table to get 'in' and 'out' quantities side-by-side for each name
-    # Fill NaN with 0 for cases where a product only has 'in' or 'out'
+    # --- Data Pivoting for Daily Analysis ---
     pivot_df = df_read_sql.pivot_table(index='name', columns='date', values='price', fill_value=0)
+    logging.info("\n--- Initial Pivot Table (before filling missing values): ---")
+    logging.info(pivot_df.head())
 
-    logging.info("\nPivot Table (quantities by type):")
-    logging.info(pivot_df)
+    # --- Forward Fill Logic ---
+    logging.info("\n--- Filling in missing (0) values with the last known price... ---")
+    pivot_df.replace(0, np.nan, inplace=True)
+    pivot_df.ffill(axis=1, inplace=True)
+    pivot_df.fillna(0, inplace=True)
+    logging.info("\n--- Pivot Table after forward fill: ---")
+    logging.info(pivot_df.head())
+
+    # --- Exclude rows that still contain zero values ---
+    logging.info("\n--- Filtering out rows that contain zero values... ---")
+    initial_rows = len(pivot_df)
+    pivot_df = pivot_df.loc[~(pivot_df == 0).any(axis=1)]
+    final_rows = len(pivot_df)
+    logging.info(f"Removed {initial_rows - final_rows} rows containing zero. {final_rows} rows remain.")
     logging.info("-" * 30)
-    old_values = pivot_df['2025-06-06']
-    new_values = pivot_df[datetime.date.today().strftime('%Y-%m-%d')]
-    condition_for_zero_percent = (old_values == 0) | (new_values == 0)
-    # Calculate the difference: 'in' - 'out'
-    pivot_df['%'] = np.where(
-        condition_for_zero_percent,
-        0,  # Value if the condition is True
-        (new_values - old_values) * 100 / old_values  # Value if the condition is False
-    )
-    pivot_df = pivot_df.sort_values(by='%', ascending=False)
-    logging.info("\nPivot Table with Net Quantity:")
-    logging.info(pivot_df)
-    logging.info("-" * 30)
+
+    # --- Main Processing Block ---
+    if not pivot_df.empty:
+        # --- Percentage Change Calculation (on daily data) ---
+        if len(pivot_df.columns) >= 2:
+            old_date_col = pivot_df.columns[-2]
+            new_date_col = pivot_df.columns[-1]
+            logging.info(
+                f"\nCalculating percentage change between '{old_date_col.strftime('%Y-%m-%d')}' and '{new_date_col.strftime('%Y-%m-%d')}'...")
+
+            old_values = pivot_df[old_date_col]
+            new_values = pivot_df[new_date_col]
+
+            pivot_df['%'] = np.where(
+                old_values > 0,
+                (new_values - old_values) * 100 / old_values,
+                0
+            ).round(2)
+
+            # Sort by the daily percentage change
+            pivot_df.sort_values(by='%', ascending=False, inplace=True)
+            logging.info("\n--- Daily Pivot Table with Percentage Change, Sorted (head): ---")
+            logging.info(pivot_df.head())
+        else:
+            logging.warning("\nNot enough data to calculate daily percentage change.")
+            if '%' not in pivot_df.columns:
+                pivot_df['%'] = 0
+
+        # --- Calculate Weekly Average Price ---
+        logging.info("\n--- Calculating weekly average price based on forward-filled data... ---")
+        df_for_melting = pivot_df.drop(columns=['%'])
+        df_filled_long = df_for_melting.reset_index().melt(
+            id_vars='name', var_name='date', value_name='price'
+        )
+        df_filled_long['date'] = pd.to_datetime(df_filled_long['date'])
+        df_filled_long['week_ending'] = df_filled_long['date'] + pd.to_timedelta(
+            6 - df_filled_long['date'].dt.dayofweek, unit='d'
+        )
+        weekly_avg_df = df_filled_long.groupby(['name', 'week_ending'])['price'].mean().round(2)
+        weekly_avg_df = weekly_avg_df.unstack(level='week_ending')
+        weekly_avg_df.columns = [f"Week_of_{col.strftime('%Y-%m-%d')}" for col in weekly_avg_df.columns]
+        logging.info("\n--- Weekly Average Prices (head): ---")
+        logging.info(weekly_avg_df.head())
+
+        # --- Calculate Week-over-Week Variation for ALL Weeks ---
+        if not weekly_avg_df.empty and len(weekly_avg_df.columns) >= 2:
+            logging.info("\n--- Calculating week-over-week percentage variation for all weeks... ---")
+            weekly_pct_change_df = weekly_avg_df.pct_change(axis=1).round(4) * 100
+            weekly_pct_change_df = weekly_pct_change_df.iloc[:, 1:]
+            logging.info("\n--- Weekly Percentage Changes (head): ---")
+            logging.info(weekly_pct_change_df.head())
+
+            # --- Calculate the average variation across all products for each week ---
+            logging.info("\n--- Calculating average weekly variation across all products... ---")
+            overall_weekly_variation = weekly_pct_change_df.mean().round(2)
+            # Give the series a name which will become the index of the new row
+            overall_weekly_variation.name = 'Overall Market'
+
+            # --- Calculate the average variation grouped by sector ---
+            # Check if the 'sector' column exists in the original data
+            if 'sector' in df_read_sql.columns:
+                logging.info("\n--- Calculating average weekly variation by sector... ---")
+                # Create a mapping from product name to sector. Drop duplicates to be safe.
+                sector_map = df_read_sql[['name', 'sector']].drop_duplicates().set_index('name')['sector']
+
+                # Join the sector information to the weekly percentage change DataFrame
+                sector_pct_change_df = weekly_pct_change_df.join(sector_map)
+
+                # Group by sector and calculate the mean for each week
+                sector_weekly_variation_df = sector_pct_change_df.groupby('sector').mean().round(2)
+
+                # --- NEW: Add the overall market variation as a new row ---
+                # Use pd.concat to add the overall variation series as a new row.
+                # .to_frame().T converts the series to a single-row DataFrame for concatenation.
+                sector_weekly_variation_df = pd.concat(
+                    [sector_weekly_variation_df, overall_weekly_variation.to_frame().T])
+
+                logging.info("\n--- Sector-Level and Overall Average Weekly Variation: ---")
+                logging.info(sector_weekly_variation_df)
+            else:
+                logging.warning("\n'sector' column not found in data. Creating overall market report instead.")
+                # If no sectors, the report is just the overall market variation.
+                sector_weekly_variation_df = overall_weekly_variation.to_frame().T
+
+        else:
+            logging.warning("\nNot enough weekly data (fewer than 2 weeks) to calculate percentage variation.")
+            weekly_pct_change_df = pd.DataFrame()
+            sector_weekly_variation_df = pd.DataFrame()
+
+        logging.info("-" * 30)
+
+        # --- Save to Excel ---
+        daily_excel_file = '../Fort/Fort_prices_daily_analysis.xlsx'
+        pivot_df.to_excel(daily_excel_file, index=True)
+        logging.info(f"\nSuccessfully saved daily analysis to '{daily_excel_file}'")
+
+        if not weekly_avg_df.empty:
+            weekly_avg_excel_file = '../Fort/Fort_prices_weekly_avg.xlsx'
+            weekly_avg_df.to_excel(weekly_avg_excel_file, index=True)
+            logging.info(f"\nSuccessfully saved weekly average prices to '{weekly_avg_excel_file}'")
+
+        if not weekly_pct_change_df.empty:
+            weekly_pct_change_excel_file = '../Fort/Fort_prices_weekly_pct_change.xlsx'
+            weekly_pct_change_df.to_excel(weekly_pct_change_excel_file, index=True)
+            logging.info(f"\nSuccessfully saved weekly percentage changes to '{weekly_pct_change_excel_file}'")
+
+        # Save the new combined sector-level and overall weekly variation
+        if not sector_weekly_variation_df.empty:
+            sector_excel_file = '../Fort/Fort_sector_weekly_variation.xlsx'
+            sector_weekly_variation_df.to_excel(sector_excel_file, index=True)
+            logging.info(f"\nSuccessfully saved combined sector and overall weekly variation to '{sector_excel_file}'")
+
+    else:
+        logging.warning("DataFrame is empty after filtering. No Excel files will be generated.")
+
 except sqlite3.Error as e:
-    logging.info(f"An SQLite error occurred: {e}")
+    logging.error(f"An SQLite error occurred: {e}")
+except FileNotFoundError:
+    logging.error(f"Error: The database file was not found at '{db_file}'")
 except Exception as e:
-    logging.info(f"An unexpected error occurred: {e}")
+    logging.error(f"An unexpected error occurred: {e}", exc_info=True)
 finally:
+    # --- Close Connection ---
     if conn:
         conn.close()
         logging.info("\nDatabase connection closed.")
-
-# Define the output Excel filename
-excel_file_name = '../Fort/Fort_prices.xlsx'
-
-try:
-    # Save the DataFrame to an Excel file
-    # index=False prevents Pandas from writing the DataFrame index as a column in Excel
-    pivot_df.to_excel(excel_file_name, index=True)
-    logging.info(f"Successfully saved DataFrame to '{excel_file_name}'")
-
-except Exception as e:
-    logging.info(f"An error occurred while saving the Excel file: {e}")
