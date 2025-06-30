@@ -1,6 +1,7 @@
 import logging
 import sqlite3
 
+import matplotlib
 # --- NOVA IMPORTAÇÃO ---
 # Adiciona a biblioteca para criar gráficos
 import matplotlib.pyplot as plt
@@ -13,9 +14,8 @@ import pandas as pd
 if not logging.getLogger().handlers:
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-db_file = '../Fort/fort.db'
+db_file = './Fort/fort.db'
 conn = None  # Initialize conn to None
-
 try:
     # --- Database Connection and Data Loading ---
     conn = sqlite3.connect(db_file)
@@ -136,23 +136,26 @@ try:
 
         logging.info("-" * 30)
 
+        tablefigure = matplotlib.pyplot.table(sector_weekly_variation_df)
+
         # --- Save to Excel ---
-        daily_excel_file = '../Fort/Fort_prices_daily_analysis.xlsx'
+
+        daily_excel_file = './Fort/Fort_prices_daily_analysis.xlsx'
         pivot_df.to_excel(daily_excel_file, index=True)
         logging.info(f"\nSuccessfully saved daily analysis to '{daily_excel_file}'")
 
         if not weekly_avg_df.empty:
-            weekly_avg_excel_file = '../Fort/Fort_prices_weekly_avg.xlsx'
+            weekly_avg_excel_file = './Fort/Fort_prices_weekly_avg.xlsx'
             weekly_avg_df.to_excel(weekly_avg_excel_file, index=True)
             logging.info(f"\nSuccessfully saved weekly average prices to '{weekly_avg_excel_file}'")
 
         if not weekly_pct_change_df.empty:
-            weekly_pct_change_excel_file = '../Fort/Fort_prices_weekly_pct_change.xlsx'
+            weekly_pct_change_excel_file = './Fort/Fort_prices_weekly_pct_change.xlsx'
             weekly_pct_change_df.to_excel(weekly_pct_change_excel_file, index=True)
             logging.info(f"\nSuccessfully saved weekly percentage changes to '{weekly_pct_change_excel_file}'")
 
         # Save the new combined sector-level and overall weekly variation
-        sector_excel_file = '../Fort/Fort_sector_weekly_variation.xlsx'
+        sector_excel_file = './static/images/Fort_sector_weekly_variation.xlsx'
         if not sector_weekly_variation_df.empty:
             sector_weekly_variation_df.to_excel(sector_excel_file, index=True)
             logging.info(f"\nSuccessfully saved combined sector and overall weekly variation to '{sector_excel_file}'")
@@ -205,7 +208,7 @@ try:
                 plt.tight_layout(rect=[0, 0, 0.85, 1])  # Ajusta o retângulo para dar espaço à legenda
 
                 # Salva a figura
-                chart_file_name = '../Fort/Fort_sector_variation_chart.png'
+                chart_file_name = './static/images/Fort_sector_variation_chart.png'
                 plt.savefig(chart_file_name, dpi=300, bbox_inches='tight')
                 logging.info(f"\nSuccessfully saved chart to '{chart_file_name}'")
                 plt.close(fig)  # Fecha a figura para liberar memória
@@ -213,6 +216,52 @@ try:
             except Exception as e:
                 logging.error(f"Could not generate or save the chart. Error: {e}")
 
+            # table chart
+            data = sector_weekly_variation_df
+            df = pd.DataFrame(data)
+
+            # Extract sector names (index of the DataFrame)
+            row_labels = df.index.tolist()
+
+            # 2. Create a figure and axes
+            fig, ax = plt.subplots(figsize=(10, 6))  # Adjust figsize as needed for your table's content
+
+            # 3. Hide axes for a cleaner table look
+            ax.axis('off')  # Hides x and y axis
+            ax.set_frame_on(False)  # Hides the box around the plot
+
+            # 4. Add the table to the axes
+            # You need to combine the row labels (sectors) with the table data
+            table_data = df.values
+            col_labels = ['Sector'] + df.columns.tolist()  # Add 'Sector' as the first column header
+
+            # Prepend the row_labels to each row of table_data
+            # This creates a new list of lists where each sublist starts with the sector name
+            full_table_data = [[label] + row.tolist() for label, row in zip(row_labels, table_data)]
+
+            table = ax.table(cellText=full_table_data,
+                             colLabels=col_labels,
+                             cellLoc='center',  # Alignment of text in cells
+                             loc='center')  # Location of the table in the axes (e.g., 'upper left', 'center')
+
+            # Optional: Adjust table properties for better aesthetics
+            table.auto_set_font_size(False)
+            table.set_fontsize(10)  # Set a specific font size for the table
+            table.scale(1.2, 1.2)  # Scale the table (width, height)
+
+            # Optional: Add a title
+            ax.set_title('Fort Prices Weekly Percentage Change by Sector', fontsize=14,
+                         pad=20)  # pad adds space between title and table
+
+            # 5. Adjust layout to prevent clipping
+            plt.tight_layout()
+
+            # 6. Save the figure
+            # You can specify the file path and format (e.g., .png, .jpg, .svg, .pdf)
+            plt.savefig('./static/images/fort_prices_table.png', bbox_inches='tight',
+                        dpi=300)  # dpi for resolution
+
+            plt.show()  # To display the table when run
         else:
             logging.warning("DataFrame is empty after filtering. No Excel files will be generated.")
 

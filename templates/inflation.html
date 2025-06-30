@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Inflation{% endblock %}
+
+{% block content %}
+<link href="/static/css/InflationCard.css" rel="stylesheet">
+<div class="container">
+    <h1 class="heading">Inflation</h1>
+    <a class="button" href="/">Back</a>
+    <h2>Here You can see the inflation of Fort market prices</h2>
+    <div class="container">
+        <div class="card">
+            <div class="front">
+                <img src="/static/images/fort_prices_table.png">
+            </div>
+            <div class="back">
+                <img src="/static/images/Fort_sector_variation_chart.png">
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

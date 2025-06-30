@@ -396,6 +396,11 @@ def transfer_playback():
         return jsonify({"error": str(e)}), 500
 
 
+@app.route('/inflation', methods=['GET', 'POST'])
+def inflation():
+    return render_template("inflation.html")
+
+
 if __name__ == "__main__":
     if not all([SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, SPOTIPY_REDIRECT_URI]):
         print(

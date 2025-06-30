@@ -1,0 +1,40 @@
+/* Style for the card container */
+.card {
+    width: 100%; /* Or a specific pixel value, e.g., 800px */
+    max-width: 900px; /* Adjust as needed */
+    height: 600px;/* Allow height to adjust based on content */
+    max-height: auto;
+    margin: 20px auto; /* Center the card and add some space */
+    position: relative; /* Needed for flip effect */
+    perspective: 1000px; /* For 3D flip effect */
+}
+
+/* Style for the front and back of the card */
+.front,
+.back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden; /* Hide the back of the card when not facing user */
+}
+
+/* Style for images inside the card */
+.card img {
+    width: 100%; /* Make image fill the card */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove extra space below image */
+}
+
+/* Example for flip effect (optional, if you have one) */
+.card .back {
+    transform: rotateY(180deg);
+}
+
+/* When the card is "flipped" */
+.card.flipped .front {
+    transform: rotateY(180deg);
+}
+
+.card.flipped .back {
+    transform: rotateY(0deg);
+}
