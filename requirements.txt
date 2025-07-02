@@ -32,3 +32,6 @@ certifi~=2025.4.26
 urllib3~=2.4.0
 idna~=3.10
 charset-normalizer~=3.4.2
+binance~=0.3.52
+cryptography~=45.0.4
+
