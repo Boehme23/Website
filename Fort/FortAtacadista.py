@@ -1,6 +1,8 @@
 import datetime
 import logging
 import sqlite3
+import subprocess
+import sys
 import time
 
 from selenium import webdriver
@@ -251,3 +253,18 @@ if __name__ == '__main__':
 
     driver.quit()
     logging.info("Navegador encerrado.")
+
+    # --- Run Fort_std.py after the main script finishes ---
+    logging.info("Starting Fort_std.py...")
+    try:
+        # Use sys.executable to ensure the same Python interpreter runs Fort_std.py
+        result = subprocess.run([sys.executable, 'Fort_std.py'], check=True)
+        logging.info(f"Fort_std.py completed with exit code: {result.returncode}")
+    except FileNotFoundError:
+        logging.critical("Error: Fort_std.py not found. Make sure the file exists in the same directory.")
+    except subprocess.CalledProcessError as e:
+        logging.critical(f"Fort_std.py failed with error: {e}. Output:\n{e.stdout}\n{e.stderr}", exc_info=True)
+    except Exception as e:
+        logging.critical(f"An unexpected error occurred while running Fort_std.py: {e}", exc_info=True)
+
+    logging.info("All processes completed.")
