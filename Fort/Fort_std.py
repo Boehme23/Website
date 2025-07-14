@@ -1,9 +1,6 @@
 import logging
 import sqlite3
 
-import matplotlib
-# --- NOVA IMPORTAÇÃO ---
-# Adiciona a biblioteca para criar gráficos
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import numpy as np
@@ -74,13 +71,16 @@ try:
             if '%' not in pivot_df.columns:
                 pivot_df['%'] = 0
 
-        # --- Calculate Weekly Average Price ---
-        logging.info("\n--- Calculating weekly average price based on forward-filled data... ---")
-        df_for_melting = pivot_df.drop(columns=['%'])
-        df_filled_long = df_for_melting.reset_index().melt(
+        # --- Prepare data for weekly and monthly aggregation ---
+        # Melt the forward-filled pivot table back into a long format for easier resampling
+        df_for_resampling = pivot_df.drop(columns=['%'])  # Drop daily percentage before resampling
+        df_filled_long = df_for_resampling.reset_index().melt(
             id_vars='name', var_name='date', value_name='price'
         )
         df_filled_long['date'] = pd.to_datetime(df_filled_long['date'])
+
+        # --- Calculate Weekly Average Price ---
+        logging.info("\n--- Calculating weekly average price based on forward-filled data... ---")
         df_filled_long['week_ending'] = df_filled_long['date'] + pd.to_timedelta(
             6 - df_filled_long['date'].dt.dayofweek, unit='d'
         )
@@ -91,62 +91,87 @@ try:
         logging.info(weekly_avg_df.head())
 
         # --- Calculate Week-over-Week Variation for ALL Weeks ---
+        weekly_pct_change_df = pd.DataFrame()  # Initialize as empty
+        sector_weekly_variation_df = pd.DataFrame()  # Initialize as empty
         if not weekly_avg_df.empty and len(weekly_avg_df.columns) >= 2:
             logging.info("\n--- Calculating week-over-week percentage variation for all weeks... ---")
             weekly_pct_change_df = weekly_avg_df.pct_change(axis=1).round(4) * 100
-            weekly_pct_change_df = weekly_pct_change_df.iloc[:, 1:]
+            weekly_pct_change_df = weekly_pct_change_df.iloc[:, 1:]  # Remove first NaN column
             logging.info("\n--- Weekly Percentage Changes (head): ---")
             logging.info(weekly_pct_change_df.head())
 
             # --- Calculate the average variation across all products for each week ---
             logging.info("\n--- Calculating average weekly variation across all products... ---")
             overall_weekly_variation = weekly_pct_change_df.mean().round(2)
-            # Give the series a name which will become the index of the new row
-            overall_weekly_variation.name = 'Overall Market'
+            overall_weekly_variation.name = 'Overall Market'  # Give the series a name
 
             # --- Calculate the average variation grouped by sector ---
-            # Check if the 'sector' column exists in the original data
             if 'sector' in df_read_sql.columns:
                 logging.info("\n--- Calculating average weekly variation by sector... ---")
-                # Create a mapping from product name to sector. Drop duplicates to be safe.
                 sector_map = df_read_sql[['name', 'sector']].drop_duplicates().set_index('name')['sector']
-
-                # Join the sector information to the weekly percentage change DataFrame
                 sector_pct_change_df = weekly_pct_change_df.join(sector_map)
-
-                # Group by sector and calculate the mean for each week
                 sector_weekly_variation_df = sector_pct_change_df.groupby('sector').mean().round(2)
-
-                # --- Add the overall market variation as a new row ---
-                # Use pd.concat to add the overall variation series as a new row.
                 sector_weekly_variation_df = pd.concat(
                     [sector_weekly_variation_df, overall_weekly_variation.to_frame().T])
-
                 logging.info("\n--- Sector-Level and Overall Average Weekly Variation: ---")
                 logging.info(sector_weekly_variation_df)
             else:
-                logging.warning("\n'sector' column not found in data. Creating overall market report instead.")
-                # If no sectors, the report is just the overall market variation.
+                logging.warning("\n'sector' column not found in data. Creating overall market weekly report instead.")
                 sector_weekly_variation_df = overall_weekly_variation.to_frame().T
-
         else:
             logging.warning("\nNot enough weekly data (fewer than 2 weeks) to calculate percentage variation.")
-            weekly_pct_change_df = pd.DataFrame()
-            sector_weekly_variation_df = pd.DataFrame()
+
+        # --- NEW: Calculate Monthly Average Price ---
+        logging.info("\n--- Calculating monthly average price based on forward-filled data... ---")
+        # Use .to_period('M') to group by month
+        monthly_avg_df = df_filled_long.groupby(['name', df_filled_long['date'].dt.to_period('M')])[
+            'price'].mean().round(2)
+        monthly_avg_df = monthly_avg_df.unstack(level='date')  # Unstack to get months as columns
+        # Format column names for readability
+        monthly_avg_df.columns = [f"Month_of_{col.strftime('%Y-%m')}" for col in monthly_avg_df.columns]
+        logging.info("\n--- Monthly Average Prices (head): ---")
+        logging.info(monthly_avg_df.head())
+
+        # --- NEW: Calculate Month-over-Month Variation for ALL Months ---
+        monthly_pct_change_df = pd.DataFrame()  # Initialize as empty
+        sector_monthly_variation_df = pd.DataFrame()  # Initialize as empty
+        if not monthly_avg_df.empty and len(monthly_avg_df.columns) >= 2:
+            logging.info("\n--- Calculating month-over-month percentage variation for all months... ---")
+            monthly_pct_change_df = monthly_avg_df.pct_change(axis=1).round(4) * 100
+            monthly_pct_change_df = monthly_pct_change_df.iloc[:, 1:]  # Remove first NaN column
+            logging.info("\n--- Monthly Percentage Changes (head): ---")
+            logging.info(monthly_pct_change_df.head())
+
+            # --- Calculate the average variation across all products for each month ---
+            logging.info("\n--- Calculating average monthly variation across all products... ---")
+            overall_monthly_variation = monthly_pct_change_df.mean().round(2)
+            overall_monthly_variation.name = 'Overall Market'  # Give the series a name
+
+            # --- Calculate the average variation grouped by sector for monthly data ---
+            if 'sector' in df_read_sql.columns:
+                logging.info("\n--- Calculating average monthly variation by sector... ---")
+                # Reuse sector_map created for weekly calculations
+                sector_monthly_pct_change_df = monthly_pct_change_df.join(sector_map)
+                sector_monthly_variation_df = sector_monthly_pct_change_df.groupby('sector').mean().round(2)
+                sector_monthly_variation_df = pd.concat(
+                    [sector_monthly_variation_df, overall_monthly_variation.to_frame().T])
+                logging.info("\n--- Sector-Level and Overall Average Monthly Variation: ---")
+                logging.info(sector_monthly_variation_df)
+            else:
+                logging.warning("\n'sector' column not found in data. Creating overall market monthly report instead.")
+                sector_monthly_variation_df = overall_monthly_variation.to_frame().T
+        else:
+            logging.warning("\nNot enough monthly data (fewer than 2 months) to calculate percentage variation.")
 
         logging.info("-" * 30)
 
-        tablefigure = matplotlib.pyplot.table(sector_weekly_variation_df)
-
         # --- Save to Excel ---
-
         daily_excel_file = '../Fort/Fort_prices_daily_analysis.xlsx'
         pivot_df.to_excel(daily_excel_file, index=True)
         logging.info(f"\nSuccessfully saved daily analysis to '{daily_excel_file}'")
 
         if not weekly_avg_df.empty:
-            weekly_avg_excel_file = ('..'
-                                     '/Fort/Fort_prices_weekly_avg.xlsx')
+            weekly_avg_excel_file = '../Fort/Fort_prices_weekly_avg.xlsx'
             weekly_avg_df.to_excel(weekly_avg_excel_file, index=True)
             logging.info(f"\nSuccessfully saved weekly average prices to '{weekly_avg_excel_file}'")
 
@@ -155,116 +180,157 @@ try:
             weekly_pct_change_df.to_excel(weekly_pct_change_excel_file, index=True)
             logging.info(f"\nSuccessfully saved weekly percentage changes to '{weekly_pct_change_excel_file}'")
 
-        # Save the new combined sector-level and overall weekly variation
-        sector_excel_file = '../static/images/Fort_sector_weekly_variation.xlsx'
+        # NEW: Save Monthly Average and Percentage Change files
+        if not monthly_avg_df.empty:
+            monthly_avg_excel_file = '../Fort/Fort_prices_monthly_avg.xlsx'
+            monthly_avg_df.to_excel(monthly_avg_excel_file, index=True)
+            logging.info(f"\nSuccessfully saved monthly average prices to '{monthly_avg_excel_file}'")
+
+        if not monthly_pct_change_df.empty:
+            monthly_pct_change_excel_file = '../Fort/Fort_prices_monthly_pct_change.xlsx'
+            monthly_pct_change_df.to_excel(monthly_pct_change_excel_file, index=True)
+            logging.info(f"\nSuccessfully saved monthly percentage changes to '{monthly_pct_change_excel_file}'")
+
+        # Save the combined sector-level and overall weekly variation
+        sector_weekly_excel_file = '../static/images/Fort_sector_weekly_variation.xlsx'
         if not sector_weekly_variation_df.empty:
-            sector_weekly_variation_df.to_excel(sector_excel_file, index=True)
-            logging.info(f"\nSuccessfully saved combined sector and overall weekly variation to '{sector_excel_file}'")
+            sector_weekly_variation_df.to_excel(sector_weekly_excel_file, index=True)
+            logging.info(
+                f"\nSuccessfully saved combined sector and overall weekly variation to '{sector_weekly_excel_file}'")
 
-            # --- Gerar e Salvar o Gráfico (com Destaque) ---
-            logging.info("\n--- Generating sector performance chart... ---")
+        # NEW: Save the combined sector-level and overall monthly variation
+        sector_monthly_excel_file = '../static/images/Fort_sector_monthly_variation.xlsx'
+        if not sector_monthly_variation_df.empty:
+            sector_monthly_variation_df.to_excel(sector_monthly_excel_file, index=True)
+            logging.info(
+                f"\nSuccessfully saved combined sector and overall monthly variation to '{sector_monthly_excel_file}'")
+
+        # --- Gerar e Salvar o Gráfico Semanal (com Destaque) ---
+        if not sector_weekly_variation_df.empty:
+            logging.info("\n--- Generating weekly sector performance chart... ---")
             try:
-                # Transpõe o DataFrame para que as semanas fiquem no eixo X
-                plot_df = sector_weekly_variation_df.transpose()
+                plot_df_weekly = sector_weekly_variation_df.transpose()
+                fig_weekly, ax_weekly = plt.subplots(figsize=(15, 8))
+                plot_df_weekly.index = plot_df_weekly.index.str.replace('Week_of_', '', regex=False)
 
-                # Cria a figura e os eixos do gráfico com um tamanho maior
-                fig, ax = plt.subplots(figsize=(15, 8))
-
-                # Remove o prefixo "Week_of_" para um eixo X mais limpo ---
-                plot_df.index = plot_df.index.str.replace('Week_of_', '', regex=False)
-
-                # Plota a performance de cada setor/mercado
-                for column in plot_df.columns:
-
+                for column in plot_df_weekly.columns:
                     if column == 'Overall Market':
-                        # Estilo de destaque para o mercado geral
-                        ax.plot(plot_df.index, plot_df[column], marker='o', linestyle='--',
-                                label=column, color='black', linewidth=2.5, zorder=10)
+                        ax_weekly.plot(plot_df_weekly.index, plot_df_weekly[column], marker='o', linestyle='--',
+                                       label=column, color='black', linewidth=2.5, zorder=10)
                     else:
-                        # Estilo padrão para os outros setores
-                        ax.plot(plot_df.index, plot_df[column], marker='.', linestyle='-',
-                                label=column, linewidth=1.5, alpha=0.8)
+                        ax_weekly.plot(plot_df_weekly.index, plot_df_weekly[column], marker='.', linestyle='-',
+                                       label=column, linewidth=1.5, alpha=0.8)
 
-                # Formatação do gráfico para melhor clareza
-                ax.set_title('Inflação semanal por Setor e Mercado Geral', fontsize=16, pad=20)
-                ax.set_ylabel('Inflação Semanal (%)', fontsize=12)
-                ax.set_xlabel('Semana Terminada em', fontsize=12)
-
-                # Adiciona uma linha horizontal em y=0 como referência
-                ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
-
-                # Melhora a legibilidade dos rótulos do eixo X
+                ax_weekly.set_title('Inflação Semanal por Setor e Mercado Geral', fontsize=16, pad=20)
+                ax_weekly.set_ylabel('Inflação Semanal (%)', fontsize=12)
+                ax_weekly.set_xlabel('Semana Terminada em', fontsize=12)
+                ax_weekly.axhline(0, color='grey', linestyle='--', linewidth=0.8)
                 plt.xticks(rotation=30, ha="right")
-
-                # Adiciona a legenda
-                ax.legend(title='Setor / Mercado', bbox_to_anchor=(1.02, 1), loc='upper left')
-
-                # Adiciona grades para facilitar a leitura
-                ax.grid(True, which='both', linestyle='--', linewidth=0.5)
-
-                # Formata o eixo Y para mostrar o símbolo de '%'
-                ax.yaxis.set_major_formatter(mticker.PercentFormatter())
-
-                # Ajusta o layout para evitar que os rótulos sejam cortados
-                plt.tight_layout(rect=[0, 0, 0.85, 1])  # Ajusta o retângulo para dar espaço à legenda
-
-                # Salva a figura
-                chart_file_name = '../static/images/Fort_sector_variation_chart.png'
-                plt.savefig(chart_file_name, dpi=300, bbox_inches='tight')
-                logging.info(f"\nSuccessfully saved chart to '{chart_file_name}'")
-                plt.close(fig)  # Fecha a figura para liberar memória
+                ax_weekly.legend(title='Setor / Mercado', bbox_to_anchor=(1.02, 1), loc='upper left')
+                ax_weekly.grid(True, which='both', linestyle='--', linewidth=0.5)
+                ax_weekly.yaxis.set_major_formatter(mticker.PercentFormatter())
+                plt.tight_layout(rect=[0, 0, 0.85, 1])
+                chart_file_name_weekly = '../static/images/Fort_sector_weekly_variation_chart.png'
+                plt.savefig(chart_file_name_weekly, dpi=300, bbox_inches='tight')
+                logging.info(f"\nSuccessfully saved weekly chart to '{chart_file_name_weekly}'")
+                plt.close(fig_weekly)
 
             except Exception as e:
-                logging.error(f"Could not generate or save the chart. Error: {e}")
+                logging.error(f"Could not generate or save the weekly chart. Error: {e}")
 
-            # table chart
+        # --- NEW: Gerar e Salvar o Gráfico Mensal (com Destaque) ---
+        if not sector_monthly_variation_df.empty:
+            logging.info("\n--- Generating monthly sector performance chart... ---")
+            try:
+                plot_df_monthly = sector_monthly_variation_df.transpose()
+                fig_monthly, ax_monthly = plt.subplots(figsize=(15, 8))
+                plot_df_monthly.index = plot_df_monthly.index.str.replace('Month_of_', '', regex=False)
+
+                for column in plot_df_monthly.columns:
+                    if column == 'Overall Market':
+                        ax_monthly.plot(plot_df_monthly.index, plot_df_monthly[column], marker='o', linestyle='--',
+                                        label=column, color='black', linewidth=2.5, zorder=10)
+                    else:
+                        ax_monthly.plot(plot_df_monthly.index, plot_df_monthly[column], marker='.', linestyle='-',
+                                        label=column, linewidth=1.5, alpha=0.8)
+
+                ax_monthly.set_title('Inflação Mensal por Setor e Mercado Geral', fontsize=16, pad=20)
+                ax_monthly.set_ylabel('Inflação Mensal (%)', fontsize=12)
+                ax_monthly.set_xlabel('Mês', fontsize=12)
+                ax_monthly.axhline(0, color='grey', linestyle='--', linewidth=0.8)
+                plt.xticks(rotation=30, ha="right")
+                ax_monthly.legend(title='Setor / Mercado', bbox_to_anchor=(1.02, 1), loc='upper left')
+                ax_monthly.grid(True, which='both', linestyle='--', linewidth=0.5)
+                ax_monthly.yaxis.set_major_formatter(mticker.PercentFormatter())
+                plt.tight_layout(rect=[0, 0, 0.85, 1])
+                chart_file_name_monthly = '../static/images/Fort_sector_monthly_variation_chart.png'
+                plt.savefig(chart_file_name_monthly, dpi=300, bbox_inches='tight')
+                logging.info(f"\nSuccessfully saved monthly chart to '{chart_file_name_monthly}'")
+                plt.close(fig_monthly)
+
+            except Exception as e:
+                logging.error(f"Could not generate or save the monthly chart. Error: {e}")
+
+        # Table Chart for weekly variation
+        if not sector_weekly_variation_df.empty:
+            logging.info("\n--- Generating weekly variation table image... ---")
             data = sector_weekly_variation_df
             df = pd.DataFrame(data)
-
-            # Extract sector names (index of the DataFrame)
             row_labels = df.index.tolist()
-
-            # 2. Create a figure and axes
-            fig, ax = plt.subplots(figsize=(10, 6))  # Adjust figsize as needed for your table's content
-
-            # 3. Hide axes for a cleaner table look
-            ax.axis('off')  # Hides x and y axis
-            ax.set_frame_on(False)  # Hides the box around the plot
-
-            # 4. Add the table to the axes
-            # You need to combine the row labels (sectors) with the table data
+            fig, ax = plt.subplots(figsize=(10, 6))
+            ax.axis('off')
+            ax.set_frame_on(False)
             table_data = df.values
-            col_labels = ['Sector'] + df.columns.tolist()  # Add 'Sector' as the first column header
-
-            # Prepend the row_labels to each row of table_data
-            # This creates a new list of lists where each sublist starts with the sector name
+            col_labels = ['Sector'] + df.columns.tolist()
             full_table_data = [[label] + row.tolist() for label, row in zip(row_labels, table_data)]
 
             table = ax.table(cellText=full_table_data,
                              colLabels=col_labels,
-                             cellLoc='center',  # Alignment of text in cells
-                             loc='center')  # Location of the table in the axes (e.g., 'upper left', 'center')
-
-            # Optional: Adjust table properties for better aesthetics
+                             cellLoc='center',
+                             loc='center')
             table.auto_set_font_size(False)
-            table.set_fontsize(10)  # Set a specific font size for the table
-            table.scale(1.2, 1.2)  # Scale the table (width, height)
-
-            # Optional: Add a title
-            ax.set_title('Fort Prices Weekly Percentage Change by Sector', fontsize=14,
-                         pad=20)  # pad adds space between title and table
-
-            # 5. Adjust layout to prevent clipping
+            table.set_fontsize(10)
+            table.scale(1.2, 1.2)
+            ax.set_title('Fort Prices Weekly Percentage Change by Sector', fontsize=14, pad=20)
             plt.tight_layout()
-
-            # 6. Save the figure
-            # You can specify the file path and format (e.g., .png, .jpg, .svg, .pdf)
-            plt.savefig('../static/images/fort_prices_table.png', bbox_inches='tight',
-                        dpi=300)  # dpi for resolution
-
-            plt.show()  # To display the table when run
+            plt.savefig('../static/images/fort_prices_weekly_table.png', bbox_inches='tight', dpi=300)
+            logging.info(
+                f"\nSuccessfully saved weekly variation table to '../static/images/fort_prices_weekly_table.png'")
+            plt.close(fig)  # Close the figure to free memory
         else:
-            logging.warning("DataFrame is empty after filtering. No Excel files will be generated.")
+            logging.warning("Weekly variation DataFrame is empty. Skipping weekly table generation.")
+
+        # NEW: Table Chart for monthly variation
+        if not sector_monthly_variation_df.empty:
+            logging.info("\n--- Generating monthly variation table image... ---")
+            data = sector_monthly_variation_df
+            df = pd.DataFrame(data)
+            row_labels = df.index.tolist()
+            fig, ax = plt.subplots(figsize=(10, 6))
+            ax.axis('off')
+            ax.set_frame_on(False)
+            table_data = df.values
+            col_labels = ['Sector'] + df.columns.tolist()
+            full_table_data = [[label] + row.tolist() for label, row in zip(row_labels, table_data)]
+
+            table = ax.table(cellText=full_table_data,
+                             colLabels=col_labels,
+                             cellLoc='center',
+                             loc='center')
+            table.auto_set_font_size(False)
+            table.set_fontsize(10)
+            table.scale(1.2, 1.2)
+            ax.set_title('Fort Prices Monthly Percentage Change by Sector', fontsize=14, pad=20)
+            plt.tight_layout()
+            plt.savefig('../static/images/fort_prices_monthly_table.png', bbox_inches='tight', dpi=300)
+            logging.info(
+                f"\nSuccessfully saved monthly variation table to '../static/images/fort_prices_monthly_table.png'")
+            plt.close(fig)  # Close the figure to free memory
+        else:
+            logging.warning("Monthly variation DataFrame is empty. Skipping monthly table generation.")
+
+    else:
+        logging.warning("DataFrame is empty after filtering. No Excel files or charts will be generated.")
 
 except sqlite3.Error as e:
     logging.error(f"An SQLite error occurred: {e}")
@@ -277,3 +343,9 @@ finally:
     if conn:
         conn.close()
         logging.info("\nDatabase connection closed.")
+
+# Note: plt.show() should only be used if you are running this script interactively
+# and want to see the plots immediately. For automated scripts (e.g., in a server
+# environment or cron job), you usually save the figures and don't call plt.show().
+# I've commented it out as per standard practice for server-side generation.
+# plt.show()
