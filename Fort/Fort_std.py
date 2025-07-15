@@ -332,6 +332,7 @@ try:
     else:
         logging.warning("DataFrame is empty after filtering. No Excel files or charts will be generated.")
 
+
 except sqlite3.Error as e:
     logging.error(f"An SQLite error occurred: {e}")
 except FileNotFoundError:
