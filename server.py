@@ -86,7 +86,11 @@ Bootstrap(app)
 
 @app.route("/")
 def home():
+    return render_template("Matrix.html")
+@app.route("/index")
+def index():
     return render_template("index.html")
+
 
 
 @app.route("/morse", methods=["GET", "POST"])

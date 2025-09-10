@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Programming Background</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0b1a2a;
+            font-family: 'Roboto Mono', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #d3d3d3;
+        }
+
+        #codeCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            animation: fadeIn 5s;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-shadow: 0 0 10px #0a7c9d, 0 0 20px #0a7c9d, 0 0 30px #0a7c9d;
+            margin-bottom: 2rem;
+            color: #a9e0f2;
+        }
+
+        .cta-button {
+            background-color: #4a4a4a;
+            color: #d3d3d3;
+            font-size: 1.25rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="codeCanvas"></canvas>
+
+    <div class="content">
+        <h1>Welcome to my Portfolio</h1>
+        <button id="resetButton" class="cta-button">Push to Open</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('codeCanvas');
+        const ctx = canvas.getContext('2d');
+        const resetButton = document.getElementById('resetButton');
+
+        let codeLines = [];
+        const lineHeight = 16;
+        const lineFadeSpeed = 0.005;
+        const maxLines = 150;
+
+        const snippets = [
+            'const app = express();',
+            'function fetchData(url) {',
+            'if (user.isAdmin) {',
+            'return new Promise(resolve => setTimeout(resolve, 1000));',
+            '// Check for valid session',
+            'let data = [];',
+            'for (let i = 0; i < 10; i++) {',
+            'try { await doSomething(); } catch (err) { console.error(err); }',
+            'const API_KEY = "YOUR_KEY_HERE";',
+            'fetch("/api/users").then(res => res.json());',
+            'console.log("Program started...");',
+            'if (x > y) { return true; }'
+        ];
+
+        function createLine() {
+            const text = snippets[Math.floor(Math.random() * snippets.length)];
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            const opacity = 1.0;
+            codeLines.push({ text, x, y, opacity });
+        }
+
+        function draw() {
+            // Semi-transparent overlay to create the fading trail
+            ctx.fillStyle = 'rgba(11, 26, 42, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Periodically add a new line
+            if (Math.random() > 0.9) {
+                createLine();
+            }
+
+            // Animate and draw lines
+            for (let i = codeLines.length - 1; i >= 0; i--) {
+                const line = codeLines[i];
+                line.opacity -= lineFadeSpeed;
+
+                if (line.opacity <= 0) {
+                    codeLines.splice(i, 1);
+                } else {
+                    ctx.fillStyle = `rgba(169, 224, 242, ${line.opacity})`; // A light blue color for code
+                    ctx.font = `${lineHeight}px 'Roboto Mono', monospace`;
+                    ctx.fillText(line.text, line.x, line.y);
+                }
+            }
+        }
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            codeLines = []; // Clear lines on resize
+        }
+
+        // Attach event listeners
+        window.addEventListener('resize', resizeCanvas);
+        resetButton.addEventListener('click', () => {
+            window.location.href = '/index'
+        });
+
+        // Initialize and start the animation
+        resizeCanvas();
+        setInterval(draw, 50);
+    </script>
+</body>
+</html>
