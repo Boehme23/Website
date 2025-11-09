@@ -2,7 +2,39 @@
 *, *:before, *:after {
     box-sizing: border-box;
 }
+/* Default (Desktop/Large Screens) */
+.profile-container {
+    display: flex; /* Enables flexbox */
+    align-items: center; /* Vertically centers the items */
+    gap: 20px; /* Provides consistent spacing between image and text */
+    padding: 20px;
+}
+/* CSS for the skills table */
+#skills-table {
+    width: 100%; /* Ensure table is flexible */
+    max-width: 400px; /* Prevents it from getting too wide on desktop */
+    margin: 0 auto; /* Centers the table */
+}
 
+#skills-table td {
+    padding: 10px 0;
+}
+
+/* You might want to add an id to your skills table for this to work */
+/* <table cellspacing="10" id="skills-table"> */
+/* Specific styles for the profile image and text containers */
+.profile-image-section {
+    flex-shrink: 0; /* Prevents the image container from shrinking */
+}
+
+/* Media Query for Mobile Screens (Screen width <= 600px) */
+@media (max-width: 600px) {
+    .profile-container {
+        /* Changes the main axis from row to column, stacking the items */
+        flex-direction: column;
+        text-align: center; /* Centers text below the image */
+    }
+}
 /* Base HTML & Body Styles */
 html {
     font-size: 18px;
@@ -206,6 +238,7 @@ p.overview {
     font-size: 1em; /* Ensure font size is readable */
     background: linear-gradient(135deg, #1a9be6, #1a57e6);
     border: none;
+    display: block;
     position: relative;
     transform-style: preserve-3d;
     transition: all 300ms ease; /* Shorter transition for snappier feedback */

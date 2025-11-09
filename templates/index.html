@@ -2,6 +2,7 @@
 {% extends "base.html" %}
 {% block content %}
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marco's Personal Site</title>
     <link rel="stylesheet" href="/static/css/styles.css">
     <style>
@@ -12,17 +13,16 @@
 </head>
 
 <body>
-<table cellspacing="20">
-    <tbody>
-    <tr>
-        <td><img src="/static/images/marco.jpg" class='profile' alt="profile picture"></td>
-        <td><h1>Marco Aurélio Boehme dos Santos</h1>
-            <p><em>Data Scientist<strong>
-                <p>I am an Economics Graduate from UFSC with good statistic knowledge and focus in Data Analysis.</p>
-
-    </tr>
-    </tbody>
-</table>
+<div class="profile-container">
+    <div class="profile-image-section">
+        <img src="/static/images/marco.jpg" class='profile' alt="profile picture">
+    </div>
+    <div class="profile-text-section">
+        <h1>Marco Aurélio Boehme dos Santos</h1>
+        <p><em>Data Scientist</em></p>
+        <p>I am an Economics Graduate from UFSC with good statistic knowledge and focus in Data Analysis.</p>
+    </div>
+</div>
 <hr>
 <h3>Work Portfolio</h3>
 
