@@ -238,7 +238,6 @@ p.overview {
     font-size: 1em; /* Ensure font size is readable */
     background: linear-gradient(135deg, #1a9be6, #1a57e6);
     border: none;
-    display: block;
     position: relative;
     transform-style: preserve-3d;
     transition: all 300ms ease; /* Shorter transition for snappier feedback */
