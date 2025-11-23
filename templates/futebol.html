@@ -3,8 +3,6 @@
 {% block title %}Portugal Futebol Data{% endblock %}
 
 {% block content %}
-<body>
-
     <div class="container">
         <h1 class="heading">Portugal Futebol Data</h1>
             <a class="button" href="/">Back</a>
@@ -12,8 +10,7 @@
         <br>
         <h2>Estatísticas agrupadas dos times de futebol de Portugal. </h2>
         <h2>Dados foram retirados do https://www.transfermarkt.pt/ </h2>
+
         {{ html_tabela | safe }}
     </div>
-</body>
-</html>
 {% endblock %}
