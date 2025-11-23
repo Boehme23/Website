@@ -212,3 +212,13 @@
  .release_date {
 	 font-weight: normal;
 }
+table {
+    border-collapse: collapse; /* Faz com que as bordas se unam */
+    width: 100%;
+    margin-top: 20px;
+}
+th, td {
+    border: 1px solid #ccc; /* Adiciona uma borda fina */
+    padding: 8px;
+    text-align: left;
+}
