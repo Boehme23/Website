@@ -10,7 +10,7 @@ import sqlite3
 import requests
 import logging
 import time
-
+dataset=pd.DataFrame()
 
 def coletar(driver):
     infolist=[
@@ -23,7 +23,7 @@ def coletar(driver):
         'chancenverwertung'
           ]
     for info in infolist:
-        times_cartoes = []
+        column_names = []
         # Configure logging if not already configured
         if not logging.getLogger().handlers:
             logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -40,11 +40,23 @@ def coletar(driver):
                     EC.presence_of_element_located((By.CLASS_NAME, "items"))
                 )
                 logging.info("Table content appears to be loaded.")
+                header_elements = driver.find_elements(By.XPATH, '//*[@id="yw1"]/table/thead/tr/th')
+                for el in header_elements:
+                    # Try to read from <div title=""> first (if present)
+                    div = el.find_elements(By.TAG_NAME, "div")
+                    if div and div[0].get_attribute("title"):
+                        header_text = div[0].get_attribute("title").strip()
+                    else:
+                        # Otherwise, fallback to <a> text or textContent
+                        header_text = el.text.strip() or el.get_attribute("textContent").strip()
 
+                    if header_text:
+                        column_names.append(header_text)
+                print("Extracted columns:", column_names)
                 # Find all rows with odd/even class
                 table_rows = driver.find_elements(By.XPATH, "//tr[contains(@class, 'odd') or contains(@class, 'even')]")
-                print(f"Found {len(table_rows)} rows.")
-
+                if len(table_rows)<2:
+                    table_rows = driver.find_elements(By.XPATH,'//*[@id="yw1"]/table/tbody/tr')
                 for i, row in enumerate(table_rows[:-4]):
                     cells = row.find_elements(By.TAG_NAME, "td")
                     row_data = []
@@ -68,9 +80,13 @@ def coletar(driver):
                             cell_text = cell.get_attribute("textContent").strip()
 
                         row_data.append(cell_text)
-                    times_cartoes.append(row_data)
-                print(times_cartoes)
+                    column_names.append(row_data)
+                print(column_names)
                 time.sleep(3)
+                if dataset is not None :
+                    dataset= pd.DataFrame(column_names)
+                else:
+                    pd.join(dataset,column_names,'clubes')
 
 
             except Exception as e:
