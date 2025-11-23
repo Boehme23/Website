@@ -7,6 +7,7 @@ from flask import Flask, render_template, session, request, redirect, url_for, s
 from flask_bootstrap5 import Bootstrap
 from morse_code_converter import converter
 from watermark import add_watermark
+import pandas as pd
 
 dotenv_path = os.path.join(
     os.path.dirname(__file__), ".env"
@@ -105,6 +106,24 @@ def selected():
             duplicated = True
 
         return redirect(url_for("movies", dup=duplicated))
+
+@app.route('/futebol',methods=['GET','POST'])
+def futebol():
+    # 1. Defina o nome do seu arquivo CSV
+    nome_arquivo_csv = 'Futebol Portugues.csv'
+
+    # 2. Leia o arquivo CSV para um DataFrame do pandas
+    # Ajuste o 'sep' (separador) se o seu CSV usar ponto e vírgula (';') ou outro delimitador
+    try:
+        df = pd.read_csv(nome_arquivo_csv, sep=',')
+    except FileNotFoundError:
+        print(f"Erro: O arquivo '{nome_arquivo_csv}' não foi encontrado.")
+        exit()
+
+    # 3. Converta o DataFrame em uma string HTML
+    # index=False impede que o número do índice da linha do pandas apareça na tabela
+    html_tabela = df.to_html(index=False)
+    return render_template('PortugalFC.html',html_tabela)
 
 
 # searching for movie

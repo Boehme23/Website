@@ -1,8 +1,4 @@
 import pandas as pd
-import pandas as pd
-import numpy as np
-import sqlite3
-import requests
 import logging
 import time
 from selenium import webdriver
@@ -18,8 +14,8 @@ def coletar(driver):
     and returns a single combined DataFrame.
     """
     infolist = [
-        'fairnesstabelle',
         'serien',
+        'fairnesstabelle',
         'punktenachrueckstand',
         'punktenachfuehrung',
         'torverteilungart',
@@ -31,7 +27,6 @@ def coletar(driver):
     # List to store DataFrames from each page
     collected_dfs = []
 
-    # Configure logging if not already configured
     if not logging.getLogger().handlers:
         logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -69,7 +64,7 @@ def coletar(driver):
             if len(table_rows) < 2:
                 table_rows = driver.find_elements(By.XPATH, '//*[@id="yw1"]/table/tbody/tr')
 
-            for i, row in enumerate(table_rows[:-4]):
+            for i, row in enumerate(table_rows[:]):
                 cells = row.find_elements(By.TAG_NAME, "td")
                 row_data = []
 
@@ -91,7 +86,7 @@ def coletar(driver):
                     row_data.append(cell_text)
                 all_rows_data.append(row_data)
 
-            # --- 3. Create DataFrame and Store (Robust Column Fix) ---
+            # --- 3. Create DataFrame and Store---
             if all_rows_data:
 
                 # 1. Determine the maximum observed width across all rows
@@ -102,8 +97,8 @@ def coletar(driver):
                 # 2. Pad headers to match the max width if necessary
                 if len(headers) < max_row_width:
                     missing_count = max_row_width - len(headers)
-                    # Prepend placeholder headers (since the missing column is usually the first position column)
-                    final_headers_list = [f'Hidden_Col_{i + 1}' for i in range(missing_count)] + headers
+                    # append placeholder headers (since the missing column is usually the last position column)
+                    final_headers_list =headers + [f'Hidden_Col_{i + 1}' for i in range(missing_count)]
 
                 processed_rows = []
                 # 3. Ensure all rows match the final header length (max_row_width)
@@ -111,7 +106,6 @@ def coletar(driver):
                     # Pad shorter rows with empty strings
                     if len(row) < max_row_width:
                         processed_rows.append(row + [''] * (max_row_width - len(row)))
-                    # Truncate overly long rows (shouldn't be necessary if max_row_width is calculated correctly)
                     elif len(row) > max_row_width:
                         processed_rows.append(row[:max_row_width])
                     else:
@@ -124,11 +118,18 @@ def coletar(driver):
                 if 'Clube' in temp_df.columns:
                     temp_df['Clube'] = (
                         temp_df['Clube']
-                        .str.replace(r'\s*\d.*$', '', regex=True)
+                        .str.replace(r'\d+.*$', '', regex=True)
                         .str.strip()
                     )
 
                 # Define columns to drop, including original unwanted ones and temporary placeholders
+                if 'name' in temp_df.columns:
+                    # 1. Drop the existing 'Clube' column, if it exists
+                    if 'Clube' in temp_df.columns:
+                        temp_df = temp_df.drop('Clube', axis=1)
+
+                        # 2. Rename the 'name' column to 'Clube'
+                        temp_df = temp_df.rename(columns={'name': 'Clube'})
                 cols_to_drop = ['wappen', '#'] + [h for h in final_headers_list if h.startswith('Hidden_Col')]
                 temp_df = temp_df.drop(columns=cols_to_drop, errors='ignore')
 
@@ -153,7 +154,7 @@ def coletar(driver):
                 logging.error(f"No rows collected for this page.")
             # Continue the loop to try the next page if the error is non-fatal
 
-    # --- 4. Combine all DataFrames using OUTER MERGE on 'Clube' ---
+    # --- 4. Combine all DataFrames using LEFT MERGE on 'Clube' ---
     if collected_dfs:
         # Start the final dataset with the first DataFrame collected
         final_dataset = collected_dfs[0]
@@ -162,7 +163,7 @@ def coletar(driver):
         for i in range(1, len(collected_dfs)):
             new_df = collected_dfs[i]
 
-            # Use outer merge to keep all clubs from all tables
+            # Use left merge to keep only rows with the right teams (there are pages with more extracted data than only the team)
             final_dataset = pd.merge(
                 left=final_dataset,
                 right=new_df,
