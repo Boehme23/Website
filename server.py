@@ -123,7 +123,7 @@ def futebol():
     # 3. Converta o DataFrame em uma string HTML
     # index=False impede que o número do índice da linha do pandas apareça na tabela
     html_tabela = df.to_html(index=False)
-    return render_template('futebol.html',html_tabela=df)
+    return render_template('futebol.html',html_tabela=html_tabela)
 
 
 # searching for movie
