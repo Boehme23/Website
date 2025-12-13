@@ -86,7 +86,7 @@ if __name__ == '__main__':
     # Processamento final dos dados
     if not df_final.empty:
         # Salva o DataFrame em CSV
-        nome_arquivo = 'Futebol Portugues_Jogos.csv'
+        nome_arquivo = 'Futebol Portugues Proximos Jogos.csv'
         df_final.to_csv(nome_arquivo, index=False, header=True)
 
         print("\n--- Scrape Complete ---")
