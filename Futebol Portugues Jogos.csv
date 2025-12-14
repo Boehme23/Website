@@ -1,120 +1,121 @@
 Round,Home,Away,Score
-14,Rio Ave,Vitória SC,0-1
+14,Sporting CP,Avs - Futebol SAD,6-0
+14,Rio Ave FC,Vitória SC,0-1
 14,Casa Pia AC,Gil Vicente,1-1
 13,Vitória SC,Gil Vicente,0-0
-13,Tondela,FC Porto,0-2
-13,Alverca,Nacional,1-0
-13,Estrela da Amadora,Arouca,3-1
-13,Estoril,Moreirense,3-3
-13,Famalicão,Braga,1-2
-13,AFS,Rio Ave,1-2
-13,Santa Clara,Casa Pia AC,1-0
-13,Benfica,Sporting CP,1-1
-12,Arouca,Braga,0-4
-12,FC Porto,Estoril,1-0
-12,Sporting CP,Estrela da Amadora,4-0
-12,Rio Ave,Santa Clara,1-1
-12,Gil Vicente,Tondela,0-1
-12,Nacional,Benfica,1-2
-12,Casa Pia AC,Alverca,0-2
-12,Moreirense,Famalicão,2-2
-12,Vitória SC,AFS,4-0
-11,Benfica,Casa Pia AC,2-2
-11,Braga,Moreirense,2-1
-11,Famalicão,FC Porto,0-1
-11,AFS,Gil Vicente,1-1
-11,Estrela da Amadora,Nacional,1-1
-11,Santa Clara,Sporting CP,1-2
-11,Tondela,Vitória SC,0-1
-11,Alverca,Rio Ave,1-1
-11,Estoril,Arouca,4-3
-10,Gil Vicente,Santa Clara,1-0
-10,FC Porto,Braga,2-1
-10,Arouca,Moreirense,0-2
-10,AFS,Tondela,2-2
-10,Vitória SC,Benfica,0-3
-10,Casa Pia AC,Estrela da Amadora,3-5
-10,Rio Ave,Estoril,0-4
-10,Nacional,Famalicão,0-1
-10,Sporting CP,Alverca,2-0
-9,Moreirense,FC Porto,1-2
-9,Braga,Casa Pia AC,4-0
-9,Tondela,Sporting CP,0-3
-9,Estoril,Nacional,1-1
-9,Famalicão,Vitória SC,2-0
-9,Benfica,Arouca,5-0
-9,Estrela da Amadora,Rio Ave,1-2
-9,Santa Clara,AFS,2-0
-9,Alverca,Gil Vicente,0-4
-8,FC Porto,Benfica,0-0
-8,Sporting CP,Braga,1-1
-8,Rio Ave,Tondela,3-0
-8,Arouca,Famalicão,1-1
-8,Vitória SC,Santa Clara,2-1
-8,AFS,Alverca,1-3
-8,Gil Vicente,Estrela da Amadora,2-0
-8,Nacional,Moreirense,3-2
-8,Casa Pia AC,Estoril,2-2
-7,Arouca,FC Porto,0-4
-7,Famalicão,Rio Ave,0-0
-7,Braga,Nacional,0-1
-7,Alverca,Vitória SC,2-0
-7,Estoril,Sporting CP,0-1
-7,Estrela da Amadora,AFS,3-0
-7,Santa Clara,Tondela,1-2
-7,Moreirense,Casa Pia AC,2-1
-7,Benfica,Gil Vicente,2-1
-1,Benfica,Rio Ave,1-1
-6,Sporting CP,Moreirense,3-0
-6,Casa Pia AC,Famalicão,1-1
-6,Gil Vicente,Estoril,2-0
-6,Tondela,Estrela da Amadora,0-0
-6,Vitória SC,Braga,1-1
-6,AFS,Benfica,0-3
-6,Nacional,Arouca,1-2
-6,Santa Clara,Alverca,2-1
-6,Rio Ave,FC Porto,0-3
-5,Braga,Gil Vicente,0-1
-5,Arouca,Casa Pia AC,0-2
-5,Estrela da Amadora,Vitória SC,0-2
-5,Famalicão,Sporting CP,1-2
-5,FC Porto,Nacional,1-0
-5,Estoril,AFS,3-1
-5,Moreirense,Rio Ave,3-1
-5,Alverca,Tondela,1-0
-5,Benfica,Santa Clara,1-1
-3,Estoril,Santa Clara,0-1
-4,Rio Ave,Braga,2-2
-4,Santa Clara,Estrela da Amadora,0-0
-4,Alverca,Benfica,1-2
-4,Tondela,Estoril,2-2
+13,CD Tondela,FC Porto,0-2
+13,FC Alverca,CD Nacional,1-0
+13,CF Estrela Amadora,FC Arouca,3-1
+13,GD Estoril Praia,Moreirense FC,3-3
+13,FC Famalicão,SC Braga,1-2
+13,Avs - Futebol SAD,Rio Ave FC,1-2
+13,CD Santa Clara,Casa Pia AC,1-0
+13,SL Benfica,Sporting CP,1-1
+12,FC Arouca,SC Braga,0-4
+12,FC Porto,GD Estoril Praia,1-0
+12,Sporting CP,CF Estrela Amadora,4-0
+12,Rio Ave FC,CD Santa Clara,1-1
+12,Gil Vicente,CD Tondela,0-1
+12,CD Nacional,SL Benfica,1-2
+12,Casa Pia AC,FC Alverca,0-2
+12,Moreirense FC,FC Famalicão,2-2
+12,Vitória SC,Avs - Futebol SAD,4-0
+11,SL Benfica,Casa Pia AC,2-2
+11,SC Braga,Moreirense FC,2-1
+11,FC Famalicão,FC Porto,0-1
+11,Avs - Futebol SAD,Gil Vicente,1-1
+11,CF Estrela Amadora,CD Nacional,1-1
+11,CD Santa Clara,Sporting CP,1-2
+11,CD Tondela,Vitória SC,0-1
+11,FC Alverca,Rio Ave FC,1-1
+11,GD Estoril Praia,FC Arouca,4-3
+10,Gil Vicente,CD Santa Clara,1-0
+10,FC Porto,SC Braga,2-1
+10,FC Arouca,Moreirense FC,0-2
+10,Avs - Futebol SAD,CD Tondela,2-2
+10,Vitória SC,SL Benfica,0-3
+10,Casa Pia AC,CF Estrela Amadora,3-5
+10,Rio Ave FC,GD Estoril Praia,0-4
+10,CD Nacional,FC Famalicão,0-1
+10,Sporting CP,FC Alverca,2-0
+9,Moreirense FC,FC Porto,1-2
+9,SC Braga,Casa Pia AC,4-0
+9,CD Tondela,Sporting CP,0-3
+9,GD Estoril Praia,CD Nacional,1-1
+9,FC Famalicão,Vitória SC,2-0
+9,SL Benfica,FC Arouca,5-0
+9,CF Estrela Amadora,Rio Ave FC,1-2
+9,CD Santa Clara,Avs - Futebol SAD,2-0
+9,FC Alverca,Gil Vicente,0-4
+8,FC Porto,SL Benfica,0-0
+8,Sporting CP,SC Braga,1-1
+8,Rio Ave FC,CD Tondela,3-0
+8,FC Arouca,FC Famalicão,1-1
+8,Vitória SC,CD Santa Clara,2-1
+8,Avs - Futebol SAD,FC Alverca,1-3
+8,Gil Vicente,CF Estrela Amadora,2-0
+8,CD Nacional,Moreirense FC,3-2
+8,Casa Pia AC,GD Estoril Praia,2-2
+7,FC Arouca,FC Porto,0-4
+7,FC Famalicão,Rio Ave FC,0-0
+7,SC Braga,CD Nacional,0-1
+7,FC Alverca,Vitória SC,2-0
+7,GD Estoril Praia,Sporting CP,0-1
+7,CF Estrela Amadora,Avs - Futebol SAD,3-0
+7,CD Santa Clara,CD Tondela,1-2
+7,Moreirense FC,Casa Pia AC,2-1
+7,SL Benfica,Gil Vicente,2-1
+1,SL Benfica,Rio Ave FC,1-1
+6,Sporting CP,Moreirense FC,3-0
+6,Casa Pia AC,FC Famalicão,1-1
+6,Gil Vicente,GD Estoril Praia,2-0
+6,CD Tondela,CF Estrela Amadora,0-0
+6,Vitória SC,SC Braga,1-1
+6,Avs - Futebol SAD,SL Benfica,0-3
+6,CD Nacional,FC Arouca,1-2
+6,CD Santa Clara,FC Alverca,2-1
+6,Rio Ave FC,FC Porto,0-3
+5,SC Braga,Gil Vicente,0-1
+5,FC Arouca,Casa Pia AC,0-2
+5,CF Estrela Amadora,Vitória SC,0-2
+5,FC Famalicão,Sporting CP,1-2
+5,FC Porto,CD Nacional,1-0
+5,GD Estoril Praia,Avs - Futebol SAD,3-1
+5,Moreirense FC,Rio Ave FC,3-1
+5,FC Alverca,CD Tondela,1-0
+5,SL Benfica,CD Santa Clara,1-1
+3,GD Estoril Praia,CD Santa Clara,0-1
+4,Rio Ave FC,SC Braga,2-2
+4,CD Santa Clara,CF Estrela Amadora,0-0
+4,FC Alverca,SL Benfica,1-2
+4,CD Tondela,GD Estoril Praia,2-2
 4,Sporting CP,FC Porto,1-2
-4,AFS,Famalicão,0-1
-4,Vitória SC,Arouca,1-1
-4,Casa Pia AC,Nacional,0-2
-4,Gil Vicente,Moreirense,2-0
-3,Estrela da Amadora,Alverca,2-2
-3,Braga,AFS,2-2
+4,Avs - Futebol SAD,FC Famalicão,0-1
+4,Vitória SC,FC Arouca,1-1
+4,Casa Pia AC,CD Nacional,0-2
+4,Gil Vicente,Moreirense FC,2-0
+3,CF Estrela Amadora,FC Alverca,2-2
+3,SC Braga,Avs - Futebol SAD,2-2
 3,FC Porto,Casa Pia AC,4-0
-3,Famalicão,Gil Vicente,0-0
-3,Arouca,Rio Ave,3-3
-3,Benfica,Tondela,3-0
-3,Nacional,Sporting CP,1-4
-3,Moreirense,Vitória SC,2-0
+3,FC Famalicão,Gil Vicente,0-0
+3,FC Arouca,Rio Ave FC,3-3
+3,SL Benfica,CD Tondela,3-0
+3,CD Nacional,Sporting CP,1-4
+3,Moreirense FC,Vitória SC,2-0
 2,Gil Vicente,FC Porto,0-2
-2,Sporting CP,Arouca,6-0
-2,Alverca,Braga,0-3
-2,Santa Clara,Moreirense,0-1
-2,Rio Ave,Nacional,1-1
-2,Estrela da Amadora,Benfica,0-1
-2,Vitória SC,Estoril,3-2
-2,Tondela,Famalicão,0-1
-2,AFS,Casa Pia AC,0-2
+2,Sporting CP,FC Arouca,6-0
+2,FC Alverca,SC Braga,0-3
+2,CD Santa Clara,Moreirense FC,0-1
+2,Rio Ave FC,CD Nacional,1-1
+2,CF Estrela Amadora,SL Benfica,0-1
+2,Vitória SC,GD Estoril Praia,3-2
+2,CD Tondela,FC Famalicão,0-1
+2,Avs - Futebol SAD,Casa Pia AC,0-2
 1,FC Porto,Vitória SC,3-0
-1,Estoril,Estrela da Amadora,1-1
-1,Braga,Tondela,3-0
-1,Moreirense,Alverca,2-1
-1,Famalicão,Santa Clara,3-0
-1,Arouca,AFS,3-1
-1,Nacional,Gil Vicente,0-2
+1,GD Estoril Praia,CF Estrela Amadora,1-1
+1,SC Braga,CD Tondela,3-0
+1,Moreirense FC,FC Alverca,2-1
+1,FC Famalicão,CD Santa Clara,3-0
+1,FC Arouca,Avs - Futebol SAD,3-1
+1,CD Nacional,Gil Vicente,0-2
 1,Casa Pia AC,Sporting CP,0-2

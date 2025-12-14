@@ -91,15 +91,39 @@ def coletar_resultados_clean(driver):
         # --- SAVE DATAFRAME TO CSV FILE ---
         output_filename = 'Futebol Portugues Jogos.csv'
 
-        pd.DataFrame(data).to_csv(
+        print(f"Total rows collected: {len(pd.DataFrame(data))}")
+        mapper={
+            "AFS":"Avs - Futebol SAD",
+            "Casa Pia AC":"Casa Pia AC",
+            "Nacional":"CD Nacional",
+            "Santa Clara":"CD Santa Clara",
+            "Tondela":"CD Tondela",
+            "Estrela da Amadora":"CF Estrela Amadora",
+            "Alverca":"FC Alverca",
+            "Arouca":"FC Arouca",
+            "Famalicão":"FC Famalicão",
+            "FC Porto": "FC Porto",
+            "Estoril": "GD Estoril Praia",
+            "Gil Vincente": "Gil Vincente FC",
+            "Moreirense": "Moreirense FC",
+            "Rio Ave": "Rio Ave FC",
+            "Braga": "SC Braga",
+            "Benfica": "SL Benfica",
+            "Sporting CP": "Sporting CP",
+            "Vitória SC": "Vitória SC"
+        }
+        dados=pd.DataFrame(data)
+        dados['Home'] = dados['Home'].replace(mapper)
+        dados['Away'] = dados['Away'].replace(mapper)
+        print('dados modificados')
+
+        dados.to_csv(
             output_filename,
             index=False,
             encoding='utf-8'
         )
         print(f"\n✅ Data successfully saved to {output_filename}")
-        print(f"Total rows collected: {len(pd.DataFrame(data))}")
-        return pd.DataFrame(data)
-    return pd.DataFrame(data)
+        return dados
 
 # --- Execução principal ---
 if __name__ == '__main__':
