@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
@@ -98,7 +97,7 @@ clf.fit(X, y)
 rf_predictions = clf.predict(X_new)
 
 # ==========================================
-# 5B. NEURAL NETWORK MODEL (FIXED)
+# 5B. NEURAL NETWORK MODEL
 # ==========================================
 print("\n--- Training Neural Network ---")
 
