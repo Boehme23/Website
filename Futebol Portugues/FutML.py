@@ -6,5 +6,5 @@ from sklearn.metrics import accuracy_score, classification_report
 
 data = pd.read_csv('Futebol Portugues.csv')
 confrontos_futuros = pd.read_csv('Futebol Portugues_Jogos.csv')
-confrontos = pd.read_csv('../resultados.csv')
+confrontos = pd.read_csv('resultados.csv')
 
