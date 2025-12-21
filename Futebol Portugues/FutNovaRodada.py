@@ -72,7 +72,7 @@ if __name__ == '__main__':
 
         # Converte a lista de dicionários em um DataFrame do Pandas
 
-        df_final = pd.DataFrame(lista_dados,columns=['Casa', 'Visitante']
+        df_final = pd.DataFrame(lista_dados,columns=['Home', 'Away']
 )
     except Exception as e:
         logging.error(f"Failed to initialize or run WebDriver: {e}")
