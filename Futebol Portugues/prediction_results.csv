@@ -1,0 +1,10 @@
+Home,Away,Predicted_Result,Prob_Home_Win,Prob_Draw,Prob_Away_Win,Predicted_Winner
+Estoril Praia,SC Braga,A,0.334,0.312,0.354,SC Braga
+Gil Vicente,Rio Ave,D,0.214,0.428,0.358,Draw
+Est. Amadora,Moreirense,D,0.214,0.428,0.358,Draw
+AFS,Nacional,D,0.214,0.428,0.358,Draw
+CD Tondela,Casa Pia AC,A,0.224,0.24,0.536,Casa Pia AC
+Santa Clara,FC Arouca,H,0.614,0.164,0.222,Santa Clara
+FC Alverca,FC Porto,A,0.004,0.006,0.99,FC Porto
+Benfica,FC Famalicão,H,0.392,0.316,0.292,Benfica
+Vitória SC,Sporting,D,0.11,0.75,0.14,Draw

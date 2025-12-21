@@ -3,22 +3,24 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import StandardScaler
+from sklearn.neural_network import MLPClassifier
 
 # ==========================================
 # 1. CONFIGURATION
 # ==========================================
 FILES = {
-    'stats': 'Futebol Portugues.csv',  # File with team characteristics
-    'history': 'Futebol Portugues Jogos.csv',  # File with past results
-    'upcoming': 'Futebol Portugues Proximos Jogos.csv'  # File with games to predict
+    'stats': 'Futebol Portugues.csv',
+    'history': 'Futebol Portugues Jogos.csv',
+    'upcoming': 'Futebol Portugues Proximos Jogos.csv'
 }
 
 COLS = {
-    'team_name': 'Clube',  # Name of team in stats file
-    'home_team': 'Home',  # Home team column in matches
-    'away_team': 'Away',  # Away team column in matches
-    'score_col': 'Score',  # The column with "2-1", "0-0", etc.
-    'match_date': 'Round'  # Date/Round column
+    'team_name': 'Clube',
+    'home_team': 'Home',
+    'away_team': 'Away',
+    'score_col': 'Score',
+    'match_date': 'Round'
 }
 
 # ==========================================
@@ -31,60 +33,37 @@ try:
     df_upcoming = pd.read_csv(FILES['upcoming'])
 except FileNotFoundError as e:
     print(f"Error: {e}")
-    print("Please make sure the CSV files are in the same folder.")
     exit()
 
-
 # ==========================================
-# 2.5. CONVERT SCORES TO RESULTS (THE FIX)
+# 2.5. CONVERT SCORES TO RESULTS
 # ==========================================
 def get_result_from_score(score_str):
-
     if pd.isna(score_str) or '-' not in str(score_str):
         return None
-
     try:
-        # Split '2-1' into parts
         parts = str(score_str).split('-')
-        home = int(parts[0])
-        away = int(parts[1])
-
-        if home > away:
-            return 'H'  # Home Win
-        elif away > home:
-            return 'A'  # Away Win
-        else:
-            return 'D'  # Draw
+        home, away = int(parts[0]), int(parts[1])
+        if home > away: return 'H'
+        elif away > home: return 'A'
+        else: return 'D'
     except:
         return None
 
-
-print("Converting scores (e.g. '2-1') into results (H/D/A)...")
-# Create a new column 'FTR' (Full Time Result) based on the Score
+print("Converting scores...")
 df_history['FTR'] = df_history[COLS['score_col']].apply(get_result_from_score)
-
-# Remove games where the score was invalid or missing
 df_history = df_history.dropna(subset=['FTR'])
-
-# Update the target column to be this new 'FTR' column
 target_col = 'FTR'
 
-
 # ==========================================
-# 3. DATA PREPROCESSING & MERGING
+# 3. MERGE TEAM STATS
 # ==========================================
 def merge_team_stats(matches_df, stats_df):
-    # Merge Home Team Stats
     merged = matches_df.merge(stats_df, left_on=COLS['home_team'], right_on=COLS['team_name'], how='left')
     merged = merged.rename(columns={c: f'Home_{c}' for c in stats_df.columns if c != COLS['team_name']})
-
-    # Merge Away Team Stats
-    merged = merged.merge(stats_df, left_on=COLS['away_team'], right_on=COLS['team_name'], how='left',
-                          suffixes=('', '_Away'))
+    merged = merged.merge(stats_df, left_on=COLS['away_team'], right_on=COLS['team_name'], how='left', suffixes=('', '_Away'))
     merged = merged.rename(columns={c: f'Away_{c}' for c in stats_df.columns if c != COLS['team_name']})
-
     return merged
-
 
 print("Merging team data...")
 train_data = merge_team_stats(df_history, df_stats)
@@ -98,83 +77,83 @@ exclude_cols = [COLS['home_team'], COLS['away_team'], COLS['score_col'], target_
 
 features = [c for c in train_data.columns if c not in exclude_cols and pd.api.types.is_numeric_dtype(train_data[c])]
 
-print(f"Features used: {features}")
-
 X = train_data[features].fillna(0)
 y = train_data[target_col]
+X_new = predict_data[features].fillna(0)
+
+print(f"Features used: {len(features)} variables")
 
 # ==========================================
-# 5. MODEL TRAINING
+# 5A. RANDOM FOREST MODEL
 # ==========================================
-print("Training Random Forest model...")
-
+print("\n--- Training Random Forest ---")
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=23)
 
 clf = RandomForestClassifier(n_estimators=500, random_state=23)
 clf.fit(X_train, y_train)
+print(f"Random Forest Accuracy: {accuracy_score(y_test, clf.predict(X_test)):.2f}")
 
-predictions = clf.predict(X_test)
-print(f"Model Accuracy on Test Set: {accuracy_score(y_test, predictions):.2f}")
-
-# Retrain on full data
+# Retrain on full data and predict
 clf.fit(X, y)
+rf_predictions = clf.predict(X_new)
 
 # ==========================================
-# 6. PREDICT UPCOMING MATCHES
+# 5B. NEURAL NETWORK MODEL (FIXED)
 # ==========================================
-print("Predicting incoming matches...")
+print("\n--- Training Neural Network ---")
 
-X_new = predict_data[features].fillna(0)
-future_predictions = clf.predict(X_new)
-future_probs = clf.predict_proba(X_new)
+# 1. Scale Data (Required for NN)
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+X_new_scaled = scaler.transform(X_new)
 
-df_upcoming['Predicted_Result'] = future_predictions
+# Split for validation
+X_train_nn, X_test_nn, y_train_nn, y_test_nn = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
 
-# Map probabilities correctly based on class order
-# classes_ usually comes out as ['A', 'D', 'H'] (Alphabetical)
-classes = list(clf.classes_)
-print(f"Class order detected: {classes}")
+# 2. Build and Train the Model
+nn_clf = MLPClassifier(hidden_layer_sizes=(64, 32), activation='relu', max_iter=500, random_state=42)
+nn_clf.fit(X_train_nn, y_train_nn)
 
-if 'H' in classes and 'D' in classes and 'A' in classes:
-    h_index = classes.index('H')
-    d_index = classes.index('D')
-    a_index = classes.index('A')
+# 3. Evaluate
+nn_acc = accuracy_score(y_test_nn, nn_clf.predict(X_test_nn))
+print(f"Neural Network Accuracy: {nn_acc:.2f}")
 
-    df_upcoming['Prob_Home_Win'] = future_probs[:, h_index]
-    df_upcoming['Prob_Draw'] = future_probs[:, d_index]
-    df_upcoming['Prob_Away_Win'] = future_probs[:, a_index]
+# 4. Retrain on FULL data and Predict
+nn_clf.fit(X_scaled, y)
+nn_predictions = nn_clf.predict(X_new_scaled)
 
 # ==========================================
-# 7. SAVE RESULTS
+# 6. COMBINE & SAVE RESULTS
 # ==========================================
-print("Saving results...")
+print("\nSaving results...")
 
-# Create a clean dataframe for the output
-# We select the original team name columns + the new prediction columns
-# CHECK: Make sure COLS['home_team'] matches your CSV header (e.g. 'Home')
-output_columns = [COLS['home_team'], COLS['away_team'], 'Predicted_Result', 'Prob_Home_Win', 'Prob_Draw', 'Prob_Away_Win']
+# Save Random Forest Results
+df_upcoming['RF_Prediction'] = rf_predictions
+# Save Neural Network Results
+df_upcoming['NN_Prediction'] = nn_predictions
 
-# If you also want the Date/Round, add it:
+# Helper to get team names
+def get_winner_name(row, pred_col):
+    res = row[pred_col]
+    if res == 'H': return row[COLS['home_team']]
+    elif res == 'A': return row[COLS['away_team']]
+    else: return 'Draw'
+
+df_upcoming['RF_Winner_Name'] = df_upcoming.apply(lambda row: get_winner_name(row, 'RF_Prediction'), axis=1)
+df_upcoming['NN_Winner_Name'] = df_upcoming.apply(lambda row: get_winner_name(row, 'NN_Prediction'), axis=1)
+
+# Check for agreement (Confidence Booster)
+df_upcoming['Models_Agree'] = df_upcoming['RF_Prediction'] == df_upcoming['NN_Prediction']
+
+# Select Columns for Final CSV
+output_columns = [COLS['home_team'], COLS['away_team'],
+                  'RF_Winner_Name', 'NN_Winner_Name', 'Models_Agree']
+
 if COLS['match_date'] in df_upcoming.columns:
     output_columns.insert(0, COLS['match_date'])
 
-# Create the final file
 final_results = df_upcoming[output_columns].copy()
 
-# OPTIONAL: Make the prediction easier to read
-# Instead of 'H', 'A', 'D', let's print the actual Winning Team Name
-def get_winner_name(row):
-    pred = row['Predicted_Result']
-    if pred == 'H':
-        return row[COLS['home_team']]  # Return Home Team Name
-    elif pred == 'A':
-        return row[COLS['away_team']]  # Return Away Team Name
-    else:
-        return 'Draw'
-
-final_results['Predicted_Winner'] = final_results.apply(get_winner_name, axis=1)
-
-# Save to CSV
-output_filename = 'prediction_results.csv'
+output_filename = 'prediction_results_combined.csv'
 final_results.to_csv(output_filename, index=False)
 print(f"Done! Predictions saved to {output_filename}")
