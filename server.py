@@ -111,6 +111,10 @@ def selected():
 def futebol():
     return render_template('futebol.html')
 
+@app.route('/predictions',methods=['GET','POST'])
+def predictions():
+    return render_template('predictions.html')
+
 
 # searching for movie
 @app.route("/add", methods=["GET", "POST"])
