@@ -4,6 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.neural_network import MLPClassifier
+from datetime import date
 
 # ==========================================
 # 1. CONFIGURATION
@@ -153,6 +154,6 @@ if COLS['match_date'] in df_upcoming.columns:
 
 final_results = df_upcoming[output_columns].copy()
 
-output_filename = 'prediction_results_combined.csv'
+output_filename = 'prediction_results_combined_'+date.today().strftime('%d-%m')+'.csv'
 final_results.to_csv(output_filename, index=False)
 print(f"Done! Predictions saved to {output_filename}")
