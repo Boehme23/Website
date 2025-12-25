@@ -5,6 +5,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.neural_network import MLPClassifier
 from datetime import date
+import os
 
 # ==========================================
 # 1. CONFIGURATION
@@ -34,6 +35,36 @@ try:
 except FileNotFoundError as e:
     print(f"Error: {e}")
     exit()
+
+
+# 2.1. AUTO-DETECT NEXT ROUND
+# ==========================================
+print("Calculating next round...")
+try:
+    # check if 'Round' column exists in history
+    if COLS['match_date'] in df_history.columns:
+        # Convert to numeric, coercing errors to NaN to handle any text
+        history_rounds = pd.to_numeric(df_history[COLS['match_date']], errors='coerce')
+
+        # Get the max value and add 1
+        max_round = history_rounds.max()
+
+        if pd.isna(max_round):
+            print("Warning: Could not find any valid round numbers in history. Defaulting to 1.")
+            next_round = 1
+        else:
+            next_round = int(max_round) + 1
+
+        print(f"-> Highest Round in History: {int(max_round)}")
+        print(f"-> Predicting for Round: {next_round}")
+
+        # Assign this value to the upcoming dataframe
+        df_upcoming[COLS['match_date']] = next_round
+    else:
+        print(f"Warning: Column '{COLS['match_date']}' not found in history file. Cannot calculate next round.")
+
+except Exception as e:
+    print(f"Error calculating next round: {e}")
 
 # ==========================================
 # 2.5. CONVERT SCORES TO RESULTS
@@ -144,7 +175,6 @@ df_upcoming['NN_Winner_Name'] = df_upcoming.apply(lambda row: get_winner_name(ro
 
 # Check for agreement (Confidence Booster)
 df_upcoming['Models_Agree'] = df_upcoming['RF_Prediction'] == df_upcoming['NN_Prediction']
-
 # Select Columns for Final CSV
 output_columns = [COLS['home_team'], COLS['away_team'],
                   'RF_Winner_Name', 'NN_Winner_Name', 'Models_Agree']
@@ -154,6 +184,38 @@ if COLS['match_date'] in df_upcoming.columns:
 
 final_results = df_upcoming[output_columns].copy()
 
-output_filename = 'prediction_results_combined_'+date.today().strftime('%d-%m')+'.csv'
-final_results.to_csv(output_filename, index=False)
-print(f"Done! Predictions saved to {output_filename}")
+output_filename = 'prediction_results.csv'
+
+if os.path.exists(output_filename):
+    try:
+        # 1. Read existing data
+        df_existing = pd.read_csv(output_filename)
+
+        # 2. Combine old and new data
+        df_combined = pd.concat([df_existing, final_results], ignore_index=True)
+
+        # 3. Remove exact duplicates
+        # This keeps the first occurrence and removes subsequent identical rows
+        rows_before = len(df_combined)
+        df_final_export = df_combined.drop_duplicates()
+        rows_after = len(df_final_export)
+
+        duplicates_removed = rows_before - rows_after
+
+        if duplicates_removed > 0:
+            print(f"Merged data and removed {duplicates_removed} duplicate row(s).")
+        else:
+            print("Merged data. No duplicates found.")
+
+        # 4. Save back to CSV (Overwriting with the clean list)
+        df_final_export.to_csv(output_filename, index=False)
+        print(f"Updated {output_filename} successfully.")
+
+    except pd.errors.EmptyDataError:
+        # If the file exists but is empty, just write the new data
+        final_results.to_csv(output_filename, index=False)
+        print(f"Existing file was empty. Saved new predictions to {output_filename}")
+else:
+    # File does not exist, create it fresh
+    final_results.to_csv(output_filename, index=False)
+    print(f"Created new file: {output_filename}")
