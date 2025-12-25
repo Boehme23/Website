@@ -8,3 +8,12 @@ Round,Home,Away,RF_Winner_Name,NN_Winner_Name,Models_Agree
 15,FC Alverca,FC Porto,FC Porto,FC Porto,True
 15,Benfica,FC Famalicão,Benfica,Benfica,True
 15,Vitória SC,Sporting,Draw,Draw,True
+16,FC Famalicão,Est. Amadora,Draw,Draw,True
+16,Estoril Praia,FC Alverca,Estoril Praia,Draw,False
+16,FC Arouca,Gil Vicente,Draw,Draw,True
+16,Casa Pia AC,Vitória SC,Vitória SC,Vitória SC,True
+16,SC Braga,Benfica,Benfica,Benfica,True
+16,Sporting,Rio Ave,Draw,Sporting,False
+16,FC Porto,AFS,FC Porto,FC Porto,True
+16,Nacional,Santa Clara,Draw,Nacional,False
+16,Moreirense,CD Tondela,CD Tondela,CD Tondela,True
