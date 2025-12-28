@@ -1,13 +1,6 @@
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, TimeoutException
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-import pandas as pd
-import numpy as np
-import sqlite3
-import requests
 import logging
 import time
 from selenium.webdriver.common.by import By

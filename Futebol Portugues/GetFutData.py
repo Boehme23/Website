@@ -111,18 +111,28 @@ def coletar(driver,liga):
                     else:
                         processed_rows.append(row)
 
-                # Create the DataFrame using the aligned headers and processed rows
+                # Create the DataFrame using the aligned headers a  nd processed rows
                 temp_df = pd.DataFrame(processed_rows, columns=final_headers_list)
 
                 # Clean the 'Clube' column if present
                 if 'Clube' in temp_df.columns:
-                    temp_df['Clube'] = (
-                        temp_df['Clube']
-                        .str.replace(r'\d+.*$', '', regex=True)
-                        .str.strip()
-                    )
+                    # 1. Clean invisible spaces to ensure regex works
+                    temp_df['Clube'] = temp_df['Clube'].astype(str).str.strip()
 
-                # Define columns to drop, including original unwanted ones and temporary placeholders
+                    # --- JOB 1: Remove Prefix (Start of name) ---
+                    # Removes "1." from "1.FSV Mainz"
+                    # Matches one or more groups of digits+dots at the START (^)
+                    temp_df['Clube'] = temp_df['Clube'].str.replace(r'^(\d+[\.\s]*)+', '', regex=True)
+
+                    # --- JOB 2: Remove Suffix (End of name) ---
+                    # Removes "18.° classificado" from "Mainz 0518.° classificado"
+                    # Matches digits + dot + degree symbol (°) and everything after it ($)
+                    temp_df['Clube'] = temp_df['Clube'].str.replace(r'\d+\.°.*$', '', regex=True)
+
+                    # 3. Final Polish
+                    temp_df['Clube'] = temp_df['Clube'].str.strip()
+                    temp_df['Clube'] = temp_df['Clube'].str.replace(r'^(\d+[\.\s]*)+', '', regex=True)
+
                 if 'name' in temp_df.columns:
                     # 1. Drop the existing 'Clube' column, if it exists
                     if 'Clube' in temp_df.columns:
@@ -162,7 +172,7 @@ def coletar(driver,liga):
         # Iterate over the remaining DataFrames and merge them sequentially
         for i in range(1, len(collected_dfs)):
             new_df = collected_dfs[i]
-
+            print(new_df)
             # Use left merge to keep only rows with the right teams (there are pages with more extracted data than only the team)
             final_dataset = pd.merge(
                 left=final_dataset,
@@ -175,7 +185,7 @@ def coletar(driver,liga):
 
         if not final_dataset.empty:
             # --- SAVE DATAFRAME TO CSV FILE ---
-            output_filename = f'Futebol {liga}.csv'
+            output_filename = f'Futebol_{liga}.csv'
 
             final_dataset.to_csv(
                 output_filename,
