@@ -27,7 +27,7 @@ COLS = {
 }
 
 # Threshold for removing correlated features (0.90 = 90%)
-CORRELATION_THRESHOLD = 0.90
+CORRELATION_THRESHOLD = 0.80
 
 # ==========================================
 # 2. LOAD DATA
