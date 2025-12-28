@@ -52,47 +52,64 @@ def coletar(driver, url):
 
 
 # --- Execução principal ---
+import pandas as pd
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import logging
+
+# --- Execução principal ---
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-    url = 'https://www.zerozero.pt/competicao/liga-portuguesa'  # URL mais específica para a temporada
 
-    # Configurações do navegador (headless)
+    ligas = [
+        'francesa',
+        'portuguesa',
+        'inglesa',
+        'alema',
+        'espanhola',
+        'neerlandesa'
+    ]
+
+    # Configurações do navegador
     chrome_options = Options()
+    # chrome_options.add_argument("--headless") # Descomente se não quiser ver o browser a abrir
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    # Removi algumas opções redundantes ou não essenciais para manter o código limpo
 
     driver = None
+
     try:
-        # Inicializa o driver
         driver = webdriver.Chrome(options=chrome_options)
 
-        # Coleta os dados (retorna uma lista de dicionários)
-        lista_dados = coletar(driver, url)
+        for liga in ligas:
+            print(f"\n--- A processar liga: {liga} ---")
+            url = f'https://www.zerozero.pt/competicao/liga-{liga}'
 
-        # Converte a lista de dicionários em um DataFrame do Pandas
+            try:
+                # Chama a sua função de coleta
+                lista_dados = coletar(driver, url)
 
-        df_final = pd.DataFrame(lista_dados,columns=['Home', 'Away']
-)
+                if lista_dados:
+                    df_final = pd.DataFrame(lista_dados, columns=['Home', 'Away'])
+
+                    # Salva o arquivo
+                    nome_arquivo = f'Futebol {liga.capitalize()} Proximos Jogos.csv'
+                    df_final.to_csv(nome_arquivo, index=False, header=True)
+
+                    print(f"Sucesso! {len(df_final)} jogos extraídos.")
+                    print(f"Salvo em: '{nome_arquivo}'")
+                else:
+                    print(f"Aviso: A função 'coletar' não retornou dados para a liga {liga}.")
+
+            except Exception as e:
+                logging.error(f"Erro ao processar a liga {liga}: {e}")
+                # O 'continue' garante que se uma liga falhar, passa para a próxima
+                continue
+
     except Exception as e:
-        logging.error(f"Failed to initialize or run WebDriver: {e}")
-        df_final = pd.DataFrame()
+        logging.error(f"Erro crítico no WebDriver: {e}")
 
     finally:
         if driver:
             driver.quit()
             logging.info("Navegador encerrado.")
-
-    # Processamento final dos dados
-    if not df_final.empty:
-        # Salva o DataFrame em CSV
-        nome_arquivo = 'Futebol Portugues Proximos Jogos.csv'
-        df_final.to_csv(nome_arquivo, index=False, header=True)
-
-        print("\n--- Scrape Complete ---")
-        print(f"Total de jogos extraídos: {len(df_final)}")
-        print(f"Primeiras 5 linhas do DataFrame:\n{df_final.head()}")
-        print(f"\nOs dados foram salvos no arquivo '{nome_arquivo}'.")
-    else:
-        print("\n--- Scrape Falhou ---")
-        print("Não foi possível extrair dados válidos. Verifique os logs de erro.")

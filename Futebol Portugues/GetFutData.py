@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-def coletar(driver):
+def coletar(driver,liga):
     """
     Collects data from multiple Transfermarkt pages, merges them on 'Clube',
     and returns a single combined DataFrame.
@@ -31,7 +31,7 @@ def coletar(driver):
         logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
     for info in infolist:
-        current_url = f'https://www.transfermarkt.pt/liga-nos/{info}/wettbewerb/PO1'
+        current_url = f'https://www.transfermarkt.pt/liga-nos/{info}/wettbewerb/{liga}'
         logging.info(f"Navigating to {current_url}")
         driver.get(current_url)
 
@@ -175,7 +175,7 @@ def coletar(driver):
 
         if not final_dataset.empty:
             # --- SAVE DATAFRAME TO CSV FILE ---
-            output_filename = 'Futebol Portugues.csv'
+            output_filename = f'Futebol {liga}.csv'
 
             final_dataset.to_csv(
                 output_filename,
@@ -203,18 +203,25 @@ if __name__ == '__main__':
     chrome_options.add_argument("--enable-network-service-sync")
     chrome_options.add_argument("--disable-setuid-sandbox")
     chrome_options.add_argument("--disable-extensions")
-
+    driver = webdriver.Chrome(options=chrome_options)
     try:
-        driver = webdriver.Chrome(options=chrome_options)
+        ligas=[
+            'FR1',
+            'NL1',
+            'GB1',
+            'ES1',
+            'PO1',
+            'L1'
+        ]
 
-        final_data = coletar(driver)
+        for liga in ligas:
 
+            final_data = coletar(driver,liga)
+
+            if not final_data.empty:
+                print("\n--- Scrape Complete ---")
+                print(f"You can inspect the saved CSV file Futebol {liga}.csv.")
         driver.quit()
         logging.info("Navegador encerrado.")
-
-        if not final_data.empty:
-            print("\n--- Scrape Complete ---")
-            print("You can inspect the saved CSV file 'Futebol Portugues.csv'.")
-
     except Exception as e:
         logging.error(f"Failed to initialize or run WebDriver: {e}")
