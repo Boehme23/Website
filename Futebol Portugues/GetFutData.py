@@ -7,6 +7,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+import re
+
 
 def coletar(driver,liga):
     """
@@ -168,18 +170,20 @@ def coletar(driver,liga):
     if collected_dfs:
         # Start the final dataset with the first DataFrame collected
         final_dataset = collected_dfs[0]
-
         # Iterate over the remaining DataFrames and merge them sequentially
         for i in range(1, len(collected_dfs)):
             new_df = collected_dfs[i]
             print(new_df)
             # Use left merge to keep only rows with the right teams (there are pages with more extracted data than only the team)
+            cols_to_use = new_df.columns.difference(final_dataset.columns).tolist()
+            cols_to_use.append('Clube')
+
+            # 2. Merge only those specific columns
             final_dataset = pd.merge(
                 left=final_dataset,
-                right=new_df,
+                right=new_df[cols_to_use],  # <--- Only passing unique columns
                 on='Clube',
-                how='left',
-                suffixes=('_x', f'_{i + 1}')
+                how='left'
             )
             logging.info(f"Merged DataFrame {i + 1} on 'Clube'. Current shape: {final_dataset.shape}")
 

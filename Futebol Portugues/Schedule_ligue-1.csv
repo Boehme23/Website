@@ -1,0 +1,145 @@
+Round,Home,Result,Away
+1,Rennes,1:0,Marselha
+1,Lens,0:1,Olympique Lyon
+1,Monaco,3:1,Le Havre AC
+1,OGC Nice,0:1,Toulouse
+1,Stade Brestois,3:3,LOSC Lille
+1,AJ Auxerre,1:0,FC Lorient
+1,Angers SCO,1:0,Paris FC
+1,FC Metz,0:1,Estrasburgo
+1,FC Nantes,0:1,PSG
+2,PSG,1:0,Angers SCO
+2,Marselha,5:2,Paris FC
+2,OGC Nice,3:1,AJ Auxerre
+2,Olympique Lyon,3:0,FC Metz
+2,FC Lorient,4:0,Rennes
+2,Le Havre AC,1:2,Lens
+2,Toulouse,2:0,Stade Brestois
+2,Estrasburgo,1:0,FC Nantes
+2,LOSC Lille,1:0,Monaco
+3,Lens,3:1,Stade Brestois
+3,FC Lorient,1:7,LOSC Lille
+3,FC Nantes,1:0,AJ Auxerre
+3,Toulouse,3:6,PSG
+3,Angers SCO,1:1,Rennes
+3,Monaco,3:2,Estrasburgo
+3,Paris FC,3:2,FC Metz
+3,Le Havre AC,3:1,OGC Nice
+3,Olympique Lyon,1:0,Marselha
+4,Marselha,4:0,FC Lorient
+4,OGC Nice,1:0,FC Nantes
+4,AJ Auxerre,1:2,Monaco
+4,LOSC Lille,2:1,Toulouse
+4,PSG,2:0,Lens
+4,FC Metz,1:1,Angers SCO
+4,Stade Brestois,1:2,Paris FC
+4,Estrasburgo,1:0,Le Havre AC
+4,Rennes,3:1,Olympique Lyon
+5,Olympique Lyon,1:0,Angers SCO
+5,FC Nantes,2:2,Rennes
+5,Stade Brestois,4:1,OGC Nice
+5,Lens,3:0,LOSC Lille
+5,Paris FC,2:3,Estrasburgo
+5,AJ Auxerre,1:0,Toulouse
+5,Le Havre AC,1:1,FC Lorient
+5,Monaco,5:2,FC Metz
+5,Marselha,1:0,PSG
+6,Estrasburgo,1:2,Marselha
+6,FC Lorient,3:1,Monaco
+6,Toulouse,2:2,FC Nantes
+6,PSG,2:0,AJ Auxerre
+6,OGC Nice,1:1,Paris FC
+6,Angers SCO,0:2,Stade Brestois
+6,FC Metz,0:0,Le Havre AC
+6,LOSC Lille,0:1,Olympique Lyon
+6,Rennes,0:0,Lens
+7,Paris FC,2:0,FC Lorient
+7,FC Metz,0:3,Marselha
+7,Stade Brestois,0:0,FC Nantes
+7,AJ Auxerre,1:2,Lens
+7,Olympique Lyon,1:2,Toulouse
+7,Monaco,2:2,OGC Nice
+7,Le Havre AC,2:2,Rennes
+7,Estrasburgo,5:0,Angers SCO
+7,LOSC Lille,1:1,PSG
+8,PSG,3:3,Estrasburgo
+8,OGC Nice,3:2,Olympique Lyon
+8,Angers SCO,1:1,Monaco
+8,Marselha,6:2,Le Havre AC
+8,Lens,2:1,Paris FC
+8,Toulouse,4:0,FC Metz
+8,FC Lorient,3:3,Stade Brestois
+8,Rennes,2:2,AJ Auxerre
+8,FC Nantes,0:2,LOSC Lille
+9,Paris FC,1:2,FC Nantes
+9,Stade Brestois,0:3,PSG
+9,Monaco,1:0,Toulouse
+9,Lens,2:1,Marselha
+9,LOSC Lille,6:1,FC Metz
+9,Angers SCO,2:0,FC Lorient
+9,Rennes,1:2,OGC Nice
+9,AJ Auxerre,0:1,Le Havre AC
+9,Olympique Lyon,2:1,Estrasburgo
+10,FC Lorient,1:1,PSG
+10,Le Havre AC,1:0,Stade Brestois
+10,FC Metz,2:0,Lens
+10,OGC Nice,2:0,LOSC Lille
+10,Marselha,2:2,Angers SCO
+10,FC Nantes,3:5,Monaco
+10,Estrasburgo,3:0,AJ Auxerre
+10,Paris FC,3:3,Olympique Lyon
+10,Toulouse,2:2,Rennes
+11,PSG,1:0,OGC Nice
+11,Monaco,0:1,Paris FC
+11,AJ Auxerre,0:1,Marselha
+11,Rennes,4:1,Estrasburgo
+11,Toulouse,0:0,Le Havre AC
+11,LOSC Lille,1:0,Angers SCO
+11,Lens,3:0,FC Lorient
+11,FC Nantes,0:2,FC Metz
+11,Stade Brestois,0:0,Olympique Lyon
+12,Paris FC,0:1,Rennes
+12,Marselha,3:0,Stade Brestois
+12,Le Havre AC,1:1,FC Nantes
+12,Monaco,1:4,Lens
+12,FC Lorient,1:1,Toulouse
+12,FC Metz,2:1,OGC Nice
+12,Angers SCO,2:0,AJ Auxerre
+12,Estrasburgo,2:0,LOSC Lille
+12,Olympique Lyon,2:3,PSG
+13,OGC Nice,1:5,Marselha
+13,Lens,1:0,Estrasburgo
+13,Rennes,4:1,Monaco
+13,PSG,3:0,Le Havre AC
+13,AJ Auxerre,0:0,Olympique Lyon
+13,FC Nantes,1:1,FC Lorient
+13,Toulouse,0:1,Angers SCO
+13,Stade Brestois,3:2,FC Metz
+13,LOSC Lille,4:2,Paris FC
+14,FC Metz,0:1,Rennes
+14,Monaco,1:0,PSG
+14,Paris FC,1:1,AJ Auxerre
+14,Marselha,2:2,Toulouse
+14,Estrasburgo,1:2,Stade Brestois
+14,Angers SCO,1:2,Lens
+14,Le Havre AC,0:1,LOSC Lille
+14,FC Lorient,3:1,OGC Nice
+14,Olympique Lyon,3:0,FC Nantes
+15,Stade Brestois,1:0,Monaco
+15,LOSC Lille,1:0,Marselha
+15,FC Nantes,1:2,Lens
+15,Toulouse,1:0,Estrasburgo
+15,PSG,5:0,Rennes
+15,OGC Nice,0:1,Angers SCO
+15,Le Havre AC,0:0,Paris FC
+15,AJ Auxerre,3:1,FC Metz
+15,FC Lorient,1:0,Olympique Lyon
+16,Angers SCO,4:1,FC Nantes
+16,Rennes,3:1,Stade Brestois
+16,FC Metz,2:3,PSG
+16,Paris FC,0:3,Toulouse
+16,Olympique Lyon,1:0,Le Havre AC
+16,AJ Auxerre,3:4,LOSC Lille
+16,Estrasburgo,0:0,FC Lorient
+16,Lens,2:0,OGC Nice
+16,Marselha,1:0,Monaco

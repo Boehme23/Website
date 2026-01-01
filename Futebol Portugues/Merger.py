@@ -1,73 +1,66 @@
 import pandas as pd
 import os
 
-# 1. Configuration
-# The same list you used in your scraper
-ligas = [
+# 1. Configuração com os nomes específicos que mencionaste
+LIGAS = [
     ('ligue-1', 'FR1'),
     ('liga-nos', 'PO1'),
     ('eredivisie', 'NL1'),
     ('premier-league', 'GB1'),
-    ('laliga', 'ES1'),
+    ('laliga', 'ES1'),  # Aqui usamos laliga/ES1 conforme o teu padrão
     ('bundesliga', 'L1')
 ]
 
-name= ''
-# Define how your individual files are named.
-# {name} will be replaced by 'ligue-1', 'liga-nos', etc.
-# If your files are just named 'ligue-1.csv', change this to: f"{name}.csv"
-FILENAME_PATTERN = "Futebol_{name}.csv"
 
-OUTPUT_FILE = "All_Leagues_Combined.csv"
-
-
-def merge_csv_files():
+def merge_csv_files(pattern_template, output_name):
     all_dataframes = []
+    print(f"\n--- Processando: {output_name} ---")
 
-    print(f"--- Starting Merge Process ---")
+    for league_name, league_code in LIGAS:
+        # Tenta encontrar o ficheiro usando o código (ES1) ou o nome (laliga / la-liga)
+        # O script vai testar as variações que descreveste
+        possible_files = [
+            pattern_template.format(liga=league_code),
+            pattern_template.format(liga=league_name),
+            pattern_template.format(liga='la-liga')  # Caso específico que mencionaste
+        ]
 
-    for league_name, league_code in ligas:
-        # Construct the expected filename
-        file_path = FILENAME_PATTERN.format(name=league_code)
+        file_path = None
+        for f in possible_files:
+            if os.path.exists(f):
+                file_path = f
+                break
 
-        # Check if file exists to avoid crashing
-        if os.path.exists(file_path):
+        if file_path:
             try:
-                # 1. Read the CSV
                 df = pd.read_csv(file_path)
-
-                # 2. Add the Identifier Column
-                # You can use the name ('ligue-1') or the code ('FR1')
                 df['League'] = league_code
 
-                # Optional: Add a specific Round column if you want to hardcode it
-                # df['Round'] = 15
+                # Reorganizar colunas
+                cols = ['League'] + [c for c in df.columns if c != 'League']
+                df = df[cols]
 
-                # 3. Add to our list
                 all_dataframes.append(df)
-                print(f"[OK] Loaded {file_path} ({len(df)} rows)")
-
+                print(f"[OK] Carregado: {file_path}")
             except Exception as e:
-                print(f"[ERROR] Could not read {file_path}: {e}")
+                print(f"[ERRO] Falha ao ler {file_path}: {e}")
         else:
-            print(f"[WARNING] File not found: {file_path}")
+            print(f"[AVISO] Ficheiro não encontrado para {league_code} (Tentei: {possible_files})")
 
-    # 4. Concatenate (Append) all dataframes
     if all_dataframes:
         final_df = pd.concat(all_dataframes, ignore_index=True)
-
-        # Reorder columns to put League first (Optional)
-        cols = ['League'] + [c for c in final_df.columns if c != 'League']
-        final_df = final_df[cols]
-
-        # 5. Save Final File
-        final_df.to_csv(OUTPUT_FILE, index=False)
-        print(f"\nSUCCESS! Merged {len(all_dataframes)} files into '{OUTPUT_FILE}'.")
-        print(f"Total Rows: {len(final_df)}")
-        print(final_df.head())
+        final_df.to_csv(output_name, index=False, encoding='utf-8-sig')
+        print(f"SUCESSO! Criado '{output_name}' com {len(final_df)} linhas.")
     else:
-        print("\nNo files were loaded. Nothing to merge.")
+        print(f"Nenhum ficheiro encontrado para {output_name}.")
 
 
 if __name__ == "__main__":
-    merge_csv_files()
+    # 1. Para os ficheiros "Futebol_ES1.csv", etc.
+    merge_csv_files("Futebol_{liga}.csv", "All_Leagues_Combined.csv")
+
+    # 2. Para os ficheiros "Schedule_laliga.csv", etc.
+    merge_csv_files("Schedule_{liga}.csv", "All_Schedule_Combined.csv")
+
+    # 3. Para os ficheiros "Proximos jogos da la-liga.csv", etc.
+    merge_csv_files("Proximos jogos da {liga}.csv", "All_Proximos_Jogos.csv")
