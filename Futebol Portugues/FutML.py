@@ -13,9 +13,9 @@ import sys
 # 1. CONFIGURATION
 # ==========================================
 FILES = {
-    'stats': 'Futebol Portugues.csv',
-    'history': 'Futebol Portugues Jogos.csv',
-    'upcoming': 'Futebol Portugues Proximos Jogos.csv'
+    'stats': 'All_Leagues_Combined.csv',
+    'history': 'All_Schedule_Combined.csv',
+    'upcoming': 'All_Proximos_Jogos.csv'
 }
 
 COLS = {

@@ -220,12 +220,12 @@ if __name__ == '__main__':
     driver = webdriver.Chrome(options=chrome_options)
     try:
         ligas=[
-            'FR1',
-            'NL1',
+            #'FR1',
+           # 'NL1',
             'GB1',
-            'ES1',
-            'PO1',
-            'L1'
+           # 'ES1',
+          #  'PO1',
+         #   'L1'
         ]
 
         for liga in ligas:

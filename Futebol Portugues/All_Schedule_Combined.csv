@@ -1,908 +1,913 @@
 ﻿League,Round,Home,Result,Away
-FR1,1,Rennes,1:0,Marselha
-FR1,1,Lens,0:1,Olympique Lyon
-FR1,1,Monaco,3:1,Le Havre AC
-FR1,1,OGC Nice,0:1,Toulouse
-FR1,1,Stade Brestois,3:3,LOSC Lille
+FR1,1,FC Nantes,1:0,Olympique Marselha
+FR1,1,RC Lens,0:1,Olympique Lyon
+FR1,1,AS Monaco,3:1,Le Havre AC
+FR1,1,OGC Nice,0:1,FC Toulouse
+FR1,1,Stade Brestois 29,3:3,LOSC Lille
 FR1,1,AJ Auxerre,1:0,FC Lorient
 FR1,1,Angers SCO,1:0,Paris FC
-FR1,1,FC Metz,0:1,Estrasburgo
-FR1,1,FC Nantes,0:1,PSG
-FR1,2,PSG,1:0,Angers SCO
-FR1,2,Marselha,5:2,Paris FC
+FR1,1,FC Metz,0:1,RC Estrasburgo
+FR1,1,FC Nantes,0:1,Sporting CP
+FR1,2,Sporting CP,1:0,Angers SCO
+FR1,2,Olympique Marselha,5:2,Paris FC
 FR1,2,OGC Nice,3:1,AJ Auxerre
 FR1,2,Olympique Lyon,3:0,FC Metz
-FR1,2,FC Lorient,4:0,Rennes
-FR1,2,Le Havre AC,1:2,Lens
-FR1,2,Toulouse,2:0,Stade Brestois
-FR1,2,Estrasburgo,1:0,FC Nantes
-FR1,2,LOSC Lille,1:0,Monaco
-FR1,3,Lens,3:1,Stade Brestois
+FR1,2,FC Lorient,4:0,FC Nantes
+FR1,2,Le Havre AC,1:2,RC Lens
+FR1,2,FC Toulouse,2:0,Stade Brestois 29
+FR1,2,RC Estrasburgo,1:0,FC Nantes
+FR1,2,LOSC Lille,1:0,AS Monaco
+FR1,3,RC Lens,3:1,Stade Brestois 29
 FR1,3,FC Lorient,1:7,LOSC Lille
 FR1,3,FC Nantes,1:0,AJ Auxerre
-FR1,3,Toulouse,3:6,PSG
-FR1,3,Angers SCO,1:1,Rennes
-FR1,3,Monaco,3:2,Estrasburgo
+FR1,3,FC Toulouse,3:6,Sporting CP
+FR1,3,Angers SCO,1:1,FC Nantes
+FR1,3,AS Monaco,3:2,RC Estrasburgo
 FR1,3,Paris FC,3:2,FC Metz
 FR1,3,Le Havre AC,3:1,OGC Nice
-FR1,3,Olympique Lyon,1:0,Marselha
-FR1,4,Marselha,4:0,FC Lorient
+FR1,3,Olympique Lyon,1:0,Olympique Marselha
+FR1,4,Olympique Marselha,4:0,FC Lorient
 FR1,4,OGC Nice,1:0,FC Nantes
-FR1,4,AJ Auxerre,1:2,Monaco
-FR1,4,LOSC Lille,2:1,Toulouse
-FR1,4,PSG,2:0,Lens
+FR1,4,AJ Auxerre,1:2,AS Monaco
+FR1,4,LOSC Lille,2:1,FC Toulouse
+FR1,4,Sporting CP,2:0,RC Lens
 FR1,4,FC Metz,1:1,Angers SCO
-FR1,4,Stade Brestois,1:2,Paris FC
-FR1,4,Estrasburgo,1:0,Le Havre AC
-FR1,4,Rennes,3:1,Olympique Lyon
+FR1,4,Stade Brestois 29,1:2,Paris FC
+FR1,4,RC Estrasburgo,1:0,Le Havre AC
+FR1,4,FC Nantes,3:1,Olympique Lyon
 FR1,5,Olympique Lyon,1:0,Angers SCO
-FR1,5,FC Nantes,2:2,Rennes
-FR1,5,Stade Brestois,4:1,OGC Nice
-FR1,5,Lens,3:0,LOSC Lille
-FR1,5,Paris FC,2:3,Estrasburgo
-FR1,5,AJ Auxerre,1:0,Toulouse
+FR1,5,FC Nantes,2:2,FC Nantes
+FR1,5,Stade Brestois 29,4:1,OGC Nice
+FR1,5,RC Lens,3:0,LOSC Lille
+FR1,5,Paris FC,2:3,RC Estrasburgo
+FR1,5,AJ Auxerre,1:0,FC Toulouse
 FR1,5,Le Havre AC,1:1,FC Lorient
-FR1,5,Monaco,5:2,FC Metz
-FR1,5,Marselha,1:0,PSG
-FR1,6,Estrasburgo,1:2,Marselha
-FR1,6,FC Lorient,3:1,Monaco
-FR1,6,Toulouse,2:2,FC Nantes
-FR1,6,PSG,2:0,AJ Auxerre
+FR1,5,AS Monaco,5:2,FC Metz
+FR1,5,Olympique Marselha,1:0,Sporting CP
+FR1,6,RC Estrasburgo,1:2,Olympique Marselha
+FR1,6,FC Lorient,3:1,AS Monaco
+FR1,6,FC Toulouse,2:2,FC Nantes
+FR1,6,Sporting CP,2:0,AJ Auxerre
 FR1,6,OGC Nice,1:1,Paris FC
-FR1,6,Angers SCO,0:2,Stade Brestois
+FR1,6,Angers SCO,0:2,Stade Brestois 29
 FR1,6,FC Metz,0:0,Le Havre AC
 FR1,6,LOSC Lille,0:1,Olympique Lyon
-FR1,6,Rennes,0:0,Lens
+FR1,6,FC Nantes,0:0,RC Lens
 FR1,7,Paris FC,2:0,FC Lorient
-FR1,7,FC Metz,0:3,Marselha
-FR1,7,Stade Brestois,0:0,FC Nantes
-FR1,7,AJ Auxerre,1:2,Lens
-FR1,7,Olympique Lyon,1:2,Toulouse
-FR1,7,Monaco,2:2,OGC Nice
-FR1,7,Le Havre AC,2:2,Rennes
-FR1,7,Estrasburgo,5:0,Angers SCO
-FR1,7,LOSC Lille,1:1,PSG
-FR1,8,PSG,3:3,Estrasburgo
+FR1,7,FC Metz,0:3,Olympique Marselha
+FR1,7,Stade Brestois 29,0:0,FC Nantes
+FR1,7,AJ Auxerre,1:2,RC Lens
+FR1,7,Olympique Lyon,1:2,FC Toulouse
+FR1,7,AS Monaco,2:2,OGC Nice
+FR1,7,Le Havre AC,2:2,FC Nantes
+FR1,7,RC Estrasburgo,5:0,Angers SCO
+FR1,7,LOSC Lille,1:1,Sporting CP
+FR1,8,Sporting CP,3:3,RC Estrasburgo
 FR1,8,OGC Nice,3:2,Olympique Lyon
-FR1,8,Angers SCO,1:1,Monaco
-FR1,8,Marselha,6:2,Le Havre AC
-FR1,8,Lens,2:1,Paris FC
-FR1,8,Toulouse,4:0,FC Metz
-FR1,8,FC Lorient,3:3,Stade Brestois
-FR1,8,Rennes,2:2,AJ Auxerre
+FR1,8,Angers SCO,1:1,AS Monaco
+FR1,8,Olympique Marselha,6:2,Le Havre AC
+FR1,8,RC Lens,2:1,Paris FC
+FR1,8,FC Toulouse,4:0,FC Metz
+FR1,8,FC Lorient,3:3,Stade Brestois 29
+FR1,8,FC Nantes,2:2,AJ Auxerre
 FR1,8,FC Nantes,0:2,LOSC Lille
 FR1,9,Paris FC,1:2,FC Nantes
-FR1,9,Stade Brestois,0:3,PSG
-FR1,9,Monaco,1:0,Toulouse
-FR1,9,Lens,2:1,Marselha
+FR1,9,Stade Brestois 29,0:3,Sporting CP
+FR1,9,AS Monaco,1:0,FC Toulouse
+FR1,9,RC Lens,2:1,Olympique Marselha
 FR1,9,LOSC Lille,6:1,FC Metz
 FR1,9,Angers SCO,2:0,FC Lorient
-FR1,9,Rennes,1:2,OGC Nice
+FR1,9,FC Nantes,1:2,OGC Nice
 FR1,9,AJ Auxerre,0:1,Le Havre AC
-FR1,9,Olympique Lyon,2:1,Estrasburgo
-FR1,10,FC Lorient,1:1,PSG
-FR1,10,Le Havre AC,1:0,Stade Brestois
-FR1,10,FC Metz,2:0,Lens
+FR1,9,Olympique Lyon,2:1,RC Estrasburgo
+FR1,10,FC Lorient,1:1,Sporting CP
+FR1,10,Le Havre AC,1:0,Stade Brestois 29
+FR1,10,FC Metz,2:0,RC Lens
 FR1,10,OGC Nice,2:0,LOSC Lille
-FR1,10,Marselha,2:2,Angers SCO
-FR1,10,FC Nantes,3:5,Monaco
-FR1,10,Estrasburgo,3:0,AJ Auxerre
+FR1,10,Olympique Marselha,2:2,Angers SCO
+FR1,10,FC Nantes,3:5,AS Monaco
+FR1,10,RC Estrasburgo,3:0,AJ Auxerre
 FR1,10,Paris FC,3:3,Olympique Lyon
-FR1,10,Toulouse,2:2,Rennes
-FR1,11,PSG,1:0,OGC Nice
-FR1,11,Monaco,0:1,Paris FC
-FR1,11,AJ Auxerre,0:1,Marselha
-FR1,11,Rennes,4:1,Estrasburgo
-FR1,11,Toulouse,0:0,Le Havre AC
+FR1,10,FC Toulouse,2:2,FC Nantes
+FR1,11,Sporting CP,1:0,OGC Nice
+FR1,11,AS Monaco,0:1,Paris FC
+FR1,11,AJ Auxerre,0:1,Olympique Marselha
+FR1,11,FC Nantes,4:1,RC Estrasburgo
+FR1,11,FC Toulouse,0:0,Le Havre AC
 FR1,11,LOSC Lille,1:0,Angers SCO
-FR1,11,Lens,3:0,FC Lorient
+FR1,11,RC Lens,3:0,FC Lorient
 FR1,11,FC Nantes,0:2,FC Metz
-FR1,11,Stade Brestois,0:0,Olympique Lyon
-FR1,12,Paris FC,0:1,Rennes
-FR1,12,Marselha,3:0,Stade Brestois
+FR1,11,Stade Brestois 29,0:0,Olympique Lyon
+FR1,12,Paris FC,0:1,FC Nantes
+FR1,12,Olympique Marselha,3:0,Stade Brestois 29
 FR1,12,Le Havre AC,1:1,FC Nantes
-FR1,12,Monaco,1:4,Lens
-FR1,12,FC Lorient,1:1,Toulouse
+FR1,12,AS Monaco,1:4,RC Lens
+FR1,12,FC Lorient,1:1,FC Toulouse
 FR1,12,FC Metz,2:1,OGC Nice
 FR1,12,Angers SCO,2:0,AJ Auxerre
-FR1,12,Estrasburgo,2:0,LOSC Lille
-FR1,12,Olympique Lyon,2:3,PSG
-FR1,13,OGC Nice,1:5,Marselha
-FR1,13,Lens,1:0,Estrasburgo
-FR1,13,Rennes,4:1,Monaco
-FR1,13,PSG,3:0,Le Havre AC
+FR1,12,RC Estrasburgo,2:0,LOSC Lille
+FR1,12,Olympique Lyon,2:3,Sporting CP
+FR1,13,OGC Nice,1:5,Olympique Marselha
+FR1,13,RC Lens,1:0,RC Estrasburgo
+FR1,13,FC Nantes,4:1,AS Monaco
+FR1,13,Sporting CP,3:0,Le Havre AC
 FR1,13,AJ Auxerre,0:0,Olympique Lyon
 FR1,13,FC Nantes,1:1,FC Lorient
-FR1,13,Toulouse,0:1,Angers SCO
-FR1,13,Stade Brestois,3:2,FC Metz
+FR1,13,FC Toulouse,0:1,Angers SCO
+FR1,13,Stade Brestois 29,3:2,FC Metz
 FR1,13,LOSC Lille,4:2,Paris FC
-FR1,14,FC Metz,0:1,Rennes
-FR1,14,Monaco,1:0,PSG
+FR1,14,FC Metz,0:1,FC Nantes
+FR1,14,AS Monaco,1:0,Sporting CP
 FR1,14,Paris FC,1:1,AJ Auxerre
-FR1,14,Marselha,2:2,Toulouse
-FR1,14,Estrasburgo,1:2,Stade Brestois
-FR1,14,Angers SCO,1:2,Lens
+FR1,14,Olympique Marselha,2:2,FC Toulouse
+FR1,14,RC Estrasburgo,1:2,Stade Brestois 29
+FR1,14,Angers SCO,1:2,RC Lens
 FR1,14,Le Havre AC,0:1,LOSC Lille
 FR1,14,FC Lorient,3:1,OGC Nice
 FR1,14,Olympique Lyon,3:0,FC Nantes
-FR1,15,Stade Brestois,1:0,Monaco
-FR1,15,LOSC Lille,1:0,Marselha
-FR1,15,FC Nantes,1:2,Lens
-FR1,15,Toulouse,1:0,Estrasburgo
-FR1,15,PSG,5:0,Rennes
+FR1,15,Stade Brestois 29,1:0,AS Monaco
+FR1,15,LOSC Lille,1:0,Olympique Marselha
+FR1,15,FC Nantes,1:2,RC Lens
+FR1,15,FC Toulouse,1:0,RC Estrasburgo
+FR1,15,Sporting CP,5:0,FC Nantes
 FR1,15,OGC Nice,0:1,Angers SCO
 FR1,15,Le Havre AC,0:0,Paris FC
 FR1,15,AJ Auxerre,3:1,FC Metz
 FR1,15,FC Lorient,1:0,Olympique Lyon
 FR1,16,Angers SCO,4:1,FC Nantes
-FR1,16,Rennes,3:1,Stade Brestois
-FR1,16,FC Metz,2:3,PSG
-FR1,16,Paris FC,0:3,Toulouse
+FR1,16,FC Nantes,3:1,Stade Brestois 29
+FR1,16,FC Metz,2:3,Sporting CP
+FR1,16,Paris FC,0:3,FC Toulouse
 FR1,16,Olympique Lyon,1:0,Le Havre AC
 FR1,16,AJ Auxerre,3:4,LOSC Lille
-FR1,16,Estrasburgo,0:0,FC Lorient
-FR1,16,Lens,2:0,OGC Nice
-FR1,16,Marselha,1:0,Monaco
-PO1,1,Casa Pia,0:2,Sporting
-PO1,1,CD Nacional,0:2,Gil Vicente
-PO1,1,Arouca,3:1,AFS
-PO1,1,Famalicão,3:0,Santa Clara
-PO1,1,Braga,3:0,Tondela
-PO1,1,Moreirense,2:1,Alverca
-PO1,1,Estoril,1:1,E. Amadora
+FR1,16,RC Estrasburgo,0:0,FC Lorient
+FR1,16,RC Lens,2:0,OGC Nice
+FR1,16,Olympique Marselha,1:0,AS Monaco
+PO1,1,Casa Pia AC,0:2,Sporting CP
+PO1,1,CD Nacional,0:2,Gil Vicente FC
+PO1,1,FC Arouca,3:1,Paris FC
+PO1,1,FC Famalicão,3:0,CD Santa Clara
+PO1,1,SC Braga,3:0,CD Tondela
+PO1,1,Moreirense FC,2:1,FC Alverca
+PO1,1,GD Estoril Praia,1:1,CF Estrela Amadora
 PO1,1,FC Porto,3:0,Vitória SC
-PO1,1,Benfica,1:1,Rio Ave
-PO1,2,AFS,0:2,Casa Pia
-PO1,2,Tondela,0:1,Famalicão
-PO1,2,Vitória SC,3:2,Estoril
-PO1,2,E. Amadora,0:1,Benfica
-PO1,2,Rio Ave,1:1,CD Nacional
-PO1,2,Alverca,0:3,Braga
-PO1,2,Santa Clara,0:1,Moreirense
-PO1,2,Sporting,6:0,Arouca
-PO1,2,Gil Vicente,0:2,FC Porto
-PO1,3,Moreirense,2:0,Vitória SC
-PO1,3,CD Nacional,1:4,Sporting
-PO1,3,Arouca,3:3,Rio Ave
-PO1,3,Benfica,3:0,Tondela
-PO1,3,Famalicão,0:0,Gil Vicente
-PO1,3,FC Porto,4:0,Casa Pia
-PO1,3,Braga,2:2,AFS
-PO1,3,E. Amadora,2:2,Alverca
-PO1,3,Estoril,0:1,Santa Clara
-PO1,4,Gil Vicente,2:0,Moreirense
-PO1,4,Casa Pia,0:2,CD Nacional
-PO1,4,AFS,0:1,Famalicão
-PO1,4,Vitória SC,1:1,Arouca
-PO1,4,Sporting,1:2,FC Porto
-PO1,4,Tondela,2:2,Estoril
-PO1,4,Alverca,1:2,Benfica
-PO1,4,Santa Clara,0:0,E. Amadora
-PO1,4,Rio Ave,2:2,Braga
-PO1,5,Alverca,1:0,Tondela
-PO1,5,Benfica,1:1,Santa Clara
-PO1,5,Moreirense,3:1,Rio Ave
-PO1,5,Estoril,3:1,AFS
+PO1,1,SL Benfica,1:1,Rio Ave FC
+PO1,2,Paris FC,0:2,Casa Pia AC
+PO1,2,CD Tondela,0:1,FC Famalicão
+PO1,2,Vitória SC,3:2,GD Estoril Praia
+PO1,2,CF Estrela Amadora,0:1,SL Benfica
+PO1,2,Rio Ave FC,1:1,CD Nacional
+PO1,2,FC Alverca,0:3,SC Braga
+PO1,2,CD Santa Clara,0:1,Moreirense FC
+PO1,2,Sporting CP,6:0,FC Arouca
+PO1,2,Gil Vicente FC,0:2,FC Porto
+PO1,3,Moreirense FC,2:0,Vitória SC
+PO1,3,CD Nacional,1:4,Sporting CP
+PO1,3,FC Arouca,3:3,Rio Ave FC
+PO1,3,SL Benfica,3:0,CD Tondela
+PO1,3,FC Famalicão,0:0,Gil Vicente FC
+PO1,3,FC Porto,4:0,Casa Pia AC
+PO1,3,SC Braga,2:2,Paris FC
+PO1,3,CF Estrela Amadora,2:2,FC Alverca
+PO1,3,GD Estoril Praia,0:1,CD Santa Clara
+PO1,4,Gil Vicente FC,2:0,Moreirense FC
+PO1,4,Casa Pia AC,0:2,CD Nacional
+PO1,4,Paris FC,0:1,FC Famalicão
+PO1,4,Vitória SC,1:1,FC Arouca
+PO1,4,Sporting CP,1:2,FC Porto
+PO1,4,CD Tondela,2:2,GD Estoril Praia
+PO1,4,FC Alverca,1:2,SL Benfica
+PO1,4,CD Santa Clara,0:0,CF Estrela Amadora
+PO1,4,Rio Ave FC,2:2,SC Braga
+PO1,5,FC Alverca,1:0,CD Tondela
+PO1,5,SL Benfica,1:1,CD Santa Clara
+PO1,5,Moreirense FC,3:1,Rio Ave FC
+PO1,5,GD Estoril Praia,3:1,Paris FC
 PO1,5,FC Porto,1:0,CD Nacional
-PO1,5,Famalicão,1:2,Sporting
-PO1,5,E. Amadora,0:2,Vitória SC
-PO1,5,Arouca,0:2,Casa Pia
-PO1,5,Braga,0:1,Gil Vicente
-PO1,6,Rio Ave,0:3,FC Porto
-PO1,6,Santa Clara,2:1,Alverca
-PO1,6,CD Nacional,1:2,Arouca
-PO1,6,AFS,0:3,Benfica
-PO1,6,Vitória SC,1:1,Braga
-PO1,6,Tondela,0:0,E. Amadora
-PO1,6,Gil Vicente,2:0,Estoril
-PO1,6,Casa Pia,1:1,Famalicão
-PO1,6,Sporting,3:0,Moreirense
-PO1,7,Benfica,2:1,Gil Vicente
-PO1,7,Santa Clara,1:2,Tondela
-PO1,7,Moreirense,2:1,Casa Pia
-PO1,7,E. Amadora,3:0,AFS
-PO1,7,Estoril,0:1,Sporting
-PO1,7,Alverca,2:0,Vitória SC
-PO1,7,Braga,0:1,CD Nacional
-PO1,7,Famalicão,0:0,Rio Ave
-PO1,7,Arouca,0:4,FC Porto
-PO1,8,Casa Pia,2:2,Estoril
-PO1,8,Gil Vicente,2:0,E. Amadora
-PO1,8,CD Nacional,3:2,Moreirense
-PO1,8,AFS,1:3,Alverca
-PO1,8,Vitória SC,2:1,Santa Clara
-PO1,8,Arouca,1:1,Famalicão
-PO1,8,Rio Ave,3:0,Tondela
-PO1,8,Sporting,1:1,Braga
-PO1,8,FC Porto,0:0,Benfica
-PO1,9,Alverca,0:4,Gil Vicente
-PO1,9,Santa Clara,2:0,AFS
-PO1,9,E. Amadora,1:2,Rio Ave
-PO1,9,Benfica,5:0,Arouca
-PO1,9,Estoril,1:1,CD Nacional
-PO1,9,Famalicão,2:0,Vitória SC
-PO1,9,Tondela,0:3,Sporting
-PO1,9,Braga,4:0,Casa Pia
-PO1,9,Moreirense,1:2,FC Porto
-PO1,10,Sporting,2:0,Alverca
-PO1,10,CD Nacional,0:1,Famalicão
-PO1,10,Casa Pia,3:5,E. Amadora
-PO1,10,Rio Ave,0:4,Estoril
-PO1,10,Vitória SC,0:3,Benfica
-PO1,10,AFS,2:2,Tondela
-PO1,10,Arouca,0:2,Moreirense
-PO1,10,FC Porto,2:1,Braga
-PO1,10,Gil Vicente,1:0,Santa Clara
-PO1,11,Estoril,4:3,Arouca
-PO1,11,Alverca,1:1,Rio Ave
-PO1,11,Tondela,0:1,Vitória SC
-PO1,11,Santa Clara,1:2,Sporting
-PO1,11,AFS,1:1,Gil Vicente
-PO1,11,E. Amadora,1:1,CD Nacional
-PO1,11,Famalicão,0:1,FC Porto
-PO1,11,Braga,2:1,Moreirense
-PO1,11,Benfica,2:2,Casa Pia
-PO1,12,Vitória SC,4:0,AFS
-PO1,12,Casa Pia,0:2,Alverca
-PO1,12,Moreirense,2:2,Famalicão
-PO1,12,CD Nacional,1:2,Benfica
-PO1,12,Gil Vicente,0:1,Tondela
-PO1,12,Rio Ave,1:1,Santa Clara
-PO1,12,Sporting,4:0,E. Amadora
-PO1,12,FC Porto,1:0,Estoril
-PO1,12,Arouca,0:4,Braga
-PO1,13,Benfica,1:1,Sporting
-PO1,13,Santa Clara,1:0,Casa Pia
-PO1,13,AFS,1:2,Rio Ave
-PO1,13,Famalicão,1:2,Braga
-PO1,13,Estoril,3:3,Moreirense
-PO1,13,Alverca,1:0,CD Nacional
-PO1,13,E. Amadora,3:1,Arouca
-PO1,13,Tondela,0:2,FC Porto
-PO1,13,Vitória SC,0:0,Gil Vicente
-PO1,14,Casa Pia,1:1,Gil Vicente
-PO1,14,Rio Ave,0:1,Vitória SC
-PO1,14,Sporting,6:0,AFS
-PO1,14,Famalicão,4:0,Estoril
-PO1,14,Moreirense,0:4,Benfica
-PO1,14,Arouca,1:0,Alverca
-PO1,14,CD Nacional,3:1,Tondela
-PO1,14,Braga,1:0,Santa Clara
-PO1,14,FC Porto,3:1,E. Amadora
-PO1,15,Estoril,1:0,Braga
-PO1,15,Gil Vicente,2:2,Rio Ave
-PO1,15,E. Amadora,0:0,Moreirense
-PO1,15,AFS,2:2,CD Nacional
-PO1,15,Tondela,1:2,Casa Pia
-PO1,15,Santa Clara,0:0,Arouca
-PO1,15,Alverca,0:3,FC Porto
-PO1,15,Benfica,1:0,Famalicão
-PO1,15,Vitória SC,1:4,Sporting
+PO1,5,FC Famalicão,1:2,Sporting CP
+PO1,5,CF Estrela Amadora,0:2,Vitória SC
+PO1,5,FC Arouca,0:2,Casa Pia AC
+PO1,5,SC Braga,0:1,Gil Vicente FC
+PO1,6,Rio Ave FC,0:3,FC Porto
+PO1,6,CD Santa Clara,2:1,FC Alverca
+PO1,6,CD Nacional,1:2,FC Arouca
+PO1,6,Paris FC,0:3,SL Benfica
+PO1,6,Vitória SC,1:1,SC Braga
+PO1,6,CD Tondela,0:0,CF Estrela Amadora
+PO1,6,Gil Vicente FC,2:0,GD Estoril Praia
+PO1,6,Casa Pia AC,1:1,FC Famalicão
+PO1,6,Sporting CP,3:0,Moreirense FC
+PO1,7,SL Benfica,2:1,Gil Vicente FC
+PO1,7,CD Santa Clara,1:2,CD Tondela
+PO1,7,Moreirense FC,2:1,Casa Pia AC
+PO1,7,CF Estrela Amadora,3:0,Paris FC
+PO1,7,GD Estoril Praia,0:1,Sporting CP
+PO1,7,FC Alverca,2:0,Vitória SC
+PO1,7,SC Braga,0:1,CD Nacional
+PO1,7,FC Famalicão,0:0,Rio Ave FC
+PO1,7,FC Arouca,0:4,FC Porto
+PO1,8,Casa Pia AC,2:2,GD Estoril Praia
+PO1,8,Gil Vicente FC,2:0,CF Estrela Amadora
+PO1,8,CD Nacional,3:2,Moreirense FC
+PO1,8,Paris FC,1:3,FC Alverca
+PO1,8,Vitória SC,2:1,CD Santa Clara
+PO1,8,FC Arouca,1:1,FC Famalicão
+PO1,8,Rio Ave FC,3:0,CD Tondela
+PO1,8,Sporting CP,1:1,SC Braga
+PO1,8,FC Porto,0:0,SL Benfica
+PO1,9,FC Alverca,0:4,Gil Vicente FC
+PO1,9,CD Santa Clara,2:0,Paris FC
+PO1,9,CF Estrela Amadora,1:2,Rio Ave FC
+PO1,9,SL Benfica,5:0,FC Arouca
+PO1,9,GD Estoril Praia,1:1,CD Nacional
+PO1,9,FC Famalicão,2:0,Vitória SC
+PO1,9,CD Tondela,0:3,Sporting CP
+PO1,9,SC Braga,4:0,Casa Pia AC
+PO1,9,Moreirense FC,1:2,FC Porto
+PO1,10,Sporting CP,2:0,FC Alverca
+PO1,10,CD Nacional,0:1,FC Famalicão
+PO1,10,Casa Pia AC,3:5,CF Estrela Amadora
+PO1,10,Rio Ave FC,0:4,GD Estoril Praia
+PO1,10,Vitória SC,0:3,SL Benfica
+PO1,10,Paris FC,2:2,CD Tondela
+PO1,10,FC Arouca,0:2,Moreirense FC
+PO1,10,FC Porto,2:1,SC Braga
+PO1,10,Gil Vicente FC,1:0,CD Santa Clara
+PO1,11,GD Estoril Praia,4:3,FC Arouca
+PO1,11,FC Alverca,1:1,Rio Ave FC
+PO1,11,CD Tondela,0:1,Vitória SC
+PO1,11,CD Santa Clara,1:2,Sporting CP
+PO1,11,Paris FC,1:1,Gil Vicente FC
+PO1,11,CF Estrela Amadora,1:1,CD Nacional
+PO1,11,FC Famalicão,0:1,FC Porto
+PO1,11,SC Braga,2:1,Moreirense FC
+PO1,11,SL Benfica,2:2,Casa Pia AC
+PO1,12,Vitória SC,4:0,Paris FC
+PO1,12,Casa Pia AC,0:2,FC Alverca
+PO1,12,Moreirense FC,2:2,FC Famalicão
+PO1,12,CD Nacional,1:2,SL Benfica
+PO1,12,Gil Vicente FC,0:1,CD Tondela
+PO1,12,Rio Ave FC,1:1,CD Santa Clara
+PO1,12,Sporting CP,4:0,CF Estrela Amadora
+PO1,12,FC Porto,1:0,GD Estoril Praia
+PO1,12,FC Arouca,0:4,SC Braga
+PO1,13,SL Benfica,1:1,Sporting CP
+PO1,13,CD Santa Clara,1:0,Casa Pia AC
+PO1,13,Paris FC,1:2,Rio Ave FC
+PO1,13,FC Famalicão,1:2,SC Braga
+PO1,13,GD Estoril Praia,3:3,Moreirense FC
+PO1,13,FC Alverca,1:0,CD Nacional
+PO1,13,CF Estrela Amadora,3:1,FC Arouca
+PO1,13,CD Tondela,0:2,FC Porto
+PO1,13,Vitória SC,0:0,Gil Vicente FC
+PO1,14,Casa Pia AC,1:1,Gil Vicente FC
+PO1,14,Rio Ave FC,0:1,Vitória SC
+PO1,14,Sporting CP,6:0,Paris FC
+PO1,14,FC Famalicão,4:0,GD Estoril Praia
+PO1,14,Moreirense FC,0:4,SL Benfica
+PO1,14,FC Arouca,1:0,FC Alverca
+PO1,14,CD Nacional,3:1,CD Tondela
+PO1,14,SC Braga,1:0,CD Santa Clara
+PO1,14,FC Porto,3:1,CF Estrela Amadora
+PO1,15,GD Estoril Praia,1:0,SC Braga
+PO1,15,Gil Vicente FC,2:2,Rio Ave FC
+PO1,15,CF Estrela Amadora,0:0,Moreirense FC
+PO1,15,Paris FC,2:2,CD Nacional
+PO1,15,CD Tondela,1:2,Casa Pia AC
+PO1,15,CD Santa Clara,0:0,FC Arouca
+PO1,15,FC Alverca,0:3,FC Porto
+PO1,15,SL Benfica,1:0,FC Famalicão
+PO1,15,Vitória SC,1:4,Sporting CP
+PO1,16,FC Famalicão,2:3,CF Estrela Amadora
+PO1,16,GD Estoril Praia,4:1,FC Alverca
+PO1,16,Casa Pia AC,0:0,Vitória SC
+PO1,16,FC Arouca,2:2,Gil Vicente FC
+PO1,16,SC Braga,2:2,SL Benfica
 NL1,1,Fortuna Sittard,2:2,Go Ahead Eagles
-NL1,1,NEC Nijmegen,5:0,Excelsior
+NL1,1,NEC Nijmegen,5:0,Excelsior de Roterdão
 NL1,1,Feyenoord,2:0,NAC Breda
-NL1,1,Heerenveen,1:1,FC Volendam
-NL1,1,PSV,6:1,Sparta R.
+NL1,1,SC Heerenveen,1:1,FC Volendam
+NL1,1,PSV Eindhoven,6:1,Sparta Rotterdam
 NL1,1,PEC Zwolle,1:0,FC Twente
-NL1,1,Ajax,2:0,Telstar
-NL1,1,AZ Alkmaar,4:1,Groningen
+NL1,1,AFC Ajax,2:0,SC Telstar
+NL1,1,AZ Alkmaar,4:1,FC Groningen
 NL1,1,FC Utrecht,4:0,Heracles Almelo
-NL1,2,Telstar,0:2,PEC Zwolle
-NL1,2,Excelsior,1:2,Feyenoord
+NL1,2,SC Telstar,0:2,PEC Zwolle
+NL1,2,Excelsior de Roterdão,1:2,Feyenoord
 NL1,2,Heracles Almelo,1:4,NEC Nijmegen
-NL1,2,Groningen,2:1,Heerenveen
-NL1,2,Go Ahead Eagles,2:2,Ajax
-NL1,2,FC Twente,0:2,PSV
-NL1,2,Sparta R.,2:1,FC Utrecht
+NL1,2,FC Groningen,2:1,SC Heerenveen
+NL1,2,Go Ahead Eagles,2:2,AFC Ajax
+NL1,2,FC Twente,0:2,PSV Eindhoven
+NL1,2,Sparta Rotterdam,2:1,FC Utrecht
 NL1,2,FC Volendam,2:2,AZ Alkmaar
 NL1,2,NAC Breda,2:1,Fortuna Sittard
-NL1,3,Go Ahead Eagles,0:3,Sparta R.
-NL1,3,PSV,4:2,Groningen
-NL1,3,Telstar,2:2,FC Volendam
-NL1,3,Heerenveen,1:2,FC Twente
-NL1,3,FC Utrecht,4:1,Excelsior
+NL1,3,Go Ahead Eagles,0:3,Sparta Rotterdam
+NL1,3,PSV Eindhoven,4:2,FC Groningen
+NL1,3,SC Telstar,2:2,FC Volendam
+NL1,3,SC Heerenveen,1:2,FC Twente
+NL1,3,FC Utrecht,4:1,Excelsior de Roterdão
 NL1,3,NEC Nijmegen,3:0,NAC Breda
-NL1,3,Ajax,2:0,Heracles Almelo
+NL1,3,AFC Ajax,2:0,Heracles Almelo
 NL1,3,Feyenoord,2:0,Fortuna Sittard
 NL1,3,AZ Alkmaar,2:2,PEC Zwolle
-NL1,4,Groningen,4:0,Heracles Almelo
-NL1,4,FC Volendam,1:1,Ajax
-NL1,4,Heerenveen,2:2,Go Ahead Eagles
-NL1,4,PSV,0:2,Telstar
-NL1,4,Excelsior,1:0,FC Twente
+NL1,4,FC Groningen,4:0,Heracles Almelo
+NL1,4,FC Volendam,1:1,AFC Ajax
+NL1,4,SC Heerenveen,2:2,Go Ahead Eagles
+NL1,4,PSV Eindhoven,0:2,SC Telstar
+NL1,4,Excelsior de Roterdão,1:0,FC Twente
 NL1,4,Fortuna Sittard,3:2,NEC Nijmegen
 NL1,4,PEC Zwolle,0:2,FC Utrecht
-NL1,4,Sparta R.,0:4,Feyenoord
+NL1,4,Sparta Rotterdam,0:4,Feyenoord
 NL1,4,NAC Breda,0:1,AZ Alkmaar
-NL1,5,Ajax,3:1,PEC Zwolle
+NL1,5,AFC Ajax,3:1,PEC Zwolle
 NL1,5,Go Ahead Eagles,3:0,FC Volendam
-NL1,5,NEC Nijmegen,3:5,PSV
+NL1,5,NEC Nijmegen,3:5,PSV Eindhoven
 NL1,5,FC Twente,2:2,NAC Breda
-NL1,5,Feyenoord,1:0,Heerenveen
-NL1,5,Excelsior,0:1,Sparta R.
-NL1,5,FC Utrecht,0:1,Groningen
+NL1,5,Feyenoord,1:0,SC Heerenveen
+NL1,5,Excelsior de Roterdão,0:1,Sparta Rotterdam
+NL1,5,FC Utrecht,0:1,FC Groningen
 NL1,5,Heracles Almelo,1:2,AZ Alkmaar
-NL1,5,Telstar,1:3,Fortuna Sittard
-NL1,6,Sparta R.,1:5,FC Twente
-NL1,6,FC Volendam,1:2,Excelsior
-NL1,6,Groningen,2:0,Telstar
+NL1,5,SC Telstar,1:3,Fortuna Sittard
+NL1,6,Sparta Rotterdam,1:5,FC Twente
+NL1,6,FC Volendam,1:2,Excelsior de Roterdão
+NL1,6,FC Groningen,2:0,SC Telstar
 NL1,6,Fortuna Sittard,1:0,FC Utrecht
 NL1,6,NAC Breda,2:1,Heracles Almelo
 NL1,6,PEC Zwolle,0:2,Go Ahead Eagles
-NL1,6,PSV,2:2,Ajax
-NL1,6,Heerenveen,3:2,NEC Nijmegen
+NL1,6,PSV Eindhoven,2:2,AFC Ajax
+NL1,6,SC Heerenveen,3:2,NEC Nijmegen
 NL1,6,AZ Alkmaar,3:3,Feyenoord
 NL1,7,FC Twente,3:2,Fortuna Sittard
-NL1,7,Ajax,2:1,NAC Breda
+NL1,7,AFC Ajax,2:1,NAC Breda
 NL1,7,FC Volendam,2:1,PEC Zwolle
-NL1,7,Excelsior,1:2,PSV
-NL1,7,Heracles Almelo,3:0,Sparta R.
+NL1,7,Excelsior de Roterdão,1:2,PSV Eindhoven
+NL1,7,Heracles Almelo,3:0,Sparta Rotterdam
 NL1,7,NEC Nijmegen,2:1,AZ Alkmaar
-NL1,7,Groningen,0:1,Feyenoord
-NL1,7,FC Utrecht,2:2,Heerenveen
-NL1,7,Telstar,4:2,Go Ahead Eagles
-NL1,8,NAC Breda,1:2,Groningen
-NL1,8,Sparta R.,3:3,Ajax
+NL1,7,FC Groningen,0:1,Feyenoord
+NL1,7,FC Utrecht,2:2,SC Heerenveen
+NL1,7,SC Telstar,4:2,Go Ahead Eagles
+NL1,8,NAC Breda,1:2,FC Groningen
+NL1,8,Sparta Rotterdam,3:3,AFC Ajax
 NL1,8,Fortuna Sittard,1:0,FC Volendam
-NL1,8,PEC Zwolle,0:4,PSV
-NL1,8,Heerenveen,2:1,Excelsior
+NL1,8,PEC Zwolle,0:4,PSV Eindhoven
+NL1,8,SC Heerenveen,2:1,Excelsior de Roterdão
 NL1,8,FC Twente,2:1,Heracles Almelo
 NL1,8,Feyenoord,3:2,FC Utrecht
-NL1,8,AZ Alkmaar,2:1,Telstar
+NL1,8,AZ Alkmaar,2:1,SC Telstar
 NL1,8,Go Ahead Eagles,1:1,NEC Nijmegen
 NL1,9,NEC Nijmegen,3:3,FC Twente
 NL1,9,FC Utrecht,3:1,FC Volendam
-NL1,9,PSV,2:1,Go Ahead Eagles
-NL1,9,Ajax,0:2,AZ Alkmaar
+NL1,9,PSV Eindhoven,2:1,Go Ahead Eagles
+NL1,9,AFC Ajax,0:2,AZ Alkmaar
 NL1,9,NAC Breda,2:2,PEC Zwolle
-NL1,9,Telstar,2:3,Heerenveen
-NL1,9,Groningen,0:2,Sparta R.
-NL1,9,Excelsior,1:0,Fortuna Sittard
+NL1,9,SC Telstar,2:3,SC Heerenveen
+NL1,9,FC Groningen,0:2,Sparta Rotterdam
+NL1,9,Excelsior de Roterdão,1:0,Fortuna Sittard
 NL1,9,Heracles Almelo,0:7,Feyenoord
-NL1,10,Heerenveen,3:3,NAC Breda
-NL1,10,Fortuna Sittard,1:2,Groningen
-NL1,10,Sparta R.,1:0,Telstar
+NL1,10,SC Heerenveen,3:3,NAC Breda
+NL1,10,Fortuna Sittard,1:2,FC Groningen
+NL1,10,Sparta Rotterdam,1:0,SC Telstar
 NL1,10,FC Volendam,3:0,Heracles Almelo
 NL1,10,PEC Zwolle,2:2,NEC Nijmegen
-NL1,10,FC Twente,2:3,Ajax
-NL1,10,Feyenoord,2:3,PSV
+NL1,10,FC Twente,2:3,AFC Ajax
+NL1,10,Feyenoord,2:3,PSV Eindhoven
 NL1,10,AZ Alkmaar,4:1,FC Utrecht
-NL1,10,Go Ahead Eagles,2:0,Excelsior
-NL1,11,PSV,5:2,Fortuna Sittard
-NL1,11,Ajax,1:1,Heerenveen
+NL1,10,Go Ahead Eagles,2:0,Excelsior de Roterdão
+NL1,11,PSV Eindhoven,5:2,Fortuna Sittard
+NL1,11,AFC Ajax,1:1,SC Heerenveen
 NL1,11,NAC Breda,1:0,Go Ahead Eagles
 NL1,11,Feyenoord,3:1,FC Volendam
-NL1,11,Telstar,2:2,Excelsior
+NL1,11,SC Telstar,2:2,Excelsior de Roterdão
 NL1,11,Heracles Almelo,8:2,PEC Zwolle
-NL1,11,Groningen,1:1,FC Twente
-NL1,11,Sparta R.,0:1,AZ Alkmaar
+NL1,11,FC Groningen,1:1,FC Twente
+NL1,11,Sparta Rotterdam,0:1,AZ Alkmaar
 NL1,11,FC Utrecht,1:0,NEC Nijmegen
-NL1,12,FC Twente,0:0,Telstar
-NL1,12,Excelsior,1:2,Heracles Almelo
+NL1,12,FC Twente,0:0,SC Telstar
+NL1,12,Excelsior de Roterdão,1:2,Heracles Almelo
 NL1,12,FC Volendam,2:1,NAC Breda
-NL1,12,Fortuna Sittard,2:0,Heerenveen
-NL1,12,PEC Zwolle,1:0,Sparta R.
-NL1,12,FC Utrecht,2:1,Ajax
-NL1,12,NEC Nijmegen,2:0,Groningen
-NL1,12,AZ Alkmaar,1:5,PSV
+NL1,12,Fortuna Sittard,2:0,SC Heerenveen
+NL1,12,PEC Zwolle,1:0,Sparta Rotterdam
+NL1,12,FC Utrecht,2:1,AFC Ajax
+NL1,12,NEC Nijmegen,2:0,FC Groningen
+NL1,12,AZ Alkmaar,1:5,PSV Eindhoven
 NL1,12,Go Ahead Eagles,2:1,Feyenoord
-NL1,13,NAC Breda,0:1,PSV
-NL1,13,Ajax,1:2,Excelsior
+NL1,13,NAC Breda,0:1,PSV Eindhoven
+NL1,13,AFC Ajax,1:2,Excelsior de Roterdão
 NL1,13,FC Volendam,1:1,FC Twente
 NL1,13,Heracles Almelo,4:2,Go Ahead Eagles
-NL1,13,Sparta R.,1:1,Fortuna Sittard
-NL1,13,Heerenveen,3:1,AZ Alkmaar
+NL1,13,Sparta Rotterdam,1:1,Fortuna Sittard
+NL1,13,SC Heerenveen,3:1,AZ Alkmaar
 NL1,13,Feyenoord,2:4,NEC Nijmegen
-NL1,13,Telstar,1:1,FC Utrecht
-NL1,13,Groningen,2:2,PEC Zwolle
-NL1,14,PEC Zwolle,2:1,Heerenveen
-NL1,14,Excelsior,1:0,NAC Breda
+NL1,13,SC Telstar,1:1,FC Utrecht
+NL1,13,FC Groningen,2:2,PEC Zwolle
+NL1,14,PEC Zwolle,2:1,SC Heerenveen
+NL1,14,Excelsior de Roterdão,1:0,NAC Breda
 NL1,14,Fortuna Sittard,1:1,Heracles Almelo
-NL1,14,NEC Nijmegen,3:1,Sparta R.
-NL1,14,PSV,3:0,FC Volendam
+NL1,14,NEC Nijmegen,3:1,Sparta Rotterdam
+NL1,14,PSV Eindhoven,3:0,FC Volendam
 NL1,14,Go Ahead Eagles,2:2,FC Utrecht
-NL1,14,Telstar,1:2,Feyenoord
+NL1,14,SC Telstar,1:2,Feyenoord
 NL1,14,FC Twente,1:0,AZ Alkmaar
-NL1,14,Ajax,2:0,Groningen
-NL1,15,Excelsior,0:2,Groningen
-NL1,15,Heerenveen,0:2,PSV
-NL1,15,Fortuna Sittard,1:3,Ajax
-NL1,15,Heracles Almelo,1:1,Telstar
+NL1,14,AFC Ajax,2:0,FC Groningen
+NL1,15,Excelsior de Roterdão,0:2,FC Groningen
+NL1,15,SC Heerenveen,0:2,PSV Eindhoven
+NL1,15,Fortuna Sittard,1:3,AFC Ajax
+NL1,15,Heracles Almelo,1:1,SC Telstar
 NL1,15,Feyenoord,6:1,PEC Zwolle
 NL1,15,FC Utrecht,1:1,FC Twente
 NL1,15,AZ Alkmaar,2:2,Go Ahead Eagles
 NL1,15,FC Volendam,2:3,NEC Nijmegen
-NL1,15,Sparta R.,1:0,NAC Breda
-NL1,16,Telstar,2:2,NEC Nijmegen
-NL1,16,Groningen,3:0,FC Volendam
-NL1,16,PSV,4:3,Heracles Almelo
+NL1,15,Sparta Rotterdam,1:0,NAC Breda
+NL1,16,SC Telstar,2:2,NEC Nijmegen
+NL1,16,FC Groningen,3:0,FC Volendam
+NL1,16,PSV Eindhoven,4:3,Heracles Almelo
 NL1,16,PEC Zwolle,1:0,Fortuna Sittard
-NL1,16,Sparta R.,0:3,Heerenveen
-NL1,16,Ajax,2:0,Feyenoord
+NL1,16,Sparta Rotterdam,0:3,SC Heerenveen
+NL1,16,AFC Ajax,2:0,Feyenoord
 NL1,16,FC Twente,2:0,Go Ahead Eagles
 NL1,16,NAC Breda,1:1,FC Utrecht
-NL1,17,Heracles Almelo,0:3,Heerenveen
-NL1,17,Excelsior,2:1,PEC Zwolle
-NL1,17,NEC Nijmegen,2:2,Ajax
-NL1,17,NAC Breda,0:1,Telstar
-NL1,17,FC Utrecht,1:2,PSV
+NL1,17,Heracles Almelo,0:3,SC Heerenveen
+NL1,17,Excelsior de Roterdão,2:1,PEC Zwolle
+NL1,17,NEC Nijmegen,2:2,AFC Ajax
+NL1,17,NAC Breda,0:1,SC Telstar
+NL1,17,FC Utrecht,1:2,PSV Eindhoven
 NL1,17,Feyenoord,1:1,FC Twente
-NL1,17,Go Ahead Eagles,1:1,Groningen
-NL1,17,FC Volendam,0:1,Sparta R.
+NL1,17,Go Ahead Eagles,1:1,FC Groningen
+NL1,17,FC Volendam,0:1,Sparta Rotterdam
 NL1,17,Fortuna Sittard,4:3,AZ Alkmaar
-GB1,1,Liverpool,4:2,Bournemouth
-GB1,1,Aston Villa,0:0,Newcastle
-GB1,1,Brighton,1:1,FC Fulham
-GB1,1,AFC Sunderland,3:0,West Ham
-GB1,1,Tottenham,3:0,FC Burnley
-GB1,1,Wolves,0:4,Man City
-GB1,1,Nott'm Forest,3:1,Brentford
-GB1,1,Chelsea,0:0,Crystal Palace
-GB1,1,Man. United,0:1,Arsenal
-GB1,1,Leeds,1:0,Everton
-GB1,2,West Ham,1:5,Chelsea
-GB1,2,Man City,0:2,Tottenham
-GB1,2,Bournemouth,1:0,Wolves
-GB1,2,Brentford,1:0,Aston Villa
+GB1,1,Liverpool FC,4:2,AFC Bournemouth
+GB1,1,Aston Villa FC,0:0,Newcastle United
+GB1,1,Brighton & Hove Albion,1:1,FC Fulham
+GB1,1,AFC Sunderland,3:0,West Ham United
+GB1,1,Tottenham Hotspur,3:0,FC Burnley
+GB1,1,Wolverhampton Wanderers,0:4,Manchester City FC
+GB1,1,Nottingham Forest,3:1,Brentford FC
+GB1,1,Chelsea FC,0:0,Crystal Palace FC
+GB1,1,Manchester United FC,0:1,FC Arsenal
+GB1,1,Levante UD,1:0,FC Everton
+GB1,2,West Ham United,1:5,Chelsea FC
+GB1,2,Manchester City FC,0:2,Tottenham Hotspur
+GB1,2,AFC Bournemouth,1:0,Wolverhampton Wanderers
+GB1,2,Brentford FC,1:0,Aston Villa FC
 GB1,2,FC Burnley,2:0,AFC Sunderland
-GB1,2,Arsenal,5:0,Leeds
-GB1,2,Everton,2:0,Brighton
-GB1,2,Crystal Palace,1:1,Nott'm Forest
-GB1,2,FC Fulham,1:1,Man. United
-GB1,2,Newcastle,2:3,Liverpool
-GB1,3,Chelsea,2:0,FC Fulham
-GB1,3,Man. United,3:2,FC Burnley
-GB1,3,AFC Sunderland,2:1,Brentford
-GB1,3,Tottenham,0:1,Bournemouth
-GB1,3,Wolves,2:3,Everton
-GB1,3,Leeds,0:0,Newcastle
-GB1,3,Brighton,2:1,Man City
-GB1,3,Nott'm Forest,0:3,West Ham
-GB1,3,Liverpool,1:0,Arsenal
-GB1,3,Aston Villa,0:3,Crystal Palace
-GB1,4,Arsenal,3:0,Nott'm Forest
-GB1,4,Bournemouth,2:1,Brighton
-GB1,4,Crystal Palace,0:0,AFC Sunderland
-GB1,4,Everton,0:0,Aston Villa
-GB1,4,FC Fulham,1:0,Leeds
-GB1,4,Newcastle,1:0,Wolves
-GB1,4,West Ham,0:3,Tottenham
-GB1,4,Brentford,2:2,Chelsea
-GB1,4,FC Burnley,0:1,Liverpool
-GB1,4,Man City,3:0,Man. United
-GB1,5,Liverpool,2:1,Everton
-GB1,5,Brighton,2:2,Tottenham
-GB1,5,FC Burnley,1:1,Nott'm Forest
-GB1,5,West Ham,1:2,Crystal Palace
-GB1,5,Wolves,1:3,Leeds
-GB1,5,Man. United,2:1,Chelsea
-GB1,5,FC Fulham,3:1,Brentford
-GB1,5,Bournemouth,0:0,Newcastle
-GB1,5,AFC Sunderland,1:1,Aston Villa
-GB1,5,Arsenal,1:1,Man City
-GB1,6,Brentford,3:1,Man. United
-GB1,6,Chelsea,1:3,Brighton
-GB1,6,Crystal Palace,2:1,Liverpool
-GB1,6,Leeds,2:2,Bournemouth
-GB1,6,Man City,5:1,FC Burnley
-GB1,6,Nott'm Forest,0:1,AFC Sunderland
-GB1,6,Tottenham,1:1,Wolves
-GB1,6,Aston Villa,3:1,FC Fulham
-GB1,6,Newcastle,1:2,Arsenal
-GB1,6,Everton,1:1,West Ham
-GB1,7,Bournemouth,3:1,FC Fulham
-GB1,7,Leeds,1:2,Tottenham
-GB1,7,Arsenal,2:0,West Ham
-GB1,7,Man. United,2:0,AFC Sunderland
-GB1,7,Chelsea,2:1,Liverpool
-GB1,7,Aston Villa,2:1,FC Burnley
-GB1,7,Everton,2:1,Crystal Palace
-GB1,7,Newcastle,2:0,Nott'm Forest
-GB1,7,Wolves,1:1,Brighton
-GB1,7,Brentford,0:1,Man City
-GB1,8,Nott'm Forest,0:3,Chelsea
-GB1,8,Brighton,2:1,Newcastle
-GB1,8,FC Burnley,2:0,Leeds
-GB1,8,Crystal Palace,3:3,Bournemouth
-GB1,8,Man City,2:0,Everton
-GB1,8,AFC Sunderland,2:0,Wolves
-GB1,8,FC Fulham,0:1,Arsenal
-GB1,8,Tottenham,1:2,Aston Villa
-GB1,8,Liverpool,1:2,Man. United
-GB1,8,West Ham,0:2,Brentford
-GB1,9,Leeds,2:1,West Ham
-GB1,9,Chelsea,1:2,AFC Sunderland
-GB1,9,Newcastle,2:1,FC Fulham
-GB1,9,Man. United,4:2,Brighton
-GB1,9,Brentford,3:2,Liverpool
-GB1,9,Arsenal,1:0,Crystal Palace
-GB1,9,Aston Villa,1:0,Man City
-GB1,9,Bournemouth,2:0,Nott'm Forest
-GB1,9,Wolves,2:3,FC Burnley
-GB1,9,Everton,0:3,Tottenham
-GB1,10,Brighton,3:0,Leeds
-GB1,10,FC Burnley,0:2,Arsenal
-GB1,10,Crystal Palace,2:0,Brentford
-GB1,10,FC Fulham,3:0,Wolves
-GB1,10,Nott'm Forest,2:2,Man. United
-GB1,10,Tottenham,0:1,Chelsea
-GB1,10,Liverpool,2:0,Aston Villa
-GB1,10,West Ham,3:1,Newcastle
-GB1,10,Man City,3:1,Bournemouth
-GB1,10,AFC Sunderland,1:1,Everton
-GB1,11,Tottenham,2:2,Man. United
-GB1,11,Everton,2:0,FC Fulham
-GB1,11,West Ham,3:2,FC Burnley
-GB1,11,AFC Sunderland,2:2,Arsenal
-GB1,11,Chelsea,3:0,Wolves
-GB1,11,Aston Villa,4:0,Bournemouth
-GB1,11,Brentford,3:1,Newcastle
-GB1,11,Crystal Palace,0:0,Brighton
-GB1,11,Nott'm Forest,3:1,Leeds
-GB1,11,Man City,3:0,Liverpool
-GB1,12,FC Burnley,0:2,Chelsea
-GB1,12,Bournemouth,2:2,West Ham
-GB1,12,Brighton,2:1,Brentford
+GB1,2,FC Arsenal,5:0,Levante UD
+GB1,2,FC Everton,2:0,Brighton & Hove Albion
+GB1,2,Crystal Palace FC,1:1,Nottingham Forest
+GB1,2,FC Fulham,1:1,Manchester United FC
+GB1,2,Newcastle United,2:3,Liverpool FC
+GB1,3,Chelsea FC,2:0,FC Fulham
+GB1,3,Manchester United FC,3:2,FC Burnley
+GB1,3,AFC Sunderland,2:1,Brentford FC
+GB1,3,Tottenham Hotspur,0:1,AFC Bournemouth
+GB1,3,Wolverhampton Wanderers,2:3,FC Everton
+GB1,3,Levante UD,0:0,Newcastle United
+GB1,3,Brighton & Hove Albion,2:1,Manchester City FC
+GB1,3,Nottingham Forest,0:3,West Ham United
+GB1,3,Liverpool FC,1:0,FC Arsenal
+GB1,3,Aston Villa FC,0:3,Crystal Palace FC
+GB1,4,FC Arsenal,3:0,Nottingham Forest
+GB1,4,AFC Bournemouth,2:1,Brighton & Hove Albion
+GB1,4,Crystal Palace FC,0:0,AFC Sunderland
+GB1,4,FC Everton,0:0,Aston Villa FC
+GB1,4,FC Fulham,1:0,Levante UD
+GB1,4,Newcastle United,1:0,Wolverhampton Wanderers
+GB1,4,West Ham United,0:3,Tottenham Hotspur
+GB1,4,Brentford FC,2:2,Chelsea FC
+GB1,4,FC Burnley,0:1,Liverpool FC
+GB1,4,Manchester City FC,3:0,Manchester United FC
+GB1,5,Liverpool FC,2:1,FC Everton
+GB1,5,Brighton & Hove Albion,2:2,Tottenham Hotspur
+GB1,5,FC Burnley,1:1,Nottingham Forest
+GB1,5,West Ham United,1:2,Crystal Palace FC
+GB1,5,Wolverhampton Wanderers,1:3,Levante UD
+GB1,5,Manchester United FC,2:1,Chelsea FC
+GB1,5,FC Fulham,3:1,Brentford FC
+GB1,5,AFC Bournemouth,0:0,Newcastle United
+GB1,5,AFC Sunderland,1:1,Aston Villa FC
+GB1,5,FC Arsenal,1:1,Manchester City FC
+GB1,6,Brentford FC,3:1,Manchester United FC
+GB1,6,Chelsea FC,1:3,Brighton & Hove Albion
+GB1,6,Crystal Palace FC,2:1,Liverpool FC
+GB1,6,Levante UD,2:2,AFC Bournemouth
+GB1,6,Manchester City FC,5:1,FC Burnley
+GB1,6,Nottingham Forest,0:1,AFC Sunderland
+GB1,6,Tottenham Hotspur,1:1,Wolverhampton Wanderers
+GB1,6,Aston Villa FC,3:1,FC Fulham
+GB1,6,Newcastle United,1:2,FC Arsenal
+GB1,6,FC Everton,1:1,West Ham United
+GB1,7,AFC Bournemouth,3:1,FC Fulham
+GB1,7,Levante UD,1:2,Tottenham Hotspur
+GB1,7,FC Arsenal,2:0,West Ham United
+GB1,7,Manchester United FC,2:0,AFC Sunderland
+GB1,7,Chelsea FC,2:1,Liverpool FC
+GB1,7,Aston Villa FC,2:1,FC Burnley
+GB1,7,FC Everton,2:1,Crystal Palace FC
+GB1,7,Newcastle United,2:0,Nottingham Forest
+GB1,7,Wolverhampton Wanderers,1:1,Brighton & Hove Albion
+GB1,7,Brentford FC,0:1,Manchester City FC
+GB1,8,Nottingham Forest,0:3,Chelsea FC
+GB1,8,Brighton & Hove Albion,2:1,Newcastle United
+GB1,8,FC Burnley,2:0,Levante UD
+GB1,8,Crystal Palace FC,3:3,AFC Bournemouth
+GB1,8,Manchester City FC,2:0,FC Everton
+GB1,8,AFC Sunderland,2:0,Wolverhampton Wanderers
+GB1,8,FC Fulham,0:1,FC Arsenal
+GB1,8,Tottenham Hotspur,1:2,Aston Villa FC
+GB1,8,Liverpool FC,1:2,Manchester United FC
+GB1,8,West Ham United,0:2,Brentford FC
+GB1,9,Levante UD,2:1,West Ham United
+GB1,9,Chelsea FC,1:2,AFC Sunderland
+GB1,9,Newcastle United,2:1,FC Fulham
+GB1,9,Manchester United FC,4:2,Brighton & Hove Albion
+GB1,9,Brentford FC,3:2,Liverpool FC
+GB1,9,FC Arsenal,1:0,Crystal Palace FC
+GB1,9,Aston Villa FC,1:0,Manchester City FC
+GB1,9,AFC Bournemouth,2:0,Nottingham Forest
+GB1,9,Wolverhampton Wanderers,2:3,FC Burnley
+GB1,9,FC Everton,0:3,Tottenham Hotspur
+GB1,10,Brighton & Hove Albion,3:0,Levante UD
+GB1,10,FC Burnley,0:2,FC Arsenal
+GB1,10,Crystal Palace FC,2:0,Brentford FC
+GB1,10,FC Fulham,3:0,Wolverhampton Wanderers
+GB1,10,Nottingham Forest,2:2,Manchester United FC
+GB1,10,Tottenham Hotspur,0:1,Chelsea FC
+GB1,10,Liverpool FC,2:0,Aston Villa FC
+GB1,10,West Ham United,3:1,Newcastle United
+GB1,10,Manchester City FC,3:1,AFC Bournemouth
+GB1,10,AFC Sunderland,1:1,FC Everton
+GB1,11,Tottenham Hotspur,2:2,Manchester United FC
+GB1,11,FC Everton,2:0,FC Fulham
+GB1,11,West Ham United,3:2,FC Burnley
+GB1,11,AFC Sunderland,2:2,FC Arsenal
+GB1,11,Chelsea FC,3:0,Wolverhampton Wanderers
+GB1,11,Aston Villa FC,4:0,AFC Bournemouth
+GB1,11,Brentford FC,3:1,Newcastle United
+GB1,11,Crystal Palace FC,0:0,Brighton & Hove Albion
+GB1,11,Nottingham Forest,3:1,Levante UD
+GB1,11,Manchester City FC,3:0,Liverpool FC
+GB1,12,FC Burnley,0:2,Chelsea FC
+GB1,12,AFC Bournemouth,2:2,West Ham United
+GB1,12,Brighton & Hove Albion,2:1,Brentford FC
 GB1,12,FC Fulham,1:0,AFC Sunderland
-GB1,12,Liverpool,0:3,Nott'm Forest
-GB1,12,Wolves,0:2,Crystal Palace
-GB1,12,Newcastle,2:1,Man City
-GB1,12,Leeds,1:2,Aston Villa
-GB1,12,Arsenal,4:1,Tottenham
-GB1,12,Man. United,0:1,Everton
-GB1,13,Brentford,3:1,FC Burnley
-GB1,13,Man City,3:2,Leeds
-GB1,13,AFC Sunderland,3:2,Bournemouth
-GB1,13,Everton,1:4,Newcastle
-GB1,13,Tottenham,1:2,FC Fulham
-GB1,13,Crystal Palace,1:2,Man. United
-GB1,13,Aston Villa,1:0,Wolves
-GB1,13,Nott'm Forest,0:2,Brighton
-GB1,13,West Ham,0:2,Liverpool
-GB1,13,Chelsea,1:1,Arsenal
-GB1,14,Bournemouth,0:1,Everton
-GB1,14,FC Fulham,4:5,Man City
-GB1,14,Newcastle,2:2,Tottenham
-GB1,14,Arsenal,2:0,Brentford
-GB1,14,FC Burnley,0:1,Crystal Palace
-GB1,14,Brighton,3:4,Aston Villa
-GB1,14,Leeds,3:1,Chelsea
-GB1,14,Liverpool,1:1,AFC Sunderland
-GB1,14,Wolves,0:1,Nott'm Forest
-GB1,14,Man. United,1:1,West Ham
-GB1,15,Aston Villa,2:1,Arsenal
-GB1,15,Bournemouth,0:0,Chelsea
-GB1,15,Everton,3:0,Nott'm Forest
-GB1,15,Man City,3:0,AFC Sunderland
-GB1,15,Newcastle,2:1,FC Burnley
-GB1,15,Tottenham,2:0,Brentford
-GB1,15,Leeds,3:3,Liverpool
-GB1,15,Brighton,1:1,West Ham
-GB1,15,FC Fulham,1:2,Crystal Palace
-GB1,15,Wolves,1:4,Man. United
-GB1,16,Chelsea,2:0,Everton
-GB1,16,Liverpool,2:0,Brighton
+GB1,12,Liverpool FC,0:3,Nottingham Forest
+GB1,12,Wolverhampton Wanderers,0:2,Crystal Palace FC
+GB1,12,Newcastle United,2:1,Manchester City FC
+GB1,12,Levante UD,1:2,Aston Villa FC
+GB1,12,FC Arsenal,4:1,Tottenham Hotspur
+GB1,12,Manchester United FC,0:1,FC Everton
+GB1,13,Brentford FC,3:1,FC Burnley
+GB1,13,Manchester City FC,3:2,Levante UD
+GB1,13,AFC Sunderland,3:2,AFC Bournemouth
+GB1,13,FC Everton,1:4,Newcastle United
+GB1,13,Tottenham Hotspur,1:2,FC Fulham
+GB1,13,Crystal Palace FC,1:2,Manchester United FC
+GB1,13,Aston Villa FC,1:0,Wolverhampton Wanderers
+GB1,13,Nottingham Forest,0:2,Brighton & Hove Albion
+GB1,13,West Ham United,0:2,Liverpool FC
+GB1,13,Chelsea FC,1:1,FC Arsenal
+GB1,14,AFC Bournemouth,0:1,FC Everton
+GB1,14,FC Fulham,4:5,Manchester City FC
+GB1,14,Newcastle United,2:2,Tottenham Hotspur
+GB1,14,FC Arsenal,2:0,Brentford FC
+GB1,14,FC Burnley,0:1,Crystal Palace FC
+GB1,14,Brighton & Hove Albion,3:4,Aston Villa FC
+GB1,14,Levante UD,3:1,Chelsea FC
+GB1,14,Liverpool FC,1:1,AFC Sunderland
+GB1,14,Wolverhampton Wanderers,0:1,Nottingham Forest
+GB1,14,Manchester United FC,1:1,West Ham United
+GB1,15,Aston Villa FC,2:1,FC Arsenal
+GB1,15,AFC Bournemouth,0:0,Chelsea FC
+GB1,15,FC Everton,3:0,Nottingham Forest
+GB1,15,Manchester City FC,3:0,AFC Sunderland
+GB1,15,Newcastle United,2:1,FC Burnley
+GB1,15,Tottenham Hotspur,2:0,Brentford FC
+GB1,15,Levante UD,3:3,Liverpool FC
+GB1,15,Brighton & Hove Albion,1:1,West Ham United
+GB1,15,FC Fulham,1:2,Crystal Palace FC
+GB1,15,Wolverhampton Wanderers,1:4,Manchester United FC
+GB1,16,Chelsea FC,2:0,FC Everton
+GB1,16,Liverpool FC,2:0,Brighton & Hove Albion
 GB1,16,FC Burnley,2:3,FC Fulham
-GB1,16,Arsenal,2:1,Wolves
-GB1,16,Crystal Palace,0:3,Man City
-GB1,16,Nott'm Forest,3:0,Tottenham
-GB1,16,AFC Sunderland,1:0,Newcastle
-GB1,16,West Ham,2:3,Aston Villa
-GB1,16,Brentford,1:1,Leeds
-GB1,16,Man. United,4:4,Bournemouth
-GB1,17,Newcastle,2:2,Chelsea
-GB1,17,Bournemouth,1:1,FC Burnley
-GB1,17,Brighton,0:0,AFC Sunderland
-GB1,17,Man City,3:0,West Ham
-GB1,17,Wolves,0:2,Brentford
-GB1,17,Tottenham,1:2,Liverpool
-GB1,17,Everton,0:1,Arsenal
-GB1,17,Leeds,4:1,Crystal Palace
-GB1,17,Aston Villa,2:1,Man. United
-GB1,17,FC Fulham,1:0,Nott'm Forest
-ES1,1,Girona FC,1:3,Rayo VM
-ES1,1,Villarreal,2:0,Real Oviedo
-ES1,1,Maiorca,0:3,Barcelona
-ES1,1,Alavés,2:1,Levante
-ES1,1,Valência,1:1,Real Sociedad
-ES1,1,Celta de Vigo,0:2,Getafe
-ES1,1,Athletic Bilbao,3:2,Sevilha FC
-ES1,1,Espanyol,2:1,Atlético
-ES1,1,Elche,1:1,Betis
-ES1,1,Real Madrid,1:0,Osasuna
-ES1,2,Betis,1:0,Alavés
-ES1,2,Maiorca,1:1,Celta de Vigo
-ES1,2,Atlético,1:1,Elche
-ES1,2,Levante,2:3,Barcelona
-ES1,2,Osasuna,1:0,Valência
-ES1,2,Villarreal,5:0,Girona FC
-ES1,2,Real Sociedad,2:2,Espanyol
-ES1,2,Real Oviedo,0:3,Real Madrid
-ES1,2,Athletic Bilbao,1:0,Rayo VM
-ES1,2,Sevilha FC,1:2,Getafe
-ES1,3,Elche,2:0,Levante
-ES1,3,Valência,3:0,Getafe
-ES1,3,Alavés,1:1,Atlético
+GB1,16,FC Arsenal,2:1,Wolverhampton Wanderers
+GB1,16,Crystal Palace FC,0:3,Manchester City FC
+GB1,16,Nottingham Forest,3:0,Tottenham Hotspur
+GB1,16,AFC Sunderland,1:0,Newcastle United
+GB1,16,West Ham United,2:3,Aston Villa FC
+GB1,16,Brentford FC,1:1,Levante UD
+GB1,16,Manchester United FC,4:4,AFC Bournemouth
+GB1,17,Newcastle United,2:2,Chelsea FC
+GB1,17,AFC Bournemouth,1:1,FC Burnley
+GB1,17,Brighton & Hove Albion,0:0,AFC Sunderland
+GB1,17,Manchester City FC,3:0,West Ham United
+GB1,17,Wolverhampton Wanderers,0:2,Brentford FC
+GB1,17,Tottenham Hotspur,1:2,Liverpool FC
+GB1,17,FC Everton,0:1,FC Arsenal
+GB1,17,Levante UD,4:1,Crystal Palace FC
+GB1,17,Aston Villa FC,2:1,Manchester United FC
+GB1,17,FC Fulham,1:0,Nottingham Forest
+ES1,1,Girona FC,1:3,Rayo Valhecano
+ES1,1,FC Villarreal,2:0,Real Oviedo
+ES1,1,RCD Maiorca,0:3,FC Barcelona
+ES1,1,Deportivo Alavés,2:1,Levante UD
+ES1,1,Valência CF,1:1,Real Sociedad
+ES1,1,Celta de Vigo,0:2,Getafe CF
+ES1,1,Athletic Club,3:2,Sevilha FC
+ES1,1,RCD Espanyol,2:1,Athletic Club
+ES1,1,Elche CF,1:1,Real Bétis
+ES1,1,Real Madrid CF,1:0,CA Osasuna
+ES1,2,Real Bétis,1:0,Deportivo Alavés
+ES1,2,RCD Maiorca,1:1,Celta de Vigo
+ES1,2,Athletic Club,1:1,Elche CF
+ES1,2,Levante UD,2:3,FC Barcelona
+ES1,2,CA Osasuna,1:0,Valência CF
+ES1,2,FC Villarreal,5:0,Girona FC
+ES1,2,Real Sociedad,2:2,RCD Espanyol
+ES1,2,Real Oviedo,0:3,Real Madrid CF
+ES1,2,Athletic Club,1:0,Rayo Valhecano
+ES1,2,Sevilha FC,1:2,Getafe CF
+ES1,3,Elche CF,2:0,Levante UD
+ES1,3,Valência CF,3:0,Getafe CF
+ES1,3,Deportivo Alavés,1:1,Athletic Club
 ES1,3,Real Oviedo,1:0,Real Sociedad
 ES1,3,Girona FC,0:2,Sevilha FC
-ES1,3,Real Madrid,2:1,Maiorca
-ES1,3,Celta de Vigo,1:1,Villarreal
-ES1,3,Betis,1:2,Athletic Bilbao
-ES1,3,Espanyol,1:0,Osasuna
-ES1,3,Rayo VM,1:1,Barcelona
-ES1,4,Sevilha FC,2:2,Elche
-ES1,4,Getafe,2:0,Real Oviedo
-ES1,4,Real Sociedad,1:2,Real Madrid
-ES1,4,Athletic Bilbao,0:1,Alavés
-ES1,4,Atlético,2:0,Villarreal
+ES1,3,Real Madrid CF,2:1,RCD Maiorca
+ES1,3,Celta de Vigo,1:1,FC Villarreal
+ES1,3,Real Bétis,1:2,Athletic Club
+ES1,3,RCD Espanyol,1:0,CA Osasuna
+ES1,3,Rayo Valhecano,1:1,FC Barcelona
+ES1,4,Sevilha FC,2:2,Elche CF
+ES1,4,Getafe CF,2:0,Real Oviedo
+ES1,4,Real Sociedad,1:2,Real Madrid CF
+ES1,4,Athletic Club,0:1,Deportivo Alavés
+ES1,4,Athletic Club,2:0,FC Villarreal
 ES1,4,Celta de Vigo,1:1,Girona FC
-ES1,4,Levante,2:2,Betis
-ES1,4,Osasuna,2:0,Rayo VM
-ES1,4,Barcelona,6:0,Valência
-ES1,4,Espanyol,3:2,Maiorca
-ES1,5,Betis,3:1,Real Sociedad
-ES1,5,Girona FC,0:4,Levante
-ES1,5,Real Madrid,2:0,Espanyol
-ES1,5,Alavés,1:2,Sevilha FC
-ES1,5,Villarreal,2:1,Osasuna
-ES1,5,Valência,2:0,Athletic Bilbao
-ES1,5,Rayo VM,1:1,Celta de Vigo
-ES1,5,Maiorca,1:1,Atlético
-ES1,5,Elche,1:0,Real Oviedo
-ES1,5,Barcelona,3:0,Getafe
-ES1,6,Celta de Vigo,1:1,Betis
-ES1,6,Athletic Bilbao,1:1,Girona FC
-ES1,6,Espanyol,2:2,Valência
-ES1,6,Levante,1:4,Real Madrid
-ES1,6,Sevilha FC,1:2,Villarreal
-ES1,6,Getafe,1:1,Alavés
-ES1,6,Real Sociedad,1:0,Maiorca
-ES1,6,Atlético,3:2,Rayo VM
-ES1,6,Osasuna,1:1,Elche
-ES1,6,Real Oviedo,1:3,Barcelona
-ES1,7,Girona FC,0:0,Espanyol
-ES1,7,Getafe,1:1,Levante
-ES1,7,Atlético,5:2,Real Madrid
-ES1,7,Maiorca,1:0,Alavés
-ES1,7,Villarreal,1:0,Athletic Bilbao
-ES1,7,Rayo VM,0:1,Sevilha FC
-ES1,7,Elche,2:1,Celta de Vigo
-ES1,7,Barcelona,2:1,Real Sociedad
-ES1,7,Betis,2:0,Osasuna
-ES1,7,Valência,1:2,Real Oviedo
-ES1,8,Osasuna,2:1,Getafe
-ES1,8,Real Oviedo,0:2,Levante
-ES1,8,Girona FC,2:1,Valência
-ES1,8,Athletic Bilbao,2:1,Maiorca
-ES1,8,Real Madrid,3:1,Villarreal
-ES1,8,Alavés,3:1,Elche
-ES1,8,Sevilha FC,4:1,Barcelona
-ES1,8,Espanyol,1:2,Betis
-ES1,8,Real Sociedad,0:1,Rayo VM
-ES1,8,Celta de Vigo,1:1,Atlético
-ES1,9,Real Oviedo,0:2,Espanyol
-ES1,9,Sevilha FC,1:3,Maiorca
-ES1,9,Barcelona,2:1,Girona FC
-ES1,9,Villarreal,2:2,Betis
-ES1,9,Atlético,1:0,Osasuna
-ES1,9,Elche,0:0,Athletic Bilbao
+ES1,4,Levante UD,2:2,Real Bétis
+ES1,4,CA Osasuna,2:0,Rayo Valhecano
+ES1,4,FC Barcelona,6:0,Valência CF
+ES1,4,RCD Espanyol,3:2,RCD Maiorca
+ES1,5,Real Bétis,3:1,Real Sociedad
+ES1,5,Girona FC,0:4,Levante UD
+ES1,5,Real Madrid CF,2:0,RCD Espanyol
+ES1,5,Deportivo Alavés,1:2,Sevilha FC
+ES1,5,FC Villarreal,2:1,CA Osasuna
+ES1,5,Valência CF,2:0,Athletic Club
+ES1,5,Rayo Valhecano,1:1,Celta de Vigo
+ES1,5,RCD Maiorca,1:1,Athletic Club
+ES1,5,Elche CF,1:0,Real Oviedo
+ES1,5,FC Barcelona,3:0,Getafe CF
+ES1,6,Celta de Vigo,1:1,Real Bétis
+ES1,6,Athletic Club,1:1,Girona FC
+ES1,6,RCD Espanyol,2:2,Valência CF
+ES1,6,Levante UD,1:4,Real Madrid CF
+ES1,6,Sevilha FC,1:2,FC Villarreal
+ES1,6,Getafe CF,1:1,Deportivo Alavés
+ES1,6,Real Sociedad,1:0,RCD Maiorca
+ES1,6,Athletic Club,3:2,Rayo Valhecano
+ES1,6,CA Osasuna,1:1,Elche CF
+ES1,6,Real Oviedo,1:3,FC Barcelona
+ES1,7,Girona FC,0:0,RCD Espanyol
+ES1,7,Getafe CF,1:1,Levante UD
+ES1,7,Athletic Club,5:2,Real Madrid CF
+ES1,7,RCD Maiorca,1:0,Deportivo Alavés
+ES1,7,FC Villarreal,1:0,Athletic Club
+ES1,7,Rayo Valhecano,0:1,Sevilha FC
+ES1,7,Elche CF,2:1,Celta de Vigo
+ES1,7,FC Barcelona,2:1,Real Sociedad
+ES1,7,Real Bétis,2:0,CA Osasuna
+ES1,7,Valência CF,1:2,Real Oviedo
+ES1,8,CA Osasuna,2:1,Getafe CF
+ES1,8,Real Oviedo,0:2,Levante UD
+ES1,8,Girona FC,2:1,Valência CF
+ES1,8,Athletic Club,2:1,RCD Maiorca
+ES1,8,Real Madrid CF,3:1,FC Villarreal
+ES1,8,Deportivo Alavés,3:1,Elche CF
+ES1,8,Sevilha FC,4:1,FC Barcelona
+ES1,8,RCD Espanyol,1:2,Real Bétis
+ES1,8,Real Sociedad,0:1,Rayo Valhecano
+ES1,8,Celta de Vigo,1:1,Athletic Club
+ES1,9,Real Oviedo,0:2,RCD Espanyol
+ES1,9,Sevilha FC,1:3,RCD Maiorca
+ES1,9,FC Barcelona,2:1,Girona FC
+ES1,9,FC Villarreal,2:2,Real Bétis
+ES1,9,Athletic Club,1:0,CA Osasuna
+ES1,9,Elche CF,0:0,Athletic Club
 ES1,9,Celta de Vigo,1:1,Real Sociedad
-ES1,9,Levante,0:3,Rayo VM
-ES1,9,Getafe,0:1,Real Madrid
-ES1,9,Alavés,0:0,Valência
+ES1,9,Levante UD,0:3,Rayo Valhecano
+ES1,9,Getafe CF,0:1,Real Madrid CF
+ES1,9,Deportivo Alavés,0:0,Valência CF
 ES1,10,Real Sociedad,2:1,Sevilha FC
 ES1,10,Girona FC,3:3,Real Oviedo
-ES1,10,Espanyol,1:0,Elche
-ES1,10,Athletic Bilbao,0:1,Getafe
-ES1,10,Valência,0:2,Villarreal
-ES1,10,Maiorca,1:1,Levante
-ES1,10,Real Madrid,2:1,Barcelona
-ES1,10,Osasuna,2:3,Celta de Vigo
-ES1,10,Rayo VM,1:0,Alavés
-ES1,10,Betis,0:2,Atlético
-ES1,11,Getafe,2:1,Girona FC
-ES1,11,Villarreal,4:0,Rayo VM
-ES1,11,Atlético,3:0,Sevilha FC
-ES1,11,Real Sociedad,3:2,Athletic Bilbao
-ES1,11,Real Madrid,4:0,Valência
-ES1,11,Levante,1:2,Celta de Vigo
-ES1,11,Alavés,2:1,Espanyol
-ES1,11,Barcelona,3:1,Elche
-ES1,11,Betis,3:0,Maiorca
-ES1,11,Real Oviedo,0:0,Osasuna
-ES1,12,Elche,1:1,Real Sociedad
-ES1,12,Girona FC,1:0,Alavés
-ES1,12,Sevilha FC,1:0,Osasuna
-ES1,12,Atlético,3:1,Levante
-ES1,12,Espanyol,0:2,Villarreal
-ES1,12,Athletic Bilbao,1:0,Real Oviedo
-ES1,12,Rayo VM,0:0,Real Madrid
-ES1,12,Valência,1:1,Betis
-ES1,12,Maiorca,1:0,Getafe
-ES1,12,Celta de Vigo,2:4,Barcelona
-ES1,13,Valência,1:0,Levante
-ES1,13,Alavés,0:1,Celta de Vigo
-ES1,13,Barcelona,4:0,Athletic Bilbao
-ES1,13,Osasuna,1:3,Real Sociedad
-ES1,13,Villarreal,2:1,Maiorca
-ES1,13,Real Oviedo,0:0,Rayo VM
-ES1,13,Betis,1:1,Girona FC
-ES1,13,Getafe,0:1,Atlético
-ES1,13,Elche,2:2,Real Madrid
-ES1,13,Espanyol,2:1,Sevilha FC
-ES1,14,Getafe,1:0,Elche
-ES1,14,Maiorca,2:2,Osasuna
-ES1,14,Barcelona,3:1,Alavés
-ES1,14,Levante,0:2,Athletic Bilbao
-ES1,14,Atlético,2:0,Real Oviedo
-ES1,14,Real Sociedad,2:3,Villarreal
-ES1,14,Sevilha FC,0:2,Betis
-ES1,14,Celta de Vigo,0:1,Espanyol
-ES1,14,Girona FC,1:1,Real Madrid
-ES1,14,Rayo VM,1:1,Valência
-ES1,15,Real Oviedo,0:0,Maiorca
-ES1,15,Villarreal,2:0,Getafe
-ES1,15,Alavés,1:0,Real Sociedad
-ES1,15,Betis,3:5,Barcelona
-ES1,15,Athletic Bilbao,1:0,Atlético
-ES1,15,Elche,3:0,Girona FC
-ES1,15,Valência,1:1,Sevilha FC
-ES1,15,Espanyol,1:0,Rayo VM
-ES1,15,Real Madrid,0:2,Celta de Vigo
-ES1,15,Osasuna,2:0,Levante
+ES1,10,RCD Espanyol,1:0,Elche CF
+ES1,10,Athletic Club,0:1,Getafe CF
+ES1,10,Valência CF,0:2,FC Villarreal
+ES1,10,RCD Maiorca,1:1,Levante UD
+ES1,10,Real Madrid CF,2:1,FC Barcelona
+ES1,10,CA Osasuna,2:3,Celta de Vigo
+ES1,10,Rayo Valhecano,1:0,Deportivo Alavés
+ES1,10,Real Bétis,0:2,Athletic Club
+ES1,11,Getafe CF,2:1,Girona FC
+ES1,11,FC Villarreal,4:0,Rayo Valhecano
+ES1,11,Athletic Club,3:0,Sevilha FC
+ES1,11,Real Sociedad,3:2,Athletic Club
+ES1,11,Real Madrid CF,4:0,Valência CF
+ES1,11,Levante UD,1:2,Celta de Vigo
+ES1,11,Deportivo Alavés,2:1,RCD Espanyol
+ES1,11,FC Barcelona,3:1,Elche CF
+ES1,11,Real Bétis,3:0,RCD Maiorca
+ES1,11,Real Oviedo,0:0,CA Osasuna
+ES1,12,Elche CF,1:1,Real Sociedad
+ES1,12,Girona FC,1:0,Deportivo Alavés
+ES1,12,Sevilha FC,1:0,CA Osasuna
+ES1,12,Athletic Club,3:1,Levante UD
+ES1,12,RCD Espanyol,0:2,FC Villarreal
+ES1,12,Athletic Club,1:0,Real Oviedo
+ES1,12,Rayo Valhecano,0:0,Real Madrid CF
+ES1,12,Valência CF,1:1,Real Bétis
+ES1,12,RCD Maiorca,1:0,Getafe CF
+ES1,12,Celta de Vigo,2:4,FC Barcelona
+ES1,13,Valência CF,1:0,Levante UD
+ES1,13,Deportivo Alavés,0:1,Celta de Vigo
+ES1,13,FC Barcelona,4:0,Athletic Club
+ES1,13,CA Osasuna,1:3,Real Sociedad
+ES1,13,FC Villarreal,2:1,RCD Maiorca
+ES1,13,Real Oviedo,0:0,Rayo Valhecano
+ES1,13,Real Bétis,1:1,Girona FC
+ES1,13,Getafe CF,0:1,Athletic Club
+ES1,13,Elche CF,2:2,Real Madrid CF
+ES1,13,RCD Espanyol,2:1,Sevilha FC
+ES1,14,Getafe CF,1:0,Elche CF
+ES1,14,RCD Maiorca,2:2,CA Osasuna
+ES1,14,FC Barcelona,3:1,Deportivo Alavés
+ES1,14,Levante UD,0:2,Athletic Club
+ES1,14,Athletic Club,2:0,Real Oviedo
+ES1,14,Real Sociedad,2:3,FC Villarreal
+ES1,14,Sevilha FC,0:2,Real Bétis
+ES1,14,Celta de Vigo,0:1,RCD Espanyol
+ES1,14,Girona FC,1:1,Real Madrid CF
+ES1,14,Rayo Valhecano,1:1,Valência CF
+ES1,15,Real Oviedo,0:0,RCD Maiorca
+ES1,15,FC Villarreal,2:0,Getafe CF
+ES1,15,Deportivo Alavés,1:0,Real Sociedad
+ES1,15,Real Bétis,3:5,FC Barcelona
+ES1,15,Athletic Club,1:0,Athletic Club
+ES1,15,Elche CF,3:0,Girona FC
+ES1,15,Valência CF,1:1,Sevilha FC
+ES1,15,RCD Espanyol,1:0,Rayo Valhecano
+ES1,15,Real Madrid CF,0:2,Celta de Vigo
+ES1,15,CA Osasuna,2:0,Levante UD
 ES1,16,Real Sociedad,1:2,Girona FC
-ES1,16,Atlético,2:1,Valência
-ES1,16,Maiorca,3:1,Elche
-ES1,16,Barcelona,2:0,Osasuna
-ES1,16,Getafe,0:1,Espanyol
+ES1,16,Athletic Club,2:1,Valência CF
+ES1,16,RCD Maiorca,3:1,Elche CF
+ES1,16,FC Barcelona,2:0,CA Osasuna
+ES1,16,Getafe CF,0:1,RCD Espanyol
 ES1,16,Sevilha FC,4:0,Real Oviedo
-ES1,16,Celta de Vigo,2:0,Athletic Bilbao
-ES1,16,Alavés,1:2,Real Madrid
-ES1,16,Rayo VM,0:0,Betis
-ES1,17,Valência,1:1,Maiorca
+ES1,16,Celta de Vigo,2:0,Athletic Club
+ES1,16,Deportivo Alavés,1:2,Real Madrid CF
+ES1,16,Rayo Valhecano,0:0,Real Bétis
+ES1,17,Valência CF,1:1,RCD Maiorca
 ES1,17,Real Oviedo,0:0,Celta de Vigo
-ES1,17,Levante,1:1,Real Sociedad
-ES1,17,Osasuna,3:0,Alavés
-ES1,17,Real Madrid,2:0,Sevilha FC
-ES1,17,Girona FC,0:3,Atlético
-ES1,17,Villarreal,0:2,Barcelona
-ES1,17,Elche,4:0,Rayo VM
-ES1,17,Betis,4:0,Getafe
-ES1,17,Athletic Bilbao,1:2,Espanyol
-ES1,19,Barcelona,3:1,Atlético
-ES1,19,Athletic Bilbao,0:3,Real Madrid
-L1,1,Bayern,6:0,Leipzig
-L1,1,Frankfurt,4:1,Werder Bremen
-L1,1,Leverkusen,1:2,Hoffenheim
-L1,1,Friburgo,1:3,Augsburgo
-L1,1,U. Berlim,2:1,Estugarda
-L1,1,Heidenheim,1:3,Wolfsburgo
-L1,1,St. Pauli,3:3,Dortmund
-L1,1,Mainz,0:1,Colónia
-L1,1,M'gladbach,0:0,Hamburgo
-L1,2,Hamburgo,0:2,St. Pauli
-L1,2,Leipzig,2:0,Heidenheim
-L1,2,Werder Bremen,3:3,Leverkusen
-L1,2,Estugarda,1:0,M'gladbach
-L1,2,Hoffenheim,1:3,Frankfurt
-L1,2,Augsburgo,2:3,Bayern
-L1,2,Wolfsburgo,1:1,Mainz
-L1,2,Dortmund,3:0,U. Berlim
-L1,2,Colónia,4:1,Friburgo
-L1,3,Leverkusen,3:1,Frankfurt
-L1,3,Friburgo,3:1,Estugarda
-L1,3,Mainz,0:1,Leipzig
-L1,3,Wolfsburgo,3:3,Colónia
-L1,3,U. Berlim,2:4,Hoffenheim
-L1,3,Heidenheim,0:2,Dortmund
-L1,3,Bayern,5:0,Hamburgo
-L1,3,St. Pauli,2:1,Augsburgo
-L1,3,M'gladbach,0:4,Werder Bremen
-L1,4,Estugarda,2:0,St. Pauli
-L1,4,Werder Bremen,0:3,Friburgo
-L1,4,Augsburgo,1:4,Mainz
-L1,4,Hoffenheim,1:4,Bayern
-L1,4,Hamburgo,2:1,Heidenheim
-L1,4,Leipzig,3:1,Colónia
-L1,4,Frankfurt,3:4,U. Berlim
-L1,4,Leverkusen,1:1,M'gladbach
-L1,4,Dortmund,1:0,Wolfsburgo
-L1,5,Bayern,4:0,Werder Bremen
-L1,5,Mainz,0:2,Dortmund
-L1,5,Wolfsburgo,0:1,Leipzig
-L1,5,St. Pauli,1:2,Leverkusen
-L1,5,Heidenheim,2:1,Augsburgo
-L1,5,M'gladbach,4:6,Frankfurt
-L1,5,Friburgo,1:1,Hoffenheim
-L1,5,Colónia,1:2,Estugarda
-L1,5,U. Berlim,0:0,Hamburgo
-L1,6,Hoffenheim,0:1,Colónia
-L1,6,Leverkusen,2:0,U. Berlim
-L1,6,Dortmund,1:1,Leipzig
-L1,6,Werder Bremen,1:0,St. Pauli
-L1,6,Augsburgo,3:1,Wolfsburgo
-L1,6,Frankfurt,0:3,Bayern
-L1,6,Estugarda,1:0,Heidenheim
-L1,6,Hamburgo,4:0,Mainz
-L1,6,M'gladbach,0:0,Friburgo
-L1,7,U. Berlim,3:1,M'gladbach
-L1,7,Mainz,3:4,Leverkusen
-L1,7,Leipzig,2:1,Hamburgo
-L1,7,Wolfsburgo,0:3,Estugarda
-L1,7,Heidenheim,2:2,Werder Bremen
-L1,7,Colónia,1:1,Augsburgo
-L1,7,Bayern,2:1,Dortmund
-L1,7,Friburgo,2:2,Frankfurt
-L1,7,St. Pauli,0:3,Hoffenheim
-L1,8,Werder Bremen,1:0,U. Berlim
-L1,8,Frankfurt,2:0,St. Pauli
-L1,8,M'gladbach,0:3,Bayern
-L1,8,Augsburgo,0:6,Leipzig
-L1,8,Hoffenheim,3:1,Heidenheim
-L1,8,Hamburgo,0:1,Wolfsburgo
-L1,8,Dortmund,1:0,Colónia
-L1,8,Leverkusen,2:0,Friburgo
-L1,8,Estugarda,2:1,Mainz
-L1,9,Augsburgo,0:1,Dortmund
-L1,9,Mainz,1:1,Werder Bremen
-L1,9,Leipzig,3:1,Estugarda
-L1,9,U. Berlim,0:0,Friburgo
-L1,9,St. Pauli,0:4,M'gladbach
-L1,9,Heidenheim,1:1,Frankfurt
-L1,9,Bayern,3:0,Leverkusen
-L1,9,Colónia,4:1,Hamburgo
-L1,9,Wolfsburgo,2:3,Hoffenheim
-L1,10,Werder Bremen,2:1,Wolfsburgo
-L1,10,Leverkusen,6:0,Heidenheim
-L1,10,U. Berlim,2:2,Bayern
-L1,10,Hoffenheim,3:1,Leipzig
-L1,10,Hamburgo,1:1,Dortmund
-L1,10,M'gladbach,3:1,Colónia
-L1,10,Friburgo,2:1,St. Pauli
-L1,10,Estugarda,3:2,Augsburgo
-L1,10,Frankfurt,1:0,Mainz
-L1,11,Mainz,1:1,Hoffenheim
-L1,11,Bayern,6:2,Friburgo
-L1,11,Dortmund,3:3,Estugarda
-L1,11,Wolfsburgo,1:3,Leverkusen
-L1,11,Augsburgo,1:0,Hamburgo
-L1,11,Heidenheim,0:3,M'gladbach
-L1,11,Colónia,3:4,Frankfurt
-L1,11,Leipzig,2:0,Werder Bremen
-L1,11,St. Pauli,0:1,U. Berlim
-L1,12,M'gladbach,0:0,Leipzig
-L1,12,Bayern,3:1,St. Pauli
-L1,12,Werder Bremen,1:1,Colónia
-L1,12,U. Berlim,1:2,Heidenheim
-L1,12,Hoffenheim,3:0,Augsburgo
-L1,12,Leverkusen,1:2,Dortmund
-L1,12,Hamburgo,2:1,Estugarda
-L1,12,Frankfurt,1:1,Wolfsburgo
-L1,12,Friburgo,4:0,Mainz
-L1,13,Mainz,0:1,M'gladbach
-L1,13,Estugarda,0:5,Bayern
-L1,13,Wolfsburgo,3:1,U. Berlim
-L1,13,Augsburgo,2:0,Leverkusen
-L1,13,Heidenheim,2:1,Friburgo
-L1,13,Colónia,1:1,St. Pauli
-L1,13,Leipzig,6:0,Frankfurt
-L1,13,Hamburgo,3:2,Werder Bremen
-L1,13,Dortmund,2:0,Hoffenheim
-L1,14,U. Berlim,3:1,Leipzig
-L1,14,Frankfurt,1:0,Augsburgo
-L1,14,M'gladbach,1:3,Wolfsburgo
-L1,14,St. Pauli,2:1,Heidenheim
-L1,14,Hoffenheim,4:1,Hamburgo
-L1,14,Leverkusen,2:0,Colónia
-L1,14,Friburgo,1:1,Dortmund
-L1,14,Bayern,2:2,Mainz
-L1,14,Werder Bremen,0:4,Estugarda
-L1,15,Dortmund,2:0,M'gladbach
-L1,15,Estugarda,0:0,Hoffenheim
-L1,15,Wolfsburgo,3:4,Friburgo
-L1,15,Augsburgo,0:0,Werder Bremen
-L1,15,Colónia,0:1,U. Berlim
-L1,15,Hamburgo,1:1,Frankfurt
-L1,15,Leipzig,1:3,Leverkusen
-L1,15,Mainz,0:0,St. Pauli
-L1,15,Heidenheim,0:4,Bayern
+ES1,17,Levante UD,1:1,Real Sociedad
+ES1,17,CA Osasuna,3:0,Deportivo Alavés
+ES1,17,Real Madrid CF,2:0,Sevilha FC
+ES1,17,Girona FC,0:3,Athletic Club
+ES1,17,FC Villarreal,0:2,FC Barcelona
+ES1,17,Elche CF,4:0,Rayo Valhecano
+ES1,17,Real Bétis,4:0,Getafe CF
+ES1,17,Athletic Club,1:2,RCD Espanyol
+ES1,19,FC Barcelona,3:1,Athletic Club
+ES1,19,Athletic Club,0:3,Real Madrid CF
+L1,1,Bayer Leverkusen,6:0,RB Leipzig
+L1,1,Eintracht Frankfurt,4:1,Werder Bremen
+L1,1,Bayer Leverkusen,1:2,TSG 1899 Hoffenheim
+L1,1,SC Friburgo,1:3,FC Augsburgo
+L1,1,FC Union Berlim,2:1,VfB Estugarda
+L1,1,FC Heidenheim 1846,1:3,VfL Wolfsburgo
+L1,1,FC St. Pauli,3:3,Borussia Dortmund
+L1,1,FSV Mainz 05,0:1,FC Colónia
+L1,1,Borussia Mönchengladbach,0:0,Hamburgo SV
+L1,2,Hamburgo SV,0:2,FC St. Pauli
+L1,2,RB Leipzig,2:0,FC Heidenheim 1846
+L1,2,Werder Bremen,3:3,Bayer Leverkusen
+L1,2,VfB Estugarda,1:0,Borussia Mönchengladbach
+L1,2,TSG 1899 Hoffenheim,1:3,Eintracht Frankfurt
+L1,2,FC Augsburgo,2:3,Bayer Leverkusen
+L1,2,VfL Wolfsburgo,1:1,FSV Mainz 05
+L1,2,Borussia Dortmund,3:0,FC Union Berlim
+L1,2,FC Colónia,4:1,SC Friburgo
+L1,3,Bayer Leverkusen,3:1,Eintracht Frankfurt
+L1,3,SC Friburgo,3:1,VfB Estugarda
+L1,3,FSV Mainz 05,0:1,RB Leipzig
+L1,3,VfL Wolfsburgo,3:3,FC Colónia
+L1,3,FC Union Berlim,2:4,TSG 1899 Hoffenheim
+L1,3,FC Heidenheim 1846,0:2,Borussia Dortmund
+L1,3,Bayer Leverkusen,5:0,Hamburgo SV
+L1,3,FC St. Pauli,2:1,FC Augsburgo
+L1,3,Borussia Mönchengladbach,0:4,Werder Bremen
+L1,4,VfB Estugarda,2:0,FC St. Pauli
+L1,4,Werder Bremen,0:3,SC Friburgo
+L1,4,FC Augsburgo,1:4,FSV Mainz 05
+L1,4,TSG 1899 Hoffenheim,1:4,Bayer Leverkusen
+L1,4,Hamburgo SV,2:1,FC Heidenheim 1846
+L1,4,RB Leipzig,3:1,FC Colónia
+L1,4,Eintracht Frankfurt,3:4,FC Union Berlim
+L1,4,Bayer Leverkusen,1:1,Borussia Mönchengladbach
+L1,4,Borussia Dortmund,1:0,VfL Wolfsburgo
+L1,5,Bayer Leverkusen,4:0,Werder Bremen
+L1,5,FSV Mainz 05,0:2,Borussia Dortmund
+L1,5,VfL Wolfsburgo,0:1,RB Leipzig
+L1,5,FC St. Pauli,1:2,Bayer Leverkusen
+L1,5,FC Heidenheim 1846,2:1,FC Augsburgo
+L1,5,Borussia Mönchengladbach,4:6,Eintracht Frankfurt
+L1,5,SC Friburgo,1:1,TSG 1899 Hoffenheim
+L1,5,FC Colónia,1:2,VfB Estugarda
+L1,5,FC Union Berlim,0:0,Hamburgo SV
+L1,6,TSG 1899 Hoffenheim,0:1,FC Colónia
+L1,6,Bayer Leverkusen,2:0,FC Union Berlim
+L1,6,Borussia Dortmund,1:1,RB Leipzig
+L1,6,Werder Bremen,1:0,FC St. Pauli
+L1,6,FC Augsburgo,3:1,VfL Wolfsburgo
+L1,6,Eintracht Frankfurt,0:3,Bayer Leverkusen
+L1,6,VfB Estugarda,1:0,FC Heidenheim 1846
+L1,6,Hamburgo SV,4:0,FSV Mainz 05
+L1,6,Borussia Mönchengladbach,0:0,SC Friburgo
+L1,7,FC Union Berlim,3:1,Borussia Mönchengladbach
+L1,7,FSV Mainz 05,3:4,Bayer Leverkusen
+L1,7,RB Leipzig,2:1,Hamburgo SV
+L1,7,VfL Wolfsburgo,0:3,VfB Estugarda
+L1,7,FC Heidenheim 1846,2:2,Werder Bremen
+L1,7,FC Colónia,1:1,FC Augsburgo
+L1,7,Bayer Leverkusen,2:1,Borussia Dortmund
+L1,7,SC Friburgo,2:2,Eintracht Frankfurt
+L1,7,FC St. Pauli,0:3,TSG 1899 Hoffenheim
+L1,8,Werder Bremen,1:0,FC Union Berlim
+L1,8,Eintracht Frankfurt,2:0,FC St. Pauli
+L1,8,Borussia Mönchengladbach,0:3,Bayer Leverkusen
+L1,8,FC Augsburgo,0:6,RB Leipzig
+L1,8,TSG 1899 Hoffenheim,3:1,FC Heidenheim 1846
+L1,8,Hamburgo SV,0:1,VfL Wolfsburgo
+L1,8,Borussia Dortmund,1:0,FC Colónia
+L1,8,Bayer Leverkusen,2:0,SC Friburgo
+L1,8,VfB Estugarda,2:1,FSV Mainz 05
+L1,9,FC Augsburgo,0:1,Borussia Dortmund
+L1,9,FSV Mainz 05,1:1,Werder Bremen
+L1,9,RB Leipzig,3:1,VfB Estugarda
+L1,9,FC Union Berlim,0:0,SC Friburgo
+L1,9,FC St. Pauli,0:4,Borussia Mönchengladbach
+L1,9,FC Heidenheim 1846,1:1,Eintracht Frankfurt
+L1,9,Bayer Leverkusen,3:0,Bayer Leverkusen
+L1,9,FC Colónia,4:1,Hamburgo SV
+L1,9,VfL Wolfsburgo,2:3,TSG 1899 Hoffenheim
+L1,10,Werder Bremen,2:1,VfL Wolfsburgo
+L1,10,Bayer Leverkusen,6:0,FC Heidenheim 1846
+L1,10,FC Union Berlim,2:2,Bayer Leverkusen
+L1,10,TSG 1899 Hoffenheim,3:1,RB Leipzig
+L1,10,Hamburgo SV,1:1,Borussia Dortmund
+L1,10,Borussia Mönchengladbach,3:1,FC Colónia
+L1,10,SC Friburgo,2:1,FC St. Pauli
+L1,10,VfB Estugarda,3:2,FC Augsburgo
+L1,10,Eintracht Frankfurt,1:0,FSV Mainz 05
+L1,11,FSV Mainz 05,1:1,TSG 1899 Hoffenheim
+L1,11,Bayer Leverkusen,6:2,SC Friburgo
+L1,11,Borussia Dortmund,3:3,VfB Estugarda
+L1,11,VfL Wolfsburgo,1:3,Bayer Leverkusen
+L1,11,FC Augsburgo,1:0,Hamburgo SV
+L1,11,FC Heidenheim 1846,0:3,Borussia Mönchengladbach
+L1,11,FC Colónia,3:4,Eintracht Frankfurt
+L1,11,RB Leipzig,2:0,Werder Bremen
+L1,11,FC St. Pauli,0:1,FC Union Berlim
+L1,12,Borussia Mönchengladbach,0:0,RB Leipzig
+L1,12,Bayer Leverkusen,3:1,FC St. Pauli
+L1,12,Werder Bremen,1:1,FC Colónia
+L1,12,FC Union Berlim,1:2,FC Heidenheim 1846
+L1,12,TSG 1899 Hoffenheim,3:0,FC Augsburgo
+L1,12,Bayer Leverkusen,1:2,Borussia Dortmund
+L1,12,Hamburgo SV,2:1,VfB Estugarda
+L1,12,Eintracht Frankfurt,1:1,VfL Wolfsburgo
+L1,12,SC Friburgo,4:0,FSV Mainz 05
+L1,13,FSV Mainz 05,0:1,Borussia Mönchengladbach
+L1,13,VfB Estugarda,0:5,Bayer Leverkusen
+L1,13,VfL Wolfsburgo,3:1,FC Union Berlim
+L1,13,FC Augsburgo,2:0,Bayer Leverkusen
+L1,13,FC Heidenheim 1846,2:1,SC Friburgo
+L1,13,FC Colónia,1:1,FC St. Pauli
+L1,13,RB Leipzig,6:0,Eintracht Frankfurt
+L1,13,Hamburgo SV,3:2,Werder Bremen
+L1,13,Borussia Dortmund,2:0,TSG 1899 Hoffenheim
+L1,14,FC Union Berlim,3:1,RB Leipzig
+L1,14,Eintracht Frankfurt,1:0,FC Augsburgo
+L1,14,Borussia Mönchengladbach,1:3,VfL Wolfsburgo
+L1,14,FC St. Pauli,2:1,FC Heidenheim 1846
+L1,14,TSG 1899 Hoffenheim,4:1,Hamburgo SV
+L1,14,Bayer Leverkusen,2:0,FC Colónia
+L1,14,SC Friburgo,1:1,Borussia Dortmund
+L1,14,Bayer Leverkusen,2:2,FSV Mainz 05
+L1,14,Werder Bremen,0:4,VfB Estugarda
+L1,15,Borussia Dortmund,2:0,Borussia Mönchengladbach
+L1,15,VfB Estugarda,0:0,TSG 1899 Hoffenheim
+L1,15,VfL Wolfsburgo,3:4,SC Friburgo
+L1,15,FC Augsburgo,0:0,Werder Bremen
+L1,15,FC Colónia,0:1,FC Union Berlim
+L1,15,Hamburgo SV,1:1,Eintracht Frankfurt
+L1,15,RB Leipzig,1:3,Bayer Leverkusen
+L1,15,FSV Mainz 05,0:0,FC St. Pauli
+L1,15,FC Heidenheim 1846,0:4,Bayer Leverkusen
