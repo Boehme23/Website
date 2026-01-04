@@ -1,57 +1,57 @@
 Round,League,Home,Away,RF_Winner,RF_Conf,NN_Winner,NN_Conf,Agree
-17,FR1,FC Toulouse,RC Lens,RC Lens,63.8%,RC Lens,100.0%,True
-17,FR1,AS Monaco,Olympique Lyon,AS Monaco,54.5%,AS Monaco,99.9%,True
-17,FR1,OGC Nice,RC Estrasburgo,OGC Nice,46.3%,OGC Nice,70.8%,True
-17,FR1,LOSC Lille,FC Nantes,LOSC Lille,86.0%,LOSC Lille,100.0%,True
-17,FR1,Olympique Marselha,FC Nantes,Olympique Marselha,82.1%,Olympique Marselha,99.9%,True
-17,FR1,Le Havre AC,Angers SCO,Draw,54.0%,Draw,99.9%,True
-17,FR1,FC Lorient,FC Metz,FC Lorient,84.6%,FC Lorient,100.0%,True
-17,FR1,Stade Brestois 29,AJ Auxerre,Stade Brestois 29,59.9%,Stade Brestois 29,98.3%,True
-17,FR1,Sporting CP,Paris FC,Sporting CP,85.2%,Sporting CP,100.0%,True
-17,PO1,FC Famalicão,CF Estrela Amadora,FC Famalicão,57.8%,FC Famalicão,100.0%,True
-17,PO1,Casa Pia AC,Vitória SC,Casa Pia AC,46.0%,Casa Pia AC,100.0%,True
-17,PO1,FC Arouca,Gil Vicente FC,Gil Vicente FC,39.5%,FC Arouca,100.0%,False
-17,PO1,SC Braga,SL Benfica,SL Benfica,44.9%,SC Braga,100.0%,False
-17,PO1,Sporting CP,Rio Ave FC,Sporting CP,61.9%,Sporting CP,100.0%,True
-17,PO1,FC Porto,Paris FC,FC Porto,85.4%,FC Porto,100.0%,True
-17,PO1,GD Estoril Praia,FC Alverca,GD Estoril Praia,57.2%,GD Estoril Praia,100.0%,True
-17,PO1,CD Nacional,CD Santa Clara,CD Nacional,51.7%,CD Nacional,100.0%,True
-17,PO1,Moreirense FC,CD Tondela,Moreirense FC,51.0%,Moreirense FC,100.0%,True
-18,NL1,NEC Nijmegen,FC Utrecht,NEC Nijmegen,73.2%,Draw,54.4%,False
-18,NL1,AZ Alkmaar,FC Volendam,AZ Alkmaar,75.3%,AZ Alkmaar,100.0%,True
-18,NL1,FC Twente,PEC Zwolle,FC Twente,74.1%,FC Twente,100.0%,True
-18,NL1,PSV Eindhoven,Excelsior de Roterdão,PSV Eindhoven,84.7%,PSV Eindhoven,82.2%,True
-18,NL1,FC Groningen,NAC Breda,FC Groningen,62.9%,FC Groningen,99.1%,True
-18,NL1,SC Heerenveen,Feyenoord,Feyenoord,49.6%,SC Heerenveen,74.1%,False
-18,NL1,Go Ahead Eagles,Fortuna Sittard,Go Ahead Eagles,48.1%,Go Ahead Eagles,59.2%,True
-18,NL1,SC Telstar,AFC Ajax,SC Telstar,36.2%,SC Telstar,78.3%,True
-18,NL1,Sparta Rotterdam,Heracles Almelo,Sparta Rotterdam,61.5%,Sparta Rotterdam,100.0%,True
-18,GB1,Manchester United FC,Newcastle United,Manchester United FC,51.5%,Newcastle United,37.7%,False
-18,GB1,Nottingham Forest,Manchester City FC,Manchester City FC,47.6%,Manchester City FC,89.0%,True
-18,GB1,FC Arsenal,Brighton & Hove Albion,FC Arsenal,64.0%,FC Arsenal,51.0%,True
-18,GB1,Brentford FC,AFC Bournemouth,Brentford FC,43.3%,AFC Bournemouth,90.1%,False
-18,GB1,FC Burnley,FC Everton,FC Everton,36.9%,FC Everton,97.9%,True
-18,GB1,Liverpool FC,Wolverhampton Wanderers,Liverpool FC,72.1%,Liverpool FC,100.0%,True
-18,GB1,West Ham United,FC Fulham,West Ham United,42.0%,Draw,71.2%,False
-18,GB1,Chelsea FC,Aston Villa FC,Chelsea FC,39.4%,Aston Villa FC,67.0%,False
-18,GB1,AFC Sunderland,Levante UD,AFC Sunderland,61.8%,Levante UD,90.9%,False
-18,GB1,Crystal Palace FC,Tottenham Hotspur,Crystal Palace FC,54.6%,Crystal Palace FC,76.7%,True
-20,ES1,Rayo Valhecano,Getafe CF,Rayo Valhecano,52.8%,Rayo Valhecano,76.8%,True
-20,ES1,Celta de Vigo,Valência CF,Draw,51.4%,Draw,96.6%,True
-20,ES1,CA Osasuna,Athletic Club,CA Osasuna,41.3%,Athletic Club,60.3%,False
-20,ES1,Elche CF,FC Villarreal,Draw,45.4%,Draw,88.4%,True
-20,ES1,RCD Espanyol,FC Barcelona,FC Barcelona,68.3%,FC Barcelona,100.0%,True
-20,ES1,Sevilha FC,Levante UD,Sevilha FC,49.4%,Levante UD,72.5%,False
-20,ES1,Real Madrid CF,Real Bétis,Real Madrid CF,48.7%,Real Bétis,87.0%,False
-20,ES1,RCD Maiorca,Girona FC,Draw,47.8%,Draw,85.8%,True
-20,ES1,Deportivo Alavés,Real Oviedo,Deportivo Alavés,56.4%,Draw,59.1%,False
-20,ES1,Real Sociedad,Athletic Club,Real Sociedad,80.1%,Real Sociedad,99.3%,True
-16,L1,Eintracht Frankfurt,Borussia Dortmund,Borussia Dortmund,45.9%,Draw,99.8%,False
-16,L1,SC Friburgo,Hamburgo SV,SC Friburgo,64.0%,SC Friburgo,88.3%,True
-16,L1,Werder Bremen,TSG 1899 Hoffenheim,TSG 1899 Hoffenheim,45.3%,TSG 1899 Hoffenheim,97.7%,True
-16,L1,FC Union Berlim,FSV Mainz 05,FC Union Berlim,61.0%,FC Union Berlim,100.0%,True
-16,L1,FC St. Pauli,RB Leipzig,RB Leipzig,56.1%,RB Leipzig,97.1%,True
-16,L1,FC Heidenheim 1846,FC Colónia,Draw,37.6%,FC Heidenheim 1846,100.0%,False
-16,L1,Bayer Leverkusen,VfB Estugarda,Bayer Leverkusen,66.3%,Bayer Leverkusen,56.5%,True
-16,L1,Borussia Mönchengladbach,FC Augsburgo,FC Augsburgo,47.5%,FC Augsburgo,91.9%,True
-16,L1,Bayer Leverkusen,VfL Wolfsburgo,Bayer Leverkusen,86.3%,Bayer Leverkusen,100.0%,True
+17,FR1,Toulouse,Lens,Toulouse,42.0%,Draw,51.3%,False
+17,FR1,Monaco,Olympique Lyon,Monaco,46.2%,Monaco,99.8%,True
+17,FR1,OGC Nice,Estrasburgo,OGC Nice,44.6%,OGC Nice,69.6%,True
+17,FR1,LOSC Lille,Rennes,LOSC Lille,84.2%,LOSC Lille,99.9%,True
+17,FR1,Marselha,FC Nantes,Marselha,43.8%,FC Nantes,39.3%,False
+17,FR1,Le Havre AC,Angers SCO,Draw,64.2%,Draw,82.5%,True
+17,FR1,FC Lorient,FC Metz,FC Lorient,77.0%,FC Lorient,79.8%,True
+17,FR1,Stade Brestois,AJ Auxerre,Stade Brestois,59.2%,Stade Brestois,86.2%,True
+17,FR1,PSG,Paris FC,Draw,52.4%,Draw,90.1%,True
+17,PO1,Gil Vicente,Sporting,Gil Vicente,42.0%,Draw,51.3%,False
+17,PO1,Vitória SC,CD Nacional,Vitória SC,56.8%,Vitória SC,92.5%,True
+17,PO1,Tondela,Arouca,Tondela,42.0%,Draw,51.3%,False
+17,PO1,Benfica,Estoril,Benfica,42.0%,Draw,51.3%,False
+17,PO1,E Amadora,Braga,E Amadora,42.0%,Draw,51.3%,False
+17,PO1,AFS,Moreirense,AFS,42.0%,Draw,51.3%,False
+17,PO1,Rio Ave,Casa Pia,Rio Ave,42.0%,Draw,51.3%,False
+17,PO1,Santa Clara,FC Porto,Draw,38.0%,Draw,92.4%,True
+17,PO1,Alverca,Famalicão,Alverca,42.0%,Draw,51.3%,False
+18,NL1,NEC Nijmegen,FC Utrecht,NEC Nijmegen,80.6%,NEC Nijmegen,100.0%,True
+18,NL1,AZ Alkmaar,FC Volendam,AZ Alkmaar,64.8%,AZ Alkmaar,99.9%,True
+18,NL1,FC Twente,PEC Zwolle,FC Twente,57.0%,FC Twente,100.0%,True
+18,NL1,PSV,Excelsior,PSV,42.0%,Draw,51.3%,False
+18,NL1,Groningen,NAC Breda,Groningen,63.4%,Groningen,68.1%,True
+18,NL1,Heerenveen,Feyenoord,Draw,60.6%,Draw,90.5%,True
+18,NL1,Go Ahead Eagles,Fortuna Sittard,Go Ahead Eagles,43.6%,Go Ahead Eagles,99.7%,True
+18,NL1,Telstar,Ajax,Telstar,42.0%,Draw,51.3%,False
+18,NL1,Sparta R,Heracles Almelo,Sparta R,59.4%,Sparta R,78.9%,True
+20,GB1,Aston Villa,Nottm Forest,Aston Villa,42.0%,Draw,51.3%,False
+20,GB1,Brighton,FC Burnley,Brighton,57.4%,Brighton,99.2%,True
+20,GB1,Wolves,West Ham,Wolves,42.0%,Draw,51.3%,False
+20,GB1,Bournemouth,Arsenal,Bournemouth,42.0%,Draw,51.3%,False
+20,GB1,Leeds,Man United,Leeds,42.0%,Draw,51.3%,False
+20,GB1,Everton,Brentford,Everton,42.0%,Draw,51.3%,False
+20,GB1,FC Fulham,Liverpool,FC Fulham,55.0%,FC Fulham,88.7%,True
+20,GB1,Newcastle,Crystal Palace,Newcastle,42.0%,Draw,51.3%,False
+20,GB1,Tottenham,AFC Sunderland,Tottenham,50.8%,Tottenham,98.1%,True
+20,GB1,Man City,Chelsea,Man City,42.0%,Draw,51.3%,False
+19,ES1,Rayo VM,Getafe,Rayo VM,42.0%,Draw,51.3%,False
+19,ES1,Celta de Vigo,Valência,Draw,64.8%,Draw,99.5%,True
+19,ES1,Osasuna,Athletic Bilbao,Osasuna,42.0%,Draw,51.3%,False
+19,ES1,Elche,Villarreal,Elche,42.0%,Draw,51.3%,False
+19,ES1,Espanyol,Barcelona,Espanyol,42.0%,Draw,51.3%,False
+19,ES1,Sevilha FC,Levante,Sevilha FC,52.0%,Sevilha FC,93.5%,True
+19,ES1,Real Madrid,Betis,Real Madrid,42.0%,Draw,51.3%,False
+19,ES1,Maiorca,Girona FC,Girona FC,37.0%,Draw,44.5%,False
+19,ES1,Alavés,Real Oviedo,Alavés,43.4%,Draw,82.4%,False
+19,ES1,Real Sociedad,Atlético,Real Sociedad,51.6%,Atlético,74.9%,False
+16,L1,Frankfurt,Dortmund,Frankfurt,42.0%,Draw,51.3%,False
+16,L1,Friburgo,Hamburgo,Friburgo,42.0%,Draw,51.3%,False
+16,L1,Werder Bremen,Hoffenheim,Werder Bremen,48.2%,Werder Bremen,49.9%,True
+16,L1,U Berlim,Mainz,U Berlim,42.0%,Draw,51.3%,False
+16,L1,St Pauli,Leipzig,St Pauli,42.0%,Draw,51.3%,False
+16,L1,Heidenheim,Colónia,Heidenheim,42.0%,Draw,51.3%,False
+16,L1,Leverkusen,Estugarda,Leverkusen,42.0%,Draw,51.3%,False
+16,L1,Mgladbach,Augsburgo,Mgladbach,42.0%,Draw,51.3%,False
+16,L1,Bayern,Wolfsburgo,Bayern,42.0%,Draw,51.3%,False

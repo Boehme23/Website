@@ -1,10 +1,10 @@
-Home,Away
-Famalicão,E Amadora
-Casa Pia,Vitória SC
-Arouca,Gil Vicente
-Braga,Benfica
-Sporting,Rio Ave
-FC Porto,AFS
-Estoril,Alverca
-CD Nacional,Santa Clara
-Moreirense,Tondela
+Round,Home,Away
+17,Gil Vicente,Sporting
+17,Vitória SC,CD Nacional
+17,Tondela,Arouca
+17,Benfica,Estoril
+17,E Amadora,Braga
+17,AFS,Moreirense
+17,Rio Ave,Casa Pia
+17,Santa Clara,FC Porto
+17,Alverca,Famalicão
