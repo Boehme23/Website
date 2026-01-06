@@ -11,7 +11,7 @@ ligas = [
     ('liga-nos', 'PO1','18'),
     ('eredivisie', 'NL1','19'),
     ('premier-league', 'GB1','21'),
-    ('laliga', 'ES1','19'),
+    ('laliga', 'ES1','20'),
     ('bundesliga', 'L1','17')
 ]
 
