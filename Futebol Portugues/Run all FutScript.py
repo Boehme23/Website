@@ -6,7 +6,7 @@ import time
 scripts = [
     "GetFutData.py",
     "GetGamesResult.py",
-    "GetGamesAll.py",
+    "NextRound.py",
     'CheckNames.py',
     'Merger.py',
     'MergeProximosJogos.py',

@@ -143,6 +143,15 @@ FR1,16,AJ Auxerre,3:4,LOSC Lille
 FR1,16,Estrasburgo,0:0,FC Lorient
 FR1,16,Lens,2:0,OGC Nice
 FR1,16,Marselha,1:0,Monaco
+FR1,17,Toulouse,0:3,Lens
+FR1,17,Monaco,1:3,Olympique Lyon
+FR1,17,OGC Nice,1:1,Estrasburgo
+FR1,17,LOSC Lille,0:2,Rennes
+FR1,17,Marselha,0:2,FC Nantes
+FR1,17,Le Havre AC,2:1,Angers SCO
+FR1,17,FC Lorient,1:1,FC Metz
+FR1,17,Stade Brestois,2:0,AJ Auxerre
+FR1,17,PSG,2:1,Paris FC
 PO1,1,Casa Pia,0:2,Sporting
 PO1,1,CD Nacional,0:2,Gil Vicente
 PO1,1,Arouca,3:1,AFS
@@ -285,6 +294,15 @@ PO1,16,Arouca,2:2,Gil Vicente
 PO1,16,Braga,2:2,Benfica
 PO1,16,Sporting,4:0,Rio Ave
 PO1,16,FC Porto,2:0,AFS
+PO1,17,Gil Vicente,1:1,Sporting
+PO1,17,Vitória SC,2:1,CD Nacional
+PO1,17,Tondela,3:1,Arouca
+PO1,17,Benfica,3:1,Estoril
+PO1,17,E. Amadora,3:3,Braga
+PO1,17,AFS,0:2,Moreirense
+PO1,17,Rio Ave,3:1,Casa Pia
+PO1,17,Santa Clara,0:1,FC Porto
+PO1,17,Alverca,1:0,Famalicão
 NL1,1,Fortuna Sittard,2:2,Go Ahead Eagles
 NL1,1,NEC Nijmegen,5:0,Excelsior
 NL1,1,Feyenoord,2:0,NAC Breda
@@ -627,6 +645,16 @@ GB1,19,Crystal Palace,1:1,FC Fulham
 GB1,19,Liverpool,0:0,Leeds
 GB1,19,Brentford,0:0,Tottenham
 GB1,19,AFC Sunderland,0:0,Man City
+GB1,20,Aston Villa,3:1,Nott'm Forest
+GB1,20,Brighton,2:0,FC Burnley
+GB1,20,Wolves,3:0,West Ham
+GB1,20,Bournemouth,2:3,Arsenal
+GB1,20,Leeds,1:1,Man. United
+GB1,20,Everton,2:4,Brentford
+GB1,20,FC Fulham,2:2,Liverpool
+GB1,20,Newcastle,2:0,Crystal Palace
+GB1,20,Tottenham,1:1,AFC Sunderland
+GB1,20,Man City,1:1,Chelsea
 ES1,1,Girona FC,1:3,Rayo VM
 ES1,1,Villarreal,2:0,Real Oviedo
 ES1,1,Maiorca,0:3,Barcelona
@@ -796,8 +824,16 @@ ES1,17,Villarreal,0:2,Barcelona
 ES1,17,Elche,4:0,Rayo VM
 ES1,17,Betis,4:0,Getafe
 ES1,17,Athletic Bilbao,1:2,Espanyol
-ES1,19,Barcelona,3:1,Atlético
-ES1,19,Athletic Bilbao,0:3,Real Madrid
+ES1,18,Rayo VM,1:1,Getafe
+ES1,18,Celta de Vigo,4:1,Valência
+ES1,18,Osasuna,1:1,Athletic Bilbao
+ES1,18,Elche,1:3,Villarreal
+ES1,18,Espanyol,0:2,Barcelona
+ES1,18,Sevilha FC,0:3,Levante
+ES1,18,Real Madrid,5:1,Betis
+ES1,18,Maiorca,1:2,Girona FC
+ES1,18,Alavés,1:1,Real Oviedo
+ES1,18,Real Sociedad,1:1,Atlético
 L1,1,Bayern,6:0,Leipzig
 L1,1,Frankfurt,4:1,Werder Bremen
 L1,1,Leverkusen,1:2,Hoffenheim
@@ -933,59 +969,59 @@ L1,15,Hamburgo,1:1,Frankfurt
 L1,15,Leipzig,1:3,Leverkusen
 L1,15,Mainz,0:0,St. Pauli
 L1,15,Heidenheim,0:4,Bayern
-FR1,17,Toulouse,,Lens
-FR1,17,Monaco,,Olympique Lyon
-FR1,17,OGC Nice,,Estrasburgo
-FR1,17,LOSC Lille,,Rennes
-FR1,17,Marselha,,FC Nantes
-FR1,17,Le Havre AC,,Angers SCO
-FR1,17,FC Lorient,,FC Metz
-FR1,17,Stade Brestois,,AJ Auxerre
-FR1,17,PSG,,Paris FC
-PO1,17,Gil Vicente,,Sporting
-PO1,17,Vitória SC,,CD Nacional
-PO1,17,Tondela,,Arouca
-PO1,17,Benfica,,Estoril
-PO1,17,E. Amadora,,Braga
-PO1,17,AFS,,Moreirense
-PO1,17,Rio Ave,,Casa Pia
-PO1,17,Santa Clara,,FC Porto
-PO1,17,Alverca,,Famalicão
-NL1,18,NEC Nijmegen,,FC Utrecht
-NL1,18,AZ Alkmaar,,FC Volendam
-NL1,18,FC Twente,,PEC Zwolle
-NL1,18,PSV,,Excelsior
-NL1,18,Groningen,,NAC Breda
-NL1,18,Heerenveen,,Feyenoord
-NL1,18,Go Ahead Eagles,,Fortuna Sittard
-NL1,18,Telstar,,Ajax
-NL1,18,Sparta R.,,Heracles Almelo
-GB1,20,Aston Villa,,Nott'm Forest
-GB1,20,Brighton,,FC Burnley
-GB1,20,Wolves,,West Ham
-GB1,20,Bournemouth,,Arsenal
-GB1,20,Leeds,,Man. United
-GB1,20,Everton,,Brentford
-GB1,20,FC Fulham,,Liverpool
-GB1,20,Newcastle,,Crystal Palace
-GB1,20,Tottenham,,AFC Sunderland
-GB1,20,Man City,,Chelsea
-ES1,18,Rayo VM,,Getafe
-ES1,18,Celta de Vigo,,Valência
-ES1,18,Osasuna,,Athletic Bilbao
-ES1,18,Elche,,Villarreal
-ES1,18,Espanyol,,Barcelona
-ES1,18,Sevilha FC,,Levante
-ES1,18,Real Madrid,,Betis
-ES1,18,Maiorca,,Girona FC
-ES1,18,Alavés,,Real Oviedo
-ES1,18,Real Sociedad,,Atlético
-L1,16,Frankfurt,,Dortmund
-L1,16,Friburgo,,Hamburgo
-L1,16,Werder Bremen,,Hoffenheim
-L1,16,U. Berlim,,Mainz
-L1,16,St. Pauli,,Leipzig
-L1,16,Heidenheim,,Colónia
-L1,16,Leverkusen,,Estugarda
-L1,16,M'gladbach,,Augsburgo
-L1,16,Bayern,,Wolfsburgo
+FR1,18,Monaco,,FC Lorient
+FR1,18,PSG,,LOSC Lille
+FR1,18,Lens,,AJ Auxerre
+FR1,18,Toulouse,,OGC Nice
+FR1,18,Angers SCO,,Marselha
+FR1,18,Estrasburgo,,FC Metz
+FR1,18,Rennes,,Le Havre AC
+FR1,18,FC Nantes,,Paris FC
+FR1,18,Olympique Lyon,,Stade Brestois
+PO1,18,Sporting,,Casa Pia
+PO1,18,Gil Vicente,,CD Nacional
+PO1,18,AFS,,Arouca
+PO1,18,Alverca,,Moreirense
+PO1,18,Rio Ave,,Benfica
+PO1,18,Santa Clara,,Famalicão
+PO1,18,Tondela,,Braga
+PO1,18,Vitória SC,,FC Porto
+PO1,18,E. Amadora,,Estoril
+NL1,19,Ajax,,Go Ahead Eagles
+NL1,19,PEC Zwolle,,AZ Alkmaar
+NL1,19,Excelsior,,Telstar
+NL1,19,Fortuna Sittard,,PSV
+NL1,19,NAC Breda,,NEC Nijmegen
+NL1,19,Heerenveen,,Groningen
+NL1,19,FC Volendam,,FC Utrecht
+NL1,19,Heracles Almelo,,FC Twente
+NL1,19,Feyenoord,,Sparta R.
+GB1,21,West Ham,,Nott'm Forest
+GB1,21,Bournemouth,,Tottenham
+GB1,21,Brentford,,AFC Sunderland
+GB1,21,Crystal Palace,,Aston Villa
+GB1,21,Everton,,Wolves
+GB1,21,FC Fulham,,Chelsea
+GB1,21,Man City,,Brighton
+GB1,21,FC Burnley,,Man. United
+GB1,21,Newcastle,,Leeds
+GB1,21,Arsenal,,Liverpool
+ES1,19,Barcelona,,Atlético
+ES1,19,Athletic Bilbao,,Real Madrid
+ES1,19,Getafe,,Real Sociedad
+ES1,19,Real Oviedo,,Betis
+ES1,19,Villarreal,,Alavés
+ES1,19,Girona FC,,Osasuna
+ES1,19,Valência,,Elche
+ES1,19,Rayo VM,,Maiorca
+ES1,19,Levante,,Espanyol
+ES1,19,Sevilha FC,,Celta de Vigo
+L1,17,Estugarda,,Frankfurt
+L1,17,Dortmund,,Werder Bremen
+L1,17,Mainz,,Heidenheim
+L1,17,Hamburgo,,Leverkusen
+L1,17,Wolfsburgo,,St. Pauli
+L1,17,Leipzig,,Friburgo
+L1,17,Hoffenheim,,M'gladbach
+L1,17,Colónia,,Bayern
+L1,17,Augsburgo,,U. Berlim
