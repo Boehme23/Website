@@ -52,7 +52,7 @@ def atualizar_base_combinada(arquivo_liga):
     )
 
     df_final.to_csv(caminho_combinado, index=False, encoding='utf-8')
-    print(f"✅ Base combinada atualizada (Fuzzy Match aplicado)")
+    print(f"✅ Base combinada atualizada (Fuzzy Match aplicado) para {caminho_combinado}")
 
 
 if __name__ == '__main__':

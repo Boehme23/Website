@@ -7,9 +7,9 @@ scripts = [
     "GetFutData.py",
     "GetGamesResult.py",
     "NextRound.py",
-    'CheckNames.py',
     'Merger.py',
     'MergeProximosJogos.py',
+    'CheckNames.py',
     'FutMLTest.py'
 
 ]

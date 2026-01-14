@@ -7,10 +7,10 @@ import re  # Importante para limpar o texto
 import pandas as pd  # Importante para criar as colunas
 
 ligas = [
-    ('ligue-1', 'FR1','18'),
+    ('ligue-1', 'FR1','19'),
     ('liga-nos', 'PO1','18'),
     ('eredivisie', 'NL1','19'),
-    ('premier-league', 'GB1','21'),
+    ('premier-league', 'GB1','22'),
     ('laliga', 'ES1','20'),
     ('bundesliga', 'L1','17')
 ]
@@ -24,7 +24,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 
 
-# ... (lista de ligas permanece a mesma)
 
 def coletar_resultados_clean(driver, liga):
     url = f'https://www.transfermarkt.pt/{liga[0]}/spieltag/wettbewerb/{liga[1]}/plus/?saison_id=2025&spieltag={liga[2]}'

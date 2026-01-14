@@ -1,4 +1,4 @@
-League,Round,Home,Result,Away
+﻿League,Round,Home,Result,Away
 FR1,1,Rennes,1:0,Marselha
 FR1,1,Lens,0:1,Olympique Lyon
 FR1,1,Monaco,3:1,Le Havre AC
@@ -294,6 +294,7 @@ PO1,16,Arouca,2:2,Gil Vicente
 PO1,16,Braga,2:2,Benfica
 PO1,16,Sporting,4:0,Rio Ave
 PO1,16,FC Porto,2:0,AFS
+PO1,16,CD Nacional,3:3,Santa Clara
 PO1,17,Gil Vicente,1:1,Sporting
 PO1,17,Vitória SC,2:1,CD Nacional
 PO1,17,Tondela,3:1,Arouca
@@ -455,6 +456,13 @@ NL1,17,Feyenoord,1:1,FC Twente
 NL1,17,Go Ahead Eagles,1:1,Groningen
 NL1,17,FC Volendam,0:1,Sparta R.
 NL1,17,Fortuna Sittard,4:3,AZ Alkmaar
+NL1,18,AZ Alkmaar,1:0,FC Volendam
+NL1,18,FC Twente,1:1,PEC Zwolle
+NL1,18,PSV,5:1,Excelsior
+NL1,18,Groningen,0:0,NAC Breda
+NL1,18,Heerenveen,2:2,Feyenoord
+NL1,18,Go Ahead Eagles,2:2,Fortuna Sittard
+NL1,18,Telstar,2:3,Ajax
 GB1,1,Liverpool,4:2,Bournemouth
 GB1,1,Aston Villa,0:0,Newcastle
 GB1,1,Brighton,1:1,FC Fulham
@@ -655,6 +663,16 @@ GB1,20,FC Fulham,2:2,Liverpool
 GB1,20,Newcastle,2:0,Crystal Palace
 GB1,20,Tottenham,1:1,AFC Sunderland
 GB1,20,Man City,1:1,Chelsea
+GB1,21,West Ham,1:2,Nott'm Forest
+GB1,21,Bournemouth,3:2,Tottenham
+GB1,21,Brentford,3:0,AFC Sunderland
+GB1,21,Crystal Palace,0:0,Aston Villa
+GB1,21,Everton,1:1,Wolves
+GB1,21,FC Fulham,2:1,Chelsea
+GB1,21,Man City,1:1,Brighton
+GB1,21,FC Burnley,2:2,Man. United
+GB1,21,Newcastle,4:3,Leeds
+GB1,21,Arsenal,0:0,Liverpool
 ES1,1,Girona FC,1:3,Rayo VM
 ES1,1,Villarreal,2:0,Real Oviedo
 ES1,1,Maiorca,0:3,Barcelona
@@ -834,6 +852,15 @@ ES1,18,Real Madrid,5:1,Betis
 ES1,18,Maiorca,1:2,Girona FC
 ES1,18,Alavés,1:1,Real Oviedo
 ES1,18,Real Sociedad,1:1,Atlético
+ES1,19,Barcelona,3:1,Atlético
+ES1,19,Athletic Bilbao,0:3,Real Madrid
+ES1,19,Getafe,1:2,Real Sociedad
+ES1,19,Real Oviedo,1:1,Betis
+ES1,19,Villarreal,3:1,Alavés
+ES1,19,Girona FC,1:0,Osasuna
+ES1,19,Valência,1:1,Elche
+ES1,19,Rayo VM,2:1,Maiorca
+ES1,19,Levante,1:1,Espanyol
 L1,1,Bayern,6:0,Leipzig
 L1,1,Frankfurt,4:1,Werder Bremen
 L1,1,Leverkusen,1:2,Hoffenheim
@@ -969,59 +996,9 @@ L1,15,Hamburgo,1:1,Frankfurt
 L1,15,Leipzig,1:3,Leverkusen
 L1,15,Mainz,0:0,St. Pauli
 L1,15,Heidenheim,0:4,Bayern
-FR1,18,Monaco,,FC Lorient
-FR1,18,PSG,,LOSC Lille
-FR1,18,Lens,,AJ Auxerre
-FR1,18,Toulouse,,OGC Nice
-FR1,18,Angers SCO,,Marselha
-FR1,18,Estrasburgo,,FC Metz
-FR1,18,Rennes,,Le Havre AC
-FR1,18,FC Nantes,,Paris FC
-FR1,18,Olympique Lyon,,Stade Brestois
-PO1,18,Sporting,,Casa Pia
-PO1,18,Gil Vicente,,CD Nacional
-PO1,18,AFS,,Arouca
-PO1,18,Alverca,,Moreirense
-PO1,18,Rio Ave,,Benfica
-PO1,18,Santa Clara,,Famalicão
-PO1,18,Tondela,,Braga
-PO1,18,Vitória SC,,FC Porto
-PO1,18,E. Amadora,,Estoril
-NL1,19,Ajax,,Go Ahead Eagles
-NL1,19,PEC Zwolle,,AZ Alkmaar
-NL1,19,Excelsior,,Telstar
-NL1,19,Fortuna Sittard,,PSV
-NL1,19,NAC Breda,,NEC Nijmegen
-NL1,19,Heerenveen,,Groningen
-NL1,19,FC Volendam,,FC Utrecht
-NL1,19,Heracles Almelo,,FC Twente
-NL1,19,Feyenoord,,Sparta R.
-GB1,21,West Ham,,Nott'm Forest
-GB1,21,Bournemouth,,Tottenham
-GB1,21,Brentford,,AFC Sunderland
-GB1,21,Crystal Palace,,Aston Villa
-GB1,21,Everton,,Wolves
-GB1,21,FC Fulham,,Chelsea
-GB1,21,Man City,,Brighton
-GB1,21,FC Burnley,,Man. United
-GB1,21,Newcastle,,Leeds
-GB1,21,Arsenal,,Liverpool
-ES1,19,Barcelona,,Atlético
-ES1,19,Athletic Bilbao,,Real Madrid
-ES1,19,Getafe,,Real Sociedad
-ES1,19,Real Oviedo,,Betis
-ES1,19,Villarreal,,Alavés
-ES1,19,Girona FC,,Osasuna
-ES1,19,Valência,,Elche
-ES1,19,Rayo VM,,Maiorca
-ES1,19,Levante,,Espanyol
-ES1,19,Sevilha FC,,Celta de Vigo
-L1,17,Estugarda,,Frankfurt
-L1,17,Dortmund,,Werder Bremen
-L1,17,Mainz,,Heidenheim
-L1,17,Hamburgo,,Leverkusen
-L1,17,Wolfsburgo,,St. Pauli
-L1,17,Leipzig,,Friburgo
-L1,17,Hoffenheim,,M'gladbach
-L1,17,Colónia,,Bayern
-L1,17,Augsburgo,,U. Berlim
+L1,16,Frankfurt,3:3,Dortmund
+L1,16,Friburgo,2:1,Hamburgo
+L1,16,U. Berlim,2:2,Mainz
+L1,16,Heidenheim,2:2,Colónia
+L1,16,Leverkusen,1:4,Estugarda
+L1,16,M'gladbach,4:0,Augsburgo
