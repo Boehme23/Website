@@ -1,6 +1,42 @@
 import subprocess
 import sys
 import time
+import git
+from datetime import datetime
+import os
+
+
+def safety_commit(repo_path, message_prefix="Pre-run backup"):
+    try:
+        # Initialize the repo object
+        repo = git.Repo(repo_path)
+
+        # Check if there are any changes (modified or untracked)
+        if repo.is_dirty(untracked_files=True):
+            print("Changes detected. Committing before running...")
+
+            # Stage all changes (git add .)
+            repo.git.add(A=True)
+
+            # Create a timestamped commit message
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            commit_message = f"{message_prefix} - {timestamp}"
+
+            # Commit (git commit -m "...")
+            new_commit = repo.index.commit(commit_message)
+            print(f"Success! Committed as: {new_commit.hexsha[:7]}")
+            return new_commit
+        else:
+            print("No changes detected. Proceeding...")
+            return None
+
+    except Exception as e:
+        print(f"Failed to commit: {e}")
+        # Decide if you want to stop the script if backup fails
+        raise
+
+repo_directory = os.getcwd()  # Or the path to your project
+safety_commit(repo_directory)
 
 # List of scripts to run in order
 scripts = [

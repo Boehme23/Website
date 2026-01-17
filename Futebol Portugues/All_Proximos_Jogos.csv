@@ -1,57 +1,57 @@
 ﻿League,Round,Home,Away
-FR1,19,AJ Auxerre,PSG
-FR1,19,Rennes,FC Lorient
-FR1,19,Le Havre AC,Monaco
-FR1,19,Marselha,Lens
+FR1,19,AJ Auxerre,FC Paris Saint-Germain
+FR1,19,Stade Rennais FC,FC Lorient
+FR1,19,Le Havre AC,AS Monaco
+FR1,19,Olympique Marselha,RC Lens
 FR1,19,FC Nantes,OGC Nice
-FR1,19,Stade Brestois,Toulouse
+FR1,19,Stade Brestois 29,FC Toulouse
 FR1,19,Paris FC,Angers SCO
 FR1,19,FC Metz,Olympique Lyon
-FR1,19,LOSC Lille,Estrasburgo
-PO1,19,Casa Pia,AFS
-PO1,19,Moreirense,Santa Clara
-PO1,19,Arouca,Sporting
-PO1,19,Estoril,Vitória SC
-PO1,19,CD Nacional,Rio Ave
-PO1,19,Famalicão,Tondela
-PO1,19,Benfica,E Amadora
-PO1,19,Braga,Alverca
-PO1,19,FC Porto,Gil Vicente
-NL1,20,Ajax,FC Volendam
+FR1,19,LOSC Lille,RC Estrasburgo
+PO1,19,Casa Pia AC,Avs - Futebol SAD
+PO1,19,Moreirense FC,CD Santa Clara
+PO1,19,FC Arouca,Sporting CP
+PO1,19,GD Estoril Praia,Vitória SC
+PO1,19,CD Nacional,Rio Ave FC
+PO1,19,FC Famalicão,CD Tondela
+PO1,19,SL Benfica,CF Estrela Amadora
+PO1,19,SC Braga,FC Alverca
+PO1,19,FC Porto,Gil Vicente FC
+NL1,20,AFC Ajax,FC Volendam
 NL1,20,NEC Nijmegen,PEC Zwolle
-NL1,20,PSV,NAC Breda
-NL1,20,FC Twente,Excelsior
-NL1,20,Telstar,AZ Alkmaar
-NL1,20,Groningen,Fortuna Sittard
-NL1,20,FC Utrecht,Sparta R
+NL1,20,PSV Eindhoven,NAC Breda
+NL1,20,FC Twente,Excelsior de Roterdão
+NL1,20,SC Telstar,AZ Alkmaar
+NL1,20,FC Groningen,Fortuna Sittard
+NL1,20,FC Utrecht,Sparta Rotterdam
 NL1,20,Feyenoord,Heracles Almelo
-NL1,20,Go Ahead Eagles,Heerenveen
-GB1,22,Man United,Man City
-GB1,22,Aston Villa,Everton
-GB1,22,Chelsea,Brentford
-GB1,22,Leeds,FC Fulham
-GB1,22,Liverpool,FC Burnley
-GB1,22,AFC Sunderland,Crystal Palace
-GB1,22,Tottenham,West Ham
-GB1,22,Nottm Forest,Arsenal
-GB1,22,Wolves,Newcastle
-GB1,22,Brighton,Bournemouth
-ES1,21,Levante,Elche
-ES1,21,Rayo VM,Osasuna
-ES1,21,Valência,Espanyol
-ES1,21,Sevilha FC,Athletic Bilbao
-ES1,21,Villarreal,Real Madrid
-ES1,21,Alavés,Betis
-ES1,21,Atlético,Maiorca
-ES1,21,Barcelona,Real Oviedo
+NL1,20,Go Ahead Eagles,SC Heerenveen
+GB1,23,West Ham United,AFC Sunderland
+GB1,23,FC Burnley,Tottenham Hotspur
+GB1,23,FC Fulham,Brighton & Hove Albion
+GB1,23,Manchester City FC,Wolverhampton Wanderers
+GB1,23,AFC Bournemouth,Liverpool FC
+GB1,23,Brentford FC,Nottingham Forest
+GB1,23,Crystal Palace FC,Chelsea FC
+GB1,23,Newcastle United,Aston Villa FC
+GB1,23,FC Arsenal,Manchester United FC
+GB1,23,FC Everton,Leeds United FC
+ES1,21,Levante UD,Elche CF
+ES1,21,Rayo Valhecano,CA Osasuna
+ES1,21,Valência CF,RCD Espanyol
+ES1,21,Sevilha FC,Athletic Club
+ES1,21,FC Villarreal,Real Madrid CF
+ES1,21,Deportivo Alavés,Real Bétis
+ES1,21,Atlético Madrid,RCD Maiorca
+ES1,21,FC Barcelona,Real Oviedo
 ES1,21,Real Sociedad,Celta de Vigo
-ES1,21,Girona FC,Getafe
-L1,18,Werder Bremen,Frankfurt
-L1,18,Dortmund,St Pauli
-L1,18,Wolfsburgo,Heidenheim
-L1,18,Hoffenheim,Leverkusen
-L1,18,Colónia,Mainz
-L1,18,Hamburgo,Mgladbach
-L1,18,Leipzig,Bayern
-L1,18,Estugarda,U Berlim
-L1,18,Augsburgo,Friburgo
+ES1,21,Girona FC,Getafe CF
+L1,18,Werder Bremen,Eintracht Frankfurt
+L1,18,Borussia Dortmund,FC St. Pauli
+L1,18,VfL Wolfsburgo,FC Heidenheim 1846
+L1,18,TSG 1899 Hoffenheim,Bayer Leverkusen
+L1,18,FC Colónia,FSV Mainz 05
+L1,18,Hamburgo SV,Borussia Mönchengladbach
+L1,18,RB Leipzig,Bayer Leverkusen
+L1,18,VfB Estugarda,FC Union Berlim
+L1,18,FC Augsburgo,SC Friburgo

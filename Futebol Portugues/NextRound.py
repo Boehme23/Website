@@ -8,11 +8,11 @@ import pandas as pd  # Importante para criar as colunas
 
 ligas = [
     ('ligue-1', 'FR1','19'),
-    ('liga-nos', 'PO1','18'),
-    ('eredivisie', 'NL1','19'),
-    ('premier-league', 'GB1','22'),
-    ('laliga', 'ES1','20'),
-    ('bundesliga', 'L1','17')
+    ('liga-nos', 'PO1','19'),
+    ('eredivisie', 'NL1','20'),
+    ('premier-league', 'GB1','23'),
+    ('laliga', 'ES1','21'),
+    ('bundesliga', 'L1','18')
 ]
 
 import logging
