@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %}Crypto Portfolio Risk Analyzer{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Crypto Portfolio Risk Analyzer</h2>
+    <br>
+    <a href="/index" class="button">Back</a>
+    <br>
+    <br>
+    Select coins and weights, then click "Analyze Risk".
+    <div id="portfolio-inputs">
+        <div class="asset-row mb-2">
+            <select class="coin-selector">
+                <option value="" disabled selected>Selecione a moeda</option>
+                {% for coin in coins %}
+                    <option value="{{ coin }}">{{ coin }}</option>
+                {% endfor %}
+            </select>
+            <input type="number" class="weight-input" placeholder="Peso % (ex: 50)">
+            <button type="button" onclick="removeRow(this)">X</button>
+        </div>
+    </div>
+    
+    <button type="button" onclick="addRow()">+ Adicionar Moeda</button>
+    <button type="button" onclick="calculatePortfolio()">Analyze Risk</button>
+
+    <div id="results" class="mt-4">
+        <p>Avg Return: <span id="avg-ret">-</span></p>
+        <p>VaR (99%): <span id="var-99">-</span></p>
+    </div>
+
+    <br><br><br>
+    <a class="button" href="/criptos">Crypto Coins Info</a>
+    <br><br><br>
+
+</div>
+
+
+<script>
+// Função para adicionar nova linha de seleção
+function addRow() {
+    const div = document.querySelector('.asset-row').cloneNode(true);
+    div.querySelector('.weight-input').value = '';
+    document.getElementById('portfolio-inputs').appendChild(div);
+}
+
+// Função para remover linha
+function removeRow(btn) {
+    const rows = document.querySelectorAll('.asset-row');
+    if (rows.length > 1) btn.parentElement.remove();
+}
+
+function calculatePortfolio() {
+    let portfolioData = {};
+    document.querySelectorAll('.asset-row').forEach(row => {
+        let symbol = row.querySelector('.coin-selector').value;
+        let weight = row.querySelector('.weight-input').value;
+        if (symbol && weight) {
+            portfolioData[symbol] = parseFloat(weight);
+        }
+    });
+
+    fetch('/calculate', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(portfolioData)
+    })
+    .then(response => response.json())
+    .then(stats => {
+        if (stats.error) {
+            alert(stats.error);
+        } else {
+            document.getElementById('avg-ret').innerText = stats.avg_return;
+            document.getElementById('var-99').innerText = stats.var_99;
+        }
+    });
+}
+</script>
+{% endblock %}

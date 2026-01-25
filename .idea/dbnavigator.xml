@@ -49,11 +49,12 @@
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="377df6da-20ef-4a58-b27b-0bb03ebb23af">
       <console name="Connection" type="STANDARD" schema="my_data" session="Main"><![CDATA[SELECT 
-    p.*,
+    p.NN_WINNER,
     s.*
-FROM prediction_results p
-LEFT JOIN All_Schedule_Combined s 
-    ON p.Home = s.Home and p.Away=s.Away]]></console>
+FROM "./Csvs/prediction_results" p
+LEFT JOIN "./Csvs/apostas_separadas" s 
+    ON p.Home = s.Home and p.Away=s.Away
+WHERE p.Agree = true and (s."1">3 or s.X>3 or s."2">3)]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
