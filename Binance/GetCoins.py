@@ -5,10 +5,23 @@ import time
 
 
 def configurar_banco():
-    # Cria (ou abre) o arquivo de banco de dados
-    conn = sqlite3.connect('binance_history.db')
-    return conn
-
+        conn = sqlite3.connect('binance_history.db')
+        # Create the table with a UNIQUE constraint on symbol + timestamp
+        conn.execute("""
+        CREATE TABLE IF NOT EXISTS historico_precos (
+            timestamp DATETIME,
+            symbol TEXT,
+            open REAL,
+            high REAL,
+            low REAL,
+            close REAL,
+            volume REAL,
+            UNIQUE(timestamp, symbol)
+        )
+        """)
+        # 2. Create an index for faster searching/filtering
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_symbol_time ON historico_precos (symbol, timestamp);")
+        return conn
 
 def baixar_e_salvar_todos():
     client = Client()
@@ -24,7 +37,7 @@ def baixar_e_salvar_todos():
     for i, par in enumerate(pares):
         try:
             # Baixa dados diários desde 2023 (ajuste a data se necessário)
-            klines = client.get_historical_klines(par, Client.KLINE_INTERVAL_1DAY, "1 Jan, 2023")
+            klines = client.get_historical_klines(par, Client.KLINE_INTERVAL_1DAY, "1 Jan, 2014")
 
             if klines:
                 df = pd.DataFrame(klines, columns=[
@@ -40,11 +53,18 @@ def baixar_e_salvar_todos():
 
                 # Seleciona colunas úteis
                 df = df[['timestamp', 'symbol', 'open', 'high', 'low', 'close', 'volume']]
+                # 1. Upload to a temporary staging table
+                df.to_sql('temp_stats', conn, if_exists='replace', index=False)
 
-                # Salva no SQLite (anexa os dados se a tabela já existir)
-                df.to_sql('historico_precos', conn, if_exists='append', index=False)
+                # 2. Move data using INSERT OR IGNORE
+                query = """
+                                INSERT OR IGNORE INTO historico_precos (timestamp, symbol, open, high, low, close, volume)
+                                SELECT timestamp, symbol, open, high, low, close, volume FROM temp_stats;
+                                """
+                conn.execute(query)
+                conn.commit()  # Ensure data is saved
 
-                print(f"[{i + 1}/{len(pares)}] {par} processado com sucesso.")
+                print(f"[{i + 1}/{len(pares)}] {par} processado.")
 
             # Respeita o limite de peso da API
             time.sleep(0.2)
