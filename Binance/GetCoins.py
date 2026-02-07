@@ -37,7 +37,7 @@ def baixar_e_salvar_todos():
     for i, par in enumerate(pares):
         try:
             # Baixa dados diários desde 2023 (ajuste a data se necessário)
-            klines = client.get_historical_klines(par, Client.KLINE_INTERVAL_1DAY, "1 Jan, 2014")
+            klines = client.get_historical_klines(par, Client.KLINE_INTERVAL_1DAY, "1 Jan, 2026")
 
             if klines:
                 df = pd.DataFrame(klines, columns=[

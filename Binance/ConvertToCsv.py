@@ -9,16 +9,13 @@ conn = sqlite3.connect(db_path)
 # We exclude 'sqlite_sequence' which is an internal system table
 query = "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';"
 tables = pd.read_sql_query(query, conn)['name'].tolist()
-
 all_data = []
 
-print(f"Found {len(tables)} tables. Starting merge...")
 
 # 3. Loop through tables and read data
-for table in tables:
-    df = pd.read_sql_query(f'SELECT * FROM "{table}"', conn)
+df = pd.read_sql_query(f'SELECT * FROM "historico_precos"', conn)
+all_data.append(df)
 
-    all_data.append(df)
 
 # 4. Concatenate all DataFrames into one
 if all_data:
